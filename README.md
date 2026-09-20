@@ -127,4 +127,3 @@ This makes the experiment date, provider history, dependency versions and local 
 - [Data sources](docs/DATA_SOURCES.md) · [ML methodology](docs/ML_METHODOLOGY.md) · [Backtesting](docs/BACKTESTING.md)
 - [API](docs/API.md) · [Research design](docs/RESEARCH.md) · [Reproduced results](docs/RESULTS.md) · [Limitations](docs/LIMITATIONS.md)
 - [Data dictionary](docs/DATA_DICTIONARY.md) · [Architecture](docs/ARCHITECTURE.md)
-

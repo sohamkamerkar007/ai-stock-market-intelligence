@@ -1,0 +1,4 @@
+const charts=new Map();
+export function lineChart(id,labels,datasets,options={}){const el=document.getElementById(id);if(!el||!window.Chart)return;charts.get(id)?.destroy();charts.set(id,new Chart(el,{type:'line',data:{labels,datasets:datasets.map((d,i)=>({borderColor:d.color||['#29d391','#61a9ff','#a88bff'][i],backgroundColor:(d.color||'#29d391')+'18',pointRadius:0,borderWidth:1.7,tension:.12,fill:d.fill||false,...d}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#8c9aae',boxWidth:10}}},scales:{x:{ticks:{color:'#66758a',maxTicksLimit:8},grid:{color:'#151e29'}},y:{ticks:{color:'#66758a'},grid:{color:'#151e29'}}},...options}}))}
+export function pct(v){return v==null?'—':`${v>=0?'+':''}${(v*100).toFixed(2)}%`} export function num(v,d=2){return v==null?'—':Number(v).toLocaleString('en-IN',{maximumFractionDigits:d})}
+

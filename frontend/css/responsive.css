@@ -1,0 +1,3 @@
+@media(max-width:1050px){.grid.metrics{grid-template-columns:repeat(2,1fr)}.grid.two{grid-template-columns:1fr}.skeleton-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){:root{--sidebar:0px}.sidebar{width:240px;transform:translateX(-100%);transition:.2s}.sidebar.open{transform:none}.topbar{left:0;padding:0 14px}.icon-button{display:block}.top-actions .search{display:none}main{margin-left:0;padding:94px 14px 28px}.grid.metrics,.skeleton-grid,.split-list{grid-template-columns:1fr}.card{padding:14px}.topbar p{display:none}.chart-wrap{height:250px}}
+
