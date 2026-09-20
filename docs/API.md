@@ -13,10 +13,10 @@ Interactive OpenAPI documentation is available at `/docs`.
 | GET | `/api/v1/predictions` | Persisted probabilistic predictions |
 | GET | `/api/v1/predictions/{id}/explanation` | Grounded model attribution |
 | GET | `/api/v1/news` | News and sentiment |
+| POST | `/api/v1/news/analyze` | Non-persistent sentiment and context analysis for user-supplied financial text |
 | GET | `/api/v1/anomalies` | Statistical anomalies |
 | GET | `/api/v1/research/models` | Actual experiment runs |
 | POST | `/api/v1/backtests` | Run configured baseline backtest |
 | WS | `/ws/market` | Freshness-aware persisted market snapshots |
 
 Errors use FastAPI's structured `{"detail": ...}` response. Unknown assets return 404; insufficient analysis history returns 409.
-

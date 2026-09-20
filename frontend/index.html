@@ -1,34 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Research-grade Indian market intelligence and machine-learning analysis.">
-  <title>Bharat Market Intelligence</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Understand Indian market conditions, AI predictions and research evidence in plain language.">
+  <title>Bharat AI Market Intelligence</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23080c12'/%3E%3Cpath d='M6 23V9h4v14zm8 0V5h4v18zm8 0V12h4v11z' fill='%2329d391'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="/static/css/main.css"><link rel="stylesheet" href="/static/css/responsive.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <link rel="stylesheet" href="/static/css/responsive.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script type="module" src="/static/js/app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to analysis</a>
-  <aside class="sidebar">
-    <div class="brand"><span class="brand-mark">BM</span><span><b>Bharat</b><small>Market Intelligence</small></span></div>
+  <header class="app-header">
+    <div class="header-row">
+      <a class="brand" href="#overview" aria-label="Bharat AI Market Intelligence home"><span class="brand-mark">BM</span><span><b>Bharat</b><small>AI Market Intelligence</small></span></a>
+      <div class="product-line">Indian market analysis, AI predictions and market context</div>
+      <div class="top-actions">
+        <label class="search"><span aria-hidden="true">⌕</span><input id="globalSearch" type="search" placeholder="Search company or symbol" aria-label="Search company or symbol"></label>
+        <span id="freshness" class="status unavailable">UNAVAILABLE</span>
+        <button id="menuButton" class="icon-button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false">☰</button>
+      </div>
+    </div>
     <nav id="nav" aria-label="Primary">
       <a href="#overview" data-page="overview">Overview</a><a href="#market" data-page="market">Market</a>
       <a href="#stock" data-page="stock">Stock Intelligence</a><a href="#predictions" data-page="predictions">AI Predictions</a>
-      <a href="#regimes" data-page="regimes">Market Regimes</a><a href="#news" data-page="news">News Intelligence</a>
-      <a href="#anomalies" data-page="anomalies">Anomaly Center</a><a href="#explainability" data-page="explainability">Explainability</a>
-      <a href="#backtesting" data-page="backtesting">Backtest Lab</a><a href="#research" data-page="research">Research Lab</a>
+      <a href="#regimes" data-page="regimes">Market Environments</a><a href="#news" data-page="news">News Intelligence</a>
+      <a href="#anomalies" data-page="anomalies">Unusual Activity</a><a href="#backtesting" data-page="backtesting">Historical Performance</a>
+      <a href="#research" data-page="research">Research &amp; Model Insights</a>
     </nav>
-    <div class="research-note"><span>RESEARCH SYSTEM</span><p>Model outputs are uncertain and are not investment advice.</p></div>
-  </aside>
-  <header class="topbar">
-    <button id="menuButton" class="icon-button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false">☰</button>
-    <div><h1 id="pageTitle">Overview</h1><p id="pageSubtitle">Indian equities · research workspace</p></div>
-    <div class="top-actions"><label class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search symbol" aria-label="Search assets"></label><span id="freshness" class="status unavailable">UNAVAILABLE</span></div>
   </header>
+  <div class="context-bar"><div><h1 id="pageTitle">Overview</h1><p id="pageSubtitle">Understand today’s market picture at a glance.</p></div><p id="marketMessage">Latest available observations are shown.</p></div>
   <main id="workspace" tabindex="-1" aria-live="polite"><div class="skeleton-grid" aria-label="Loading"><i></i><i></i><i></i><i></i></div></main>
+  <footer>AI outputs are research predictions, not investment advice or guarantees.</footer>
   <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

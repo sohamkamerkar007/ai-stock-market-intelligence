@@ -27,3 +27,8 @@ class BacktestRequest(BaseModel):
     strategy: str = Field(pattern="^(buy_hold|sma_cross|ml|regime_aware|hybrid)$")
     start: date | None = None
     end: date | None = None
+
+
+class NewsAnalysisRequest(BaseModel):
+    text: str = Field(min_length=5, max_length=12000)
+    symbol: str | None = Field(default=None, max_length=32)

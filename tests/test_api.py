@@ -56,6 +56,17 @@ def test_api_health_assets_and_prices(tmp_path):
     feature_response = client.get("/api/v1/assets/TEST/features?limit=60")
     assert feature_response.status_code == 200
     assert feature_response.json()[0]["return_1d"] is None
+    analysis = client.post(
+        "/api/v1/news/analyze",
+        json={"text": "Test Asset reports strong profit growth and an upgrade.", "symbol": "TEST"},
+    )
+    assert analysis.status_code == 200
+    assert analysis.json()["sentiment"] == "positive"
+    assert "prediction" in analysis.json()["signal_comparison"]
+    missing_asset = client.post(
+        "/api/v1/news/analyze", json={"text": "A valid financial headline", "symbol": "NOPE"}
+    )
+    assert missing_asset.status_code == 404
     with client.websocket_connect("/ws/market") as websocket:
         message = websocket.receive_json()
         assert message["type"] == "market_snapshot"

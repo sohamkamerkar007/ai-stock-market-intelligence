@@ -17,9 +17,10 @@ from backend.app.models import (
     Prediction,
     PredictionExplanation,
 )
-from backend.app.schemas import AssetOut, BacktestRequest, PriceOut
+from backend.app.schemas import AssetOut, BacktestRequest, NewsAnalysisRequest, PriceOut
 from backend.app.services import execute_backtest, overview, price_frame
 from src.features.pipeline import build_features
+from src.nlp.sentiment import VaderFinancialBaseline
 
 router = APIRouter(prefix="/api/v1")
 
@@ -152,6 +153,50 @@ def news(symbol: str | None = None, limit: int = Query(50, le=200), db: Session 
         for a, s in rows
     ]
     return [r for r in result if not symbol or symbol.upper() in r["symbols"]][:limit]
+
+
+@router.post("/news/analyze")
+def analyze_news(request: NewsAnalysisRequest, db: Session = Depends(get_db)):
+    """Analyze user-provided text without persisting it or presenting it as a forecast."""
+    symbol = request.symbol.upper() if request.symbol else None
+    asset = db.scalar(select(Asset).where(Asset.symbol == symbol)) if symbol else None
+    if symbol and not asset:
+        raise HTTPException(404, "The selected asset is not in the configured market universe")
+    result = VaderFinancialBaseline().analyze(request.text)
+    sentences = [part.strip() for part in request.text.replace("\n", " ").split(".") if part.strip()]
+    summary = ". ".join(sentences[:2])[:420]
+    if summary and not summary.endswith("."):
+        summary += "."
+    latest_prediction = None
+    if asset:
+        latest_prediction = db.scalar(
+            select(Prediction)
+            .where(Prediction.asset_id == asset.id)
+            .order_by(desc(Prediction.generated_at))
+        )
+    market = overview(db).get("regime")
+    agreement = "No asset was selected, so the news tone was not compared with an asset prediction."
+    if latest_prediction:
+        aligned = (result.score > 0 and latest_prediction.direction == "UP") or (
+            result.score < 0 and latest_prediction.direction == "DOWN"
+        )
+        if result.label == "neutral":
+            agreement = "The news tone is neutral and does not strongly support either model direction."
+        elif aligned:
+            agreement = f"The news tone points in the same direction as the latest {symbol} model output. This agreement does not establish causation."
+        else:
+            agreement = f"The news tone differs from the latest {symbol} model output, indicating mixed signals."
+    return {
+        "summary": summary or request.text[:420],
+        "sentiment": result.label,
+        "score": result.score,
+        "confidence": result.confidence,
+        "model": result.model,
+        "asset": symbol,
+        "market_environment": market.get("label") if market else None,
+        "signal_comparison": agreement,
+        "caveat": "Text sentiment is contextual evidence, not a prediction of future price movement.",
+    }
 
 
 @router.get("/anomalies")
