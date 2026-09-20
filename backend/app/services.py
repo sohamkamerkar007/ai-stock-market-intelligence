@@ -167,6 +167,12 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
         model_features = list(FEATURE_COLUMNS)
         if strategy in {"regime_aware", "hybrid"}:
             features["regime_state"] = causal_regime_labels(features)
+            # The causal detector deliberately has no state until its minimum
+            # training history exists. Do not let an imputer silently remove an
+            # all-null regime column in early walk-forward folds.
+            features = features.dropna(subset=["regime_state"])
+            if len(features) < 60:
+                raise ValueError("Insufficient post-warm-up history for regime backtesting")
             model_features.append("regime_state")
         if strategy == "hybrid":
             news_rows = session.execute(
