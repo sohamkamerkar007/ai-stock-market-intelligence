@@ -7,7 +7,7 @@ An end-to-end MSc Data Analytics research platform for Indian equities: reproduc
 ## Architecture
 
 ```text
-Yahoo research EOD       Twelve Data (optional)      NewsData.io (optional)
+Yahoo research EOD       Licensed quote adapter path  NewsData.io (optional)
         |                         |                           |
         +----------- provider adapters / validation ---------+
                                   |
@@ -54,7 +54,7 @@ docker compose up -d db
 .\.venv\Scripts\python.exe -m alembic upgrade head
 ```
 
-Change `change-me` in both `.env` and `docker-compose.yml` for any non-local deployment.
+Set a strong local `POSTGRES_PASSWORD` in `.env` and keep the matching password in `DATABASE_URL`; Compose contains no embedded database credential.
 
 ## Acquire data and run research
 
@@ -102,12 +102,7 @@ docker compose up --build
 | Variable | Required | Purpose |
 |---|---:|---|
 | `DATABASE_URL` | Yes | PostgreSQL SQLAlchemy URL; SQLite is supported for local tests |
-| `TWELVE_DATA_API_KEY` | Optional | Credentialed quote polling; plan/coverage dependent |
 | `NEWSDATA_API_KEY` | Optional | News ingestion |
-| `MARKET_DATA_PROVIDER` | No | Historical adapter (`yahoo_research`) |
-| `QUOTE_PROVIDER` | No | `historical` by default; prevents false live status |
-| `QUOTE_DELAY_MINUTES` | No | Declared quote delay used by freshness labels |
-| `FINBERT_ENABLED` | No | Opt-in transformer path after installing `[finbert]` |
 | `MODEL_DIR`, `CACHE_DIR` | No | Local artifact/cache locations |
 | `TRANSACTION_COST_BPS`, `SLIPPAGE_BPS` | No | Reproducible backtest assumptions |
 | `CORS_ORIGINS`, `LOG_LEVEL`, `APP_ENV` | No | API runtime settings |

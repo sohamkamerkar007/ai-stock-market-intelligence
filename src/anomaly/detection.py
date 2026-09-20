@@ -24,19 +24,20 @@ def detect_anomalies(
         + pd.Series(lof_score).rank(pct=True).to_numpy()
     ) / 2
     clean["is_anomaly"] = (iso.predict(x) == -1) | (lof_label == -1)
-    clean["anomaly_type"] = clean.apply(_type, axis=1)
+    magnitudes = pd.DataFrame(
+        {
+            "abnormal_return": clean["return_1d"].abs(),
+            "unusual_volume": (clean["relative_volume_20"] - 1).abs(),
+            "volatility_spike": clean["volatility_20"],
+            "volume_change": clean["volume_change"].abs(),
+        },
+        index=clean.index,
+    )
+    robust_scale = magnitudes.median().replace(0, np.nan)
+    clean["anomaly_type"] = magnitudes.div(robust_scale).fillna(0).idxmax(axis=1)
     clean["severity"] = pd.cut(
         clean["anomaly_score"],
         bins=[-np.inf, 0.95, 0.985, np.inf],
         labels=["low", "medium", "high"],
     ).astype(str)
     return clean
-
-
-def _type(row: pd.Series) -> str:
-    values = {
-        "abnormal_return": abs(row["return_1d"]),
-        "unusual_volume": abs(row["relative_volume_20"] - 1),
-        "volatility_spike": row["volatility_20"],
-    }
-    return max(values, key=values.get)

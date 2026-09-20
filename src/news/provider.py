@@ -1,5 +1,6 @@
 import hashlib
 from datetime import UTC, datetime
+from urllib.parse import urlparse
 
 import requests
 from tenacity import retry, stop_after_attempt, wait_exponential
@@ -30,6 +31,8 @@ class NewsDataProvider:
         rows = []
         for item in response.json().get("results", []):
             url = item.get("link") or ""
+            if urlparse(url).scheme not in {"http", "https"}:
+                continue
             title = item.get("title") or ""
             external_id = (
                 item.get("article_id") or hashlib.sha256(f"{url}|{title}".encode()).hexdigest()
@@ -38,7 +41,9 @@ class NewsDataProvider:
             try:
                 published = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
             except (AttributeError, ValueError):
-                published = datetime.now(UTC)
+                continue
+            if published.tzinfo is None:
+                published = published.replace(tzinfo=UTC)
             rows.append(
                 {
                     "external_id": external_id,

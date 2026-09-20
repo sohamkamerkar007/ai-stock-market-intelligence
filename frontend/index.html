@@ -24,12 +24,11 @@
     <div class="research-note"><span>RESEARCH SYSTEM</span><p>Model outputs are uncertain and are not investment advice.</p></div>
   </aside>
   <header class="topbar">
-    <button id="menuButton" class="icon-button" aria-label="Open navigation">☰</button>
+    <button id="menuButton" class="icon-button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false">☰</button>
     <div><h1 id="pageTitle">Overview</h1><p id="pageSubtitle">Indian equities · research workspace</p></div>
     <div class="top-actions"><label class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search symbol" aria-label="Search assets"></label><span id="freshness" class="status unavailable">UNAVAILABLE</span></div>
   </header>
-  <main id="workspace" tabindex="-1"><div class="skeleton-grid" aria-label="Loading"><i></i><i></i><i></i><i></i></div></main>
+  <main id="workspace" tabindex="-1" aria-live="polite"><div class="skeleton-grid" aria-label="Loading"><i></i><i></i><i></i><i></i></div></main>
   <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
-

@@ -3,9 +3,9 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
+from backend.app import models  # noqa: F401
 from backend.app.config import get_settings
 from backend.app.database import Base
-from backend.app import models  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", get_settings().database_url)
@@ -29,4 +29,3 @@ def run_migrations_online() -> None:
 
 
 run_migrations_offline() if context.is_offline_mode() else run_migrations_online()
-

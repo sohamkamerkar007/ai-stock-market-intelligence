@@ -1,9 +1,11 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
+import pandas as pd
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import desc, select
 from sqlalchemy.orm import Session
 
+from backend.app.config import get_settings
 from backend.app.database import get_db
 from backend.app.models import (
     Anomaly,
@@ -25,7 +27,7 @@ router = APIRouter(prefix="/api/v1")
 @router.get("/health")
 def health(db: Session = Depends(get_db)):
     db.execute(select(1))
-    return {"status": "ok", "time": datetime.utcnow().isoformat() + "Z"}
+    return {"status": "ok", "time": datetime.now(UTC).isoformat()}
 
 
 @router.get("/assets", response_model=list[AssetOut])
@@ -57,18 +59,26 @@ def features(symbol: str, limit: int = Query(365, ge=60, le=3000), db: Session =
         raise HTTPException(404, str(exc)) from exc
     if len(frame) < 30:
         raise HTTPException(409, "Insufficient price history; run data ingestion first")
-    values = build_features(frame).tail(120).where(lambda x: x.notna(), None)
+    values = build_features(frame).tail(120).astype(object)
+    values = values.where(pd.notna(values), None)
     return values.to_dict("records")
 
 
 @router.get("/regimes")
 def regimes(
-    symbol: str = "NIFTY50", limit: int = Query(250, le=2000), db: Session = Depends(get_db)
+    symbol: str = "NIFTY50",
+    algorithm: str | None = None,
+    limit: int = Query(250, le=2000),
+    db: Session = Depends(get_db),
 ):
+    selected_algorithm = algorithm or get_settings().regime_algorithm
     rows = db.execute(
         select(MarketRegime, Asset)
         .join(Asset)
-        .where(Asset.symbol == symbol.upper())
+        .where(
+            Asset.symbol == symbol.upper(),
+            MarketRegime.algorithm == selected_algorithm,
+        )
         .order_by(desc(MarketRegime.timestamp))
         .limit(limit)
     ).all()
@@ -122,11 +132,12 @@ def explanation(prediction_id: int, db: Session = Depends(get_db)):
 
 @router.get("/news")
 def news(symbol: str | None = None, limit: int = Query(50, le=200), db: Session = Depends(get_db)):
+    fetch_limit = 1000 if symbol else limit
     rows = db.execute(
         select(NewsArticle, NewsSentiment)
         .outerjoin(NewsSentiment)
         .order_by(desc(NewsArticle.published_at))
-        .limit(limit)
+        .limit(fetch_limit)
     ).all()
     result = [
         {
@@ -140,7 +151,7 @@ def news(symbol: str | None = None, limit: int = Query(50, le=200), db: Session 
         }
         for a, s in rows
     ]
-    return [r for r in result if not symbol or symbol.upper() in r["symbols"]]
+    return [r for r in result if not symbol or symbol.upper() in r["symbols"]][:limit]
 
 
 @router.get("/anomalies")
@@ -165,7 +176,21 @@ def anomalies(symbol: str | None = None, db: Session = Depends(get_db)):
 
 @router.get("/research/models")
 def model_runs(db: Session = Depends(get_db)):
-    return db.scalars(select(ModelRun).order_by(desc(ModelRun.created_at)).limit(100)).all()
+    rows = db.scalars(select(ModelRun).order_by(desc(ModelRun.created_at)).limit(100)).all()
+    return [
+        {
+            "run_id": row.run_id,
+            "task": row.task,
+            "model_name": row.model_name,
+            "feature_set": row.feature_set,
+            "trained_from": row.trained_from,
+            "trained_to": row.trained_to,
+            "metrics": row.metrics,
+            "parameters": row.parameters,
+            "created_at": row.created_at,
+        }
+        for row in rows
+    ]
 
 
 @router.post("/backtests")

@@ -14,13 +14,8 @@ class Settings(BaseSettings):
     cors_origins: list[str] | str = ["http://localhost:8000"]
     model_dir: Path = Path("models")
     cache_dir: Path = Path("data/raw/cache")
-    market_data_provider: str = "yahoo_research"
-    quote_provider: str = "historical"
-    quote_delay_minutes: int = Field(15, ge=0)
-    twelve_data_api_key: str | None = None
     newsdata_api_key: str | None = None
-    news_provider: str = "newsdata"
-    finbert_enabled: bool = False
+    regime_algorithm: str = "hmm"
     default_history_years: int = Field(8, ge=2, le=20)
     transaction_cost_bps: float = Field(10, ge=0)
     slippage_bps: float = Field(5, ge=0)

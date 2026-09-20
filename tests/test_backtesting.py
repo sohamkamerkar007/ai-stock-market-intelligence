@@ -15,3 +15,9 @@ def test_signal_is_shifted_and_costed(prices):
 def test_drawdown_metric():
     m = performance_metrics(pd.Series([0.1, -0.2, 0.05]))
     assert m["max_drawdown"] < 0
+
+
+def test_metrics_are_json_safe_without_losses():
+    metrics = performance_metrics(pd.Series([0.01, 0.02, 0.0]))
+    assert metrics["profit_factor"] is None
+    assert metrics["win_rate"] == 1.0

@@ -11,13 +11,13 @@ Used for reproducible personal/academic **end-of-day research ingestion** becaus
 - Freshness: treat as end-of-day/delayed and provider-dependent.
 - Limits: no contractual free API SLA or published stable request quota; use incremental updates and local persistence.
 - Licensing: personal/research use only under the source terms; do not redistribute raw feeds without permission.
-- Fallback: replace the `MarketDataProvider` adapter with a licensed vendor export/API. Twelve Data is the implemented credentialed quote option; broker APIs may be added under their agreements.
+- Fallback: replace the `MarketDataProvider` adapter with a licensed vendor export/API. A standalone Twelve Data quote adapter is available for future provider work, but it is not connected to the default ingestion/WebSocket path and must not be treated as an enabled live feed.
 
 ## Optional quotes: Twelve Data
 
 Twelve Data documents API-key authentication, endpoint credit weights, and plan-dependent access in its [API documentation](https://twelvedata.com/docs). Its [credit policy](https://support.twelvedata.com/en/articles/5615854-credits) states the Basic daily quota and 429 behavior; WebSocket access is plan-dependent per its [service introduction](https://support.twelvedata.com/en/articles/5609168-introduction-to-twelve-data).
 
-- Environment: `TWELVE_DATA_API_KEY`, `QUOTE_PROVIDER=twelve_data`, and the correct `QUOTE_DELAY_MINUTES` for the subscribed entitlement.
+- No runtime environment switch currently enables this adapter. Connecting a licensed quote entitlement requires an explicit ingestion integration and provider-specific symbol validation.
 - Free-tier limitations: symbol/exchange entitlement and daily credits must be checked for the current plan; WebSockets may require a paid plan.
 - The platform does not claim `LIVE` merely because a request succeeded. Status depends on configured entitlement, observation age and Indian market hours.
 
@@ -37,4 +37,3 @@ NSE states that real-time, snapshot, delayed, end-of-day and historical market d
 ## Market calendar and freshness
 
 Normal cash-market display logic uses Asia/Kolkata weekdays and an approximate 09:15–15:30 IST window. Exchange holidays and special sessions require an exchange calendar update; outside the session the UI says `MARKET CLOSED`. `DELAYED`, `STALE`, and `UNAVAILABLE` are preferred to a misleading `LIVE` label.
-

@@ -2,6 +2,7 @@ import json
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import joblib
 import pandas as pd
@@ -9,7 +10,14 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from xgboost import XGBClassifier
@@ -19,7 +27,7 @@ from xgboost import XGBClassifier
 class TrainingResult:
     run_id: str
     model_name: str
-    metrics: dict[str, float]
+    metrics: dict[str, Any]
     split_dates: dict[str, str]
     artifact_path: str
 
@@ -59,7 +67,7 @@ def model_catalog(seed: int = 42) -> dict[str, object]:
     }
 
 
-def evaluate_classifier(model: object, x: pd.DataFrame, y: pd.Series) -> dict[str, float]:
+def evaluate_classifier(model: object, x: pd.DataFrame, y: pd.Series) -> dict[str, Any]:
     pred = model.predict(x)
     probability = model.predict_proba(x)[:, 1]
     return {
@@ -67,7 +75,8 @@ def evaluate_classifier(model: object, x: pd.DataFrame, y: pd.Series) -> dict[st
         "precision": float(precision_score(y, pred, zero_division=0)),
         "recall": float(recall_score(y, pred, zero_division=0)),
         "f1": float(f1_score(y, pred, zero_division=0)),
-        "roc_auc": float(roc_auc_score(y, probability)) if y.nunique() > 1 else float("nan"),
+        "roc_auc": float(roc_auc_score(y, probability)) if y.nunique() > 1 else None,
+        "confusion_matrix": confusion_matrix(y, pred, labels=[0, 1]).tolist(),
     }
 
 

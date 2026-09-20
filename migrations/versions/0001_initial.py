@@ -1,7 +1,8 @@
 """initial research schema"""
 from alembic import op
-from backend.app.database import Base
+
 from backend.app import models  # noqa: F401
+from backend.app.database import Base
 
 revision = "0001"
 down_revision = None
@@ -15,4 +16,3 @@ def upgrade():
 
 def downgrade():
     Base.metadata.drop_all(bind=op.get_bind())
-

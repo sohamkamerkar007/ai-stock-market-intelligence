@@ -17,6 +17,7 @@ from backend.app.database import SessionLocal
 from backend.app.services import overview
 
 settings = get_settings()
+logger = logging.getLogger(__name__)
 logging.basicConfig(
     level=settings.log_level, format="%(asctime)s %(levelname)s %(name)s %(message)s"
 )
@@ -47,17 +48,24 @@ async def market_socket(socket: WebSocket):
     await socket.accept()
     try:
         while True:
-            with SessionLocal() as db:
-                payload = overview(db)
-            message = jsonable_encoder(
-                {"type": "market_snapshot", "payload": payload},
-                custom_encoder={
-                    date: lambda value: value.isoformat(),
-                    datetime: lambda value: value.isoformat(),
-                    pd.Timestamp: lambda value: value.isoformat(),
-                    np.generic: lambda value: value.item(),
-                },
-            )
+            try:
+                with SessionLocal() as db:
+                    payload = overview(db)
+                message = jsonable_encoder(
+                    {"type": "market_snapshot", "payload": payload},
+                    custom_encoder={
+                        date: lambda value: value.isoformat(),
+                        datetime: lambda value: value.isoformat(),
+                        pd.Timestamp: lambda value: value.isoformat(),
+                        np.generic: lambda value: value.item(),
+                    },
+                )
+            except Exception:
+                logger.exception("Unable to build market WebSocket snapshot")
+                message = {
+                    "type": "service_status",
+                    "payload": {"status": "UNAVAILABLE", "reason": "market data unavailable"},
+                }
             await socket.send_json(message)
             await asyncio.sleep(30)
     except WebSocketDisconnect:

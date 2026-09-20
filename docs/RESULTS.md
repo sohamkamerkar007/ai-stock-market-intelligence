@@ -17,10 +17,10 @@ None of the tested classifiers demonstrated useful discrimination on this holdou
 | Feature set (Logistic Regression) | Accuracy | F1 | ROC-AUC |
 |---|---:|---:|---:|
 | Technical | 0.481 | 0.356 | 0.465 |
-| Technical + discovered regime | 0.502 | 0.479 | 0.475 |
+| Technical + causal regime | 0.502 | 0.447 | 0.466 |
 | Technical + regime + sentiment | Not run | Not run | Not run |
 
-The regime feature modestly increased accuracy and F1 but ROC-AUC remained below chance. The sentiment stage was intentionally skipped because no news API credential or time-aligned articles were available; the experiment runner does not invent or zero-fill missing news context.
+The causal regime feature modestly increased accuracy and F1 but ROC-AUC remained below chance. Each state used here was fitted only on earlier observations; the original full-sample state assignment was rejected during audit as look-ahead leakage. The sentiment stage was intentionally skipped because no news API credential or time-aligned articles were available; the experiment runner does not invent or zero-fill missing news context.
 
 ## Regime separation
 
@@ -41,10 +41,9 @@ Configured assumptions: daily close-derived signals executed next period, 10 bps
 | Buy and hold | 101.3% | 9.27% | 0.600 | -38.4% | 1 |
 | SMA baseline | 23.3% | 2.69% | 0.263 | -36.4% | 111 |
 | Walk-forward supervised ML | 9.5% | 1.16% | 0.221 | -8.7% | 130 |
-| Regime-aware ML | -5.9% | -0.76% | -0.180 | -8.8% | 150 |
+| Regime-aware ML | 21.7% | 2.52% | 0.469 | -10.5% | 130 |
 | Regime + sentiment hybrid | Not run | Not run | Not run | Not run | Not run |
 
-Buy and hold dominated return and Sharpe in this sample. The supervised ML strategy reduced maximum drawdown materially but delivered little return; the regime-aware strategy lost money. The unavailable hybrid is exposed as an explicit API/UI error until genuine time-aligned news is ingested.
+Buy and hold dominated return and Sharpe in this sample. The supervised and causal regime-aware ML strategies reduced maximum drawdown materially but delivered much less return. The unavailable hybrid is exposed as an explicit API/UI error until genuine time-aligned news is ingested.
 
 Reproduce locally using the commands in the README; provider revisions or a later end date may change every number.
-

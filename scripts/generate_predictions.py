@@ -72,8 +72,7 @@ def main() -> None:
                 summary = explain_contributions(
                     attribution["features"],
                     attribution["values"],
-                    prediction.direction,
-                    probability if prediction.direction == "UP" else 1 - probability,
+                    probability,
                 )
                 db.add(
                     PredictionExplanation(

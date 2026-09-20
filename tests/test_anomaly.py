@@ -8,3 +8,4 @@ def test_anomaly_detection(prices):
     result = detect_anomalies(build_features(prices))
     assert {"anomaly_score", "anomaly_type", "severity"} <= set(result)
     assert result.is_anomaly.any()
+    assert result.loc[300, "anomaly_type"] == "abnormal_return"

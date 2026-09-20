@@ -1,5 +1,7 @@
 import re
 from dataclasses import dataclass
+from datetime import time
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -57,9 +59,26 @@ def daily_sentiment(articles: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFram
         return pd.DataFrame(
             columns=["date", "symbol", "sentiment_mean", "news_volume", "sentiment_momentum"]
         )
-    data["date"] = data["published_at"].dt.floor("D")
+    data["date"] = data["published_at"].map(effective_market_date)
     daily = data.groupby(["date", "symbol"], as_index=False).agg(
         sentiment_mean=("sentiment_score", "mean"), news_volume=("sentiment_score", "size")
     )
     daily["sentiment_momentum"] = daily.groupby("symbol")["sentiment_mean"].diff()
     return daily
+
+
+def effective_market_date(published_at: object) -> pd.Timestamp:
+    """Return the first market date that can legitimately use an article.
+
+    Articles published after the 15:30 IST close are moved to the following
+    calendar day. A later as-of merge against observed sessions naturally
+    carries weekends and exchange holidays forward.
+    """
+    stamp = pd.Timestamp(published_at)
+    if stamp.tzinfo is None:
+        raise ValueError("News publication timestamps must be timezone-aware")
+    local = stamp.tz_convert(ZoneInfo("Asia/Kolkata"))
+    effective = local.normalize()
+    if local.time() > time(15, 30):
+        effective += pd.Timedelta(days=1)
+    return effective.tz_convert("UTC")

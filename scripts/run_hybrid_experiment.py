@@ -6,10 +6,12 @@ import pandas as pd
 from sqlalchemy import select
 
 from backend.app.database import SessionLocal
-from backend.app.models import MarketRegime, ModelRun, NewsArticle, NewsSentiment
+from backend.app.models import ModelRun, NewsArticle, NewsSentiment
 from scripts.common import load_asset_frame
 from src.features import FEATURE_COLUMNS, build_features, build_target
 from src.ml.training import train_classifier
+from src.nlp.sentiment import effective_market_date
+from src.regimes.discovery import causal_regime_labels
 
 
 def main():
@@ -19,38 +21,30 @@ def main():
     with SessionLocal() as db:
         asset, prices = load_asset_frame(db, args.symbol)
         data = build_target(build_features(prices))
-        regimes = db.scalars(
-            select(MarketRegime)
-            .where(MarketRegime.asset_id == asset.id)
-            .order_by(MarketRegime.timestamp)
-        ).all()
-        if regimes:
-            reg = pd.DataFrame(
-                {"timestamp": [r.timestamp for r in regimes], "regime": [r.state for r in regimes]}
-            )
-            data = pd.merge_asof(
-                data.sort_values("timestamp"),
-                reg.sort_values("timestamp"),
-                on="timestamp",
-                direction="backward",
-            )
+        data["regime"] = causal_regime_labels(data)
         news = db.execute(
             select(NewsArticle, NewsSentiment)
             .join(NewsSentiment)
             .order_by(NewsArticle.published_at)
         ).all()
-        if news:
+        relevant_news = [
+            (article, sentiment)
+            for article, sentiment in news
+            if asset.asset_type == "index" or args.symbol.upper() in (article.symbols or [])
+        ]
+        if relevant_news:
             nd = (
                 pd.DataFrame(
                     {
-                        "timestamp": [a.published_at for a, _ in news],
-                        "sentiment_mean": [s.score for _, s in news],
+                        "timestamp": [
+                            effective_market_date(article.published_at)
+                            for article, _ in relevant_news
+                        ],
+                        "sentiment_mean": [sentiment.score for _, sentiment in relevant_news],
                     }
                 )
-                .set_index("timestamp")
-                .resample("1D")
+                .groupby("timestamp", as_index=False)
                 .mean()
-                .reset_index()
             )
             data = pd.merge_asof(
                 data.sort_values("timestamp"),
@@ -60,9 +54,9 @@ def main():
                 tolerance=pd.Timedelta("3D"),
             )
         sets = {
-            "technical": FEATURE_COLUMNS,
-            "technical_regime": FEATURE_COLUMNS + ["regime"],
-            "technical_regime_sentiment": FEATURE_COLUMNS + ["regime", "sentiment_mean"],
+            "technical_v2": FEATURE_COLUMNS,
+            "technical_regime_causal_v2": FEATURE_COLUMNS + ["regime"],
+            "technical_regime_sentiment_causal_v2": FEATURE_COLUMNS + ["regime", "sentiment_mean"],
         }
         for label, features in sets.items():
             if any(c not in data or data[c].notna().sum() < 100 for c in features):

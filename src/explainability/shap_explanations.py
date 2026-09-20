@@ -16,8 +16,7 @@ FRIENDLY = {
 def explain_contributions(
     feature_names: list[str],
     values: list[float],
-    prediction: str,
-    probability: float,
+    probability_up: float,
     top_n: int = 4,
 ) -> str:
     pairs = sorted(zip(feature_names, values, strict=True), key=lambda p: abs(p[1]), reverse=True)[
@@ -25,7 +24,11 @@ def explain_contributions(
     ]
     positive = [FRIENDLY.get(name, name.replace("_", " ")) for name, value in pairs if value > 0]
     negative = [FRIENDLY.get(name, name.replace("_", " ")) for name, value in pairs if value < 0]
-    parts = [f"The model assigns {probability:.0%} probability to {prediction.upper()}."]
+    direction = "UP" if probability_up >= 0.5 else "DOWN"
+    parts = [
+        f"The model predicts {direction} with P(UP)={probability_up:.0%} and "
+        f"P(DOWN)={1 - probability_up:.0%}."
+    ]
     if positive:
         parts.append("Upward contribution came mainly from " + ", ".join(positive) + ".")
     if negative:

@@ -14,7 +14,7 @@ The standard split is chronological 70% train, 15% validation and 15% untouched 
 
 ## Regimes
 
-K-Means, Gaussian Mixture and Gaussian HMM use standardized return, volatility, momentum, volume and drawdown features. Numeric states are discovered first. Labels are generated afterward from each state's observed statistics. Silhouette and Calinski–Harabasz scores compare separation; HMM transition matrices describe persistence. Economic plausibility and stability across windows are required beyond a single clustering score.
+K-Means, Gaussian Mixture and Gaussian HMM use standardized return, volatility, momentum, volume and drawdown features. Numeric states are discovered first. Labels are generated afterward from each state's observed statistics. Silhouette, Calinski–Harabasz and repeat-fit adjusted Rand scores assess separation and basic stability; HMM transition matrices describe persistence. Persisted full-sample timelines are descriptive only. Predictive experiments and backtests use expanding-window GMM assignments fitted strictly on preceding observations.
 
 ## Contextual ablation
 
@@ -23,4 +23,3 @@ K-Means, Gaussian Mixture and Gaussian HMM use standardized return, volatility, 
 ## Reproducibility
 
 Random seeds are fixed at 42, model artifacts use unique run IDs, and metadata records date coverage, features, parameters and metrics. Full deterministic reproduction also requires pinning the resolved environment and preserving the provider snapshot under permitted terms.
-

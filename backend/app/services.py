@@ -2,6 +2,7 @@ import pandas as pd
 from sqlalchemy import desc, func, select
 from sqlalchemy.orm import Session
 
+from backend.app.config import get_settings
 from backend.app.models import (
     Anomaly,
     Asset,
@@ -15,6 +16,8 @@ from src.backtesting.engine import run_backtest
 from src.data.providers import freshness_status
 from src.features.pipeline import FEATURE_COLUMNS, build_features, build_target
 from src.ml.training import walk_forward_probabilities
+from src.nlp.sentiment import effective_market_date
+from src.regimes.discovery import causal_regime_labels
 
 
 def price_frame(session: Session, symbol: str, limit: int = 1000) -> tuple[Asset, pd.DataFrame]:
@@ -44,6 +47,7 @@ def price_frame(session: Session, symbol: str, limit: int = 1000) -> tuple[Asset
 
 
 def overview(session: Session) -> dict:
+    settings = get_settings()
     indices = []
     for symbol in ["NIFTY50", "BANKNIFTY", "SENSEX"]:
         try:
@@ -64,6 +68,11 @@ def overview(session: Session) -> dict:
         except LookupError:
             pass
     latest = session.scalar(select(func.max(AssetPrice.timestamp)))
+    latest_stock = session.scalar(
+        select(func.max(AssetPrice.timestamp))
+        .join(Asset)
+        .where(Asset.asset_type == "stock", Asset.active.is_(True))
+    )
     stock_assets = session.scalars(
         select(Asset).where(Asset.asset_type == "stock", Asset.active.is_(True))
     ).all()
@@ -75,7 +84,7 @@ def overview(session: Session) -> dict:
             .order_by(desc(AssetPrice.timestamp))
             .limit(2)
         ).all()
-        if len(rows) == 2:
+        if len(rows) == 2 and latest_stock and rows[0].timestamp.date() == latest_stock.date():
             movers.append(
                 {
                     "symbol": asset.symbol,
@@ -89,7 +98,10 @@ def overview(session: Session) -> dict:
     regime = session.execute(
         select(MarketRegime, Asset)
         .join(Asset)
-        .where(Asset.symbol == "NIFTY50")
+        .where(
+            Asset.symbol == "NIFTY50",
+            MarketRegime.algorithm == settings.regime_algorithm,
+        )
         .order_by(desc(MarketRegime.timestamp))
         .limit(1)
     ).first()
@@ -154,31 +166,7 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
     else:
         model_features = list(FEATURE_COLUMNS)
         if strategy in {"regime_aware", "hybrid"}:
-            index_asset = session.scalar(select(Asset).where(Asset.symbol == "NIFTY50"))
-            regimes = (
-                session.scalars(
-                    select(MarketRegime)
-                    .where(MarketRegime.asset_id == index_asset.id)
-                    .order_by(MarketRegime.timestamp)
-                ).all()
-                if index_asset
-                else []
-            )
-            if not regimes:
-                raise ValueError("Regime-aware backtest requires a trained NIFTY50 regime model")
-            context = pd.DataFrame(
-                {
-                    "timestamp": [r.timestamp for r in regimes],
-                    "regime_state": [r.state for r in regimes],
-                }
-            )
-            context["timestamp"] = pd.to_datetime(context["timestamp"], utc=True)
-            features = pd.merge_asof(
-                features.sort_values("timestamp"),
-                context.sort_values("timestamp"),
-                on="timestamp",
-                direction="backward",
-            )
+            features["regime_state"] = causal_regime_labels(features)
             model_features.append("regime_state")
         if strategy == "hybrid":
             news_rows = session.execute(
@@ -187,18 +175,19 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
                 .order_by(NewsArticle.published_at)
             ).all()
             relevant = [
-                {"timestamp": article.published_at, "sentiment_mean": sentiment.score}
+                {
+                    "timestamp": effective_market_date(article.published_at),
+                    "sentiment_mean": sentiment.score,
+                }
                 for article, sentiment in news_rows
-                if symbol.upper() in (article.symbols or [])
+                if asset.asset_type == "index" or symbol.upper() in (article.symbols or [])
             ]
             if not relevant:
                 raise ValueError(
                     "Hybrid backtest requires time-aligned news for the selected asset"
                 )
             sentiment_frame = pd.DataFrame(relevant)
-            sentiment_frame["timestamp"] = pd.to_datetime(
-                sentiment_frame["timestamp"], utc=True
-            ).dt.floor("D")
+            sentiment_frame["timestamp"] = pd.to_datetime(sentiment_frame["timestamp"], utc=True)
             sentiment_frame = sentiment_frame.groupby("timestamp", as_index=False).mean()
             features = pd.merge_asof(
                 features.sort_values("timestamp"),

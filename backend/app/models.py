@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import UTC, date, datetime
 from typing import Any
 
 from sqlalchemy import (
@@ -45,7 +45,9 @@ class AssetPrice(Base):
     adjusted_close: Mapped[float | None] = mapped_column(Float)
     volume: Mapped[float] = mapped_column(Float, default=0)
     provider: Mapped[str] = mapped_column(String(40))
-    ingested_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
+    ingested_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+    )
     asset: Mapped[Asset] = relationship(back_populates="prices")
     __table_args__ = (
         UniqueConstraint("asset_id", "timestamp", "interval", name="uq_asset_price_bar"),
@@ -88,7 +90,9 @@ class ModelRun(Base):
     metrics: Mapped[dict[str, Any]] = mapped_column(JSON)
     parameters: Mapped[dict[str, Any]] = mapped_column(JSON)
     artifact_path: Mapped[str | None] = mapped_column(String(255))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+    )
 
 
 class Prediction(Base):
@@ -97,7 +101,9 @@ class Prediction(Base):
     asset_id: Mapped[int] = mapped_column(ForeignKey("assets.id", ondelete="CASCADE"))
     model_run_id: Mapped[int | None] = mapped_column(ForeignKey("model_runs.id"))
     prediction_for: Mapped[date] = mapped_column(Date, index=True)
-    generated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
+    generated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+    )
     direction: Mapped[str] = mapped_column(String(8))
     probability_up: Mapped[float] = mapped_column(Float)
     expected_return: Mapped[float | None] = mapped_column(Float)
@@ -167,7 +173,9 @@ class DataIngestionRun(Base):
     __tablename__ = "data_ingestion_runs"
     id: Mapped[int] = mapped_column(primary_key=True)
     provider: Mapped[str] = mapped_column(String(40))
-    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
+    started_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+    )
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     status: Mapped[str] = mapped_column(String(20), index=True)
     rows_received: Mapped[int] = mapped_column(Integer, default=0)
