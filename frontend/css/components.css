@@ -1,2 +1,14 @@
 .chart-wrap{min-width:0}
 .chart-wrap canvas{width:100%!important;max-width:100%!important;max-height:100%!important}
+.environment-legend{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:18px;font-size:12px;color:var(--muted)}
+.environment-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px}
+.environment-timeline{display:flex;width:100%;height:64px;gap:1px;overflow:hidden;background:var(--line);border-radius:4px}
+.environment-period{flex-basis:0;min-width:2px;padding:0;border:0;cursor:pointer;opacity:.8}
+.environment-period:hover,.environment-period:focus-visible{opacity:1;outline:2px solid white;outline-offset:-2px}
+.timeline-dates{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:10px}
+.transition-event{padding:14px 0;border-bottom:1px solid var(--line)}
+.transition-event time{font-size:11px;color:var(--green)}
+.transition-event h4{margin:8px 0}.transition-event p{font-size:12px;color:var(--muted)}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}abbr{cursor:help;text-decoration:underline dotted var(--quiet)}
+button:disabled{cursor:wait;opacity:.65}.card p{line-height:1.65}.card a{color:var(--blue)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

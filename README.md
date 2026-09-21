@@ -62,12 +62,12 @@ Set a strong local `POSTGRES_PASSWORD` in `.env` and keep the matching password 
 # Eight years of legitimate provider data; caches are not committed
 .\.venv\Scripts\python.exe -m scripts.bootstrap --years 8
 
-# Models and analyses (actual outputs are persisted; no metrics are seeded)
-.\.venv\Scripts\python.exe -m scripts.train_models --symbol NIFTY50
+# Bounded experiment matrix and published production selection (actual outputs only)
+.\.venv\Scripts\python.exe -m scripts.run_research_matrix --publish
 .\.venv\Scripts\python.exe -m scripts.train_regimes --symbol NIFTY50 --algorithm hmm
 .\.venv\Scripts\python.exe -m scripts.detect_anomalies
 .\.venv\Scripts\python.exe -m scripts.generate_predictions
-.\.venv\Scripts\python.exe -m scripts.run_hybrid_experiment --symbol NIFTY50
+.\.venv\Scripts\python.exe -m scripts.audit_research_results
 
 # Optional, requires NEWSDATA_API_KEY
 .\.venv\Scripts\python.exe -m scripts.ingest_news
@@ -107,15 +107,17 @@ docker compose up --build
 | `TRANSACTION_COST_BPS`, `SLIPPAGE_BPS` | No | Reproducible backtest assumptions |
 | `CORS_ORIGINS`, `LOG_LEVEL`, `APP_ENV` | No | API runtime settings |
 
-## Actual evaluation results
+## Measured evaluation snapshot
 
-The repository deliberately contains **no fabricated metrics**. After data ingestion and training, actual holdout results appear in PostgreSQL, the Research Lab, model-sidecar JSON files, and:
+The bounded experiment matrix deliberately records weak as well as strong outcomes. On the included retrospective NIFTY holdout, the pre-holdout-selected ExtraTrees technical-plus-market model produced 50.39% accuracy, 50.28% balanced accuracy, 0.5646 F1, 0.5326 ROC-AUC and 0.0059 MCC (258 sessions). The majority benchmark was also 50.39%; this is not evidence of useful one-day predictive skill. The full diagnosis, protocol, legacy comparison and limitations are in [ML performance diagnosis](docs/ML_PERFORMANCE_DIAGNOSIS.md).
+
+After data ingestion and training, actual experiment outputs appear in PostgreSQL, the Research Lab, model-sidecar JSON files, and:
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate_models
 ```
 
-This makes the experiment date, provider history, dependency versions and local run explicit rather than presenting stale numbers as universal results.
+This makes the experiment date, provider history, dependency versions and local run explicit rather than presenting stale numbers as universal results. Run `scripts.run_research_matrix --publish` to recreate the current research view.
 
 ## Documentation
 

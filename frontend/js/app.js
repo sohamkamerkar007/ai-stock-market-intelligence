@@ -2,6 +2,12 @@ import {api} from './api.js';
 import {connectMarket} from './websocket.js';
 import {views,hydrators} from './views.js';
 import {setSafeHTML} from './security.js';
+import {research,hydrateResearch} from './research.js';
+import {regimes,hydrateRegimes} from './regimes.js';
+import {anomalies,hydrateAnomalies} from './anomalies.js';
+import {backtesting,hydrateBacktest} from './backtesting.js';
+Object.assign(views,{research,regimes,anomalies,backtesting});
+Object.assign(hydrators,{research:hydrateResearch,regimes:hydrateRegimes,anomalies:hydrateAnomalies,backtesting:hydrateBacktest});
 
 const workspace=document.querySelector('#workspace'),title=document.querySelector('#pageTitle'),subtitle=document.querySelector('#pageSubtitle'),freshness=document.querySelector('#freshness'),marketMessage=document.querySelector('#marketMessage'),nav=document.querySelector('#nav');
 let routeVersion=0;

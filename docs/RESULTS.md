@@ -1,8 +1,10 @@
 # Reproduced research results
 
+**Historical archive:** these are the original baseline results. Current measured results, corrected execution rules and the complete experiment matrix are in `ML_PERFORMANCE_DIAGNOSIS.md` and `experiment_results.json`. The backtest table below is superseded: it used the earlier close-to-close execution convention, reversed SMA comparison and a different evaluation window. Do not present it as current strategy performance.
+
 Run timestamp: 20 September 2026. Dataset: NIFTY 50 daily observations obtained by the configured Yahoo research adapter, 24 September 2018 through 18 September 2026. The fixed primary evaluation is a chronological 70/15/15 split. These results describe one provider snapshot and are not evidence of future profitability.
 
-## Direction classification: untouched test segment
+## Original direction classification: retrospective test segment
 
 | Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
 |---|---:|---:|---:|---:|---:|

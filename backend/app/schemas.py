@@ -24,7 +24,7 @@ class PriceOut(BaseModel):
 
 class BacktestRequest(BaseModel):
     symbol: str
-    strategy: str = Field(pattern="^(buy_hold|sma_cross|ml|regime_aware|hybrid)$")
+    strategy: str = Field(pattern="^(buy_hold|sma_cross|ml|ml_threshold|ml_environment_filter|regime_aware|hybrid)$")
     start: date | None = None
     end: date | None = None
 

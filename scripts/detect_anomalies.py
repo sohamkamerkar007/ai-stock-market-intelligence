@@ -28,6 +28,13 @@ def main():
                         score=r.anomaly_score,
                         severity=r.severity,
                         context={
+                            "percentile": r.unusualness_percentile,
+                            "isolation_raw": r.isolation_raw,
+                            "lof_raw": r.lof_raw,
+                            "reference_observations": len(found),
+                            "reference_start": str(found.timestamp.min()),
+                            "reference_end": str(found.timestamp.max()),
+                            "scoring_method": "Retrospective percentile of the ensemble rank across all scored asset observations. Not a causal live alert or probability.",
                             "return_1d": r.return_1d,
                             "relative_volume_20": r.relative_volume_20,
                             "volatility_20": r.volatility_20,

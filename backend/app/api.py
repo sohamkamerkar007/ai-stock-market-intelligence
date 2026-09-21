@@ -104,7 +104,13 @@ def predictions(symbol: str | None = None, db: Session = Depends(get_db)):
     )
     if symbol:
         query = query.where(Asset.symbol == symbol.upper())
-    rows = db.execute(query.order_by(desc(Prediction.generated_at)).limit(100)).all()
+    candidates = db.execute(query.order_by(desc(Prediction.generated_at), desc(Prediction.id))).all()
+    seen = set()
+    rows = []
+    for row in candidates:
+        if row[1].symbol not in seen:
+            rows.append(row)
+            seen.add(row[1].symbol)
     return [
         {
             "id": p.id,
@@ -116,6 +122,9 @@ def predictions(symbol: str | None = None, db: Session = Depends(get_db)):
             "regime": p.regime,
             "model": m.model_name if m else None,
             "generated_at": p.generated_at,
+            "horizon": (m.parameters or {}).get("horizon", 1) if m else 1,
+            "regression_metrics": (m.metrics or {}).get("regression") if m else None,
+            "calibrated": (m.parameters or {}).get("calibration", False) if m else False,
         }
         for p, a, m in rows
     ]
@@ -128,7 +137,10 @@ def explanation(prediction_id: int, db: Session = Depends(get_db)):
     )
     if not item:
         raise HTTPException(404, "Explanation is unavailable for this prediction")
-    return {"summary": item.summary, "contributions": item.contributions}
+    prediction = db.get(Prediction, prediction_id)
+    run = db.get(ModelRun, prediction.model_run_id) if prediction and prediction.model_run_id else None
+    values = ((run.parameters or {}).get("prediction_inputs", {}).get(str(prediction_id), {}) if run else {})
+    return {"summary": item.summary, "contributions": item.contributions, "feature_values": values}
 
 
 @router.get("/news")
@@ -200,11 +212,11 @@ def analyze_news(request: NewsAnalysisRequest, db: Session = Depends(get_db)):
 
 
 @router.get("/anomalies")
-def anomalies(symbol: str | None = None, db: Session = Depends(get_db)):
+def anomalies(symbol: str | None = None, limit: int = Query(200, ge=1, le=5000), db: Session = Depends(get_db)):
     query = select(Anomaly, Asset).join(Asset)
     if symbol:
         query = query.where(Asset.symbol == symbol.upper())
-    rows = db.execute(query.order_by(desc(Anomaly.timestamp)).limit(200)).all()
+    rows = db.execute(query.order_by(desc(Anomaly.timestamp)).limit(limit)).all()
     return [
         {
             "symbol": a.symbol,

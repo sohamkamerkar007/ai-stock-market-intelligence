@@ -14,6 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from backend.app.api import router
 from backend.app.config import get_settings
 from backend.app.database import SessionLocal
+from backend.app.research_views import router as research_router
 from backend.app.services import overview
 
 settings = get_settings()
@@ -34,6 +35,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(router)
+app.include_router(research_router)
 frontend = Path(__file__).resolve().parents[2] / "frontend"
 app.mount("/static", StaticFiles(directory=frontend), name="frontend")
 

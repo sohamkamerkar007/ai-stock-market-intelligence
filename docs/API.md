@@ -16,6 +16,8 @@ Interactive OpenAPI documentation is available at `/docs`.
 | POST | `/api/v1/news/analyze` | Non-persistent sentiment and context analysis for user-supplied financial text |
 | GET | `/api/v1/anomalies` | Statistical anomalies |
 | GET | `/api/v1/research/models` | Actual experiment runs |
+| GET | `/api/v1/research/experiments` | Complete measured matrix, fold results, holdout diagnostics and asset comparisons |
+| GET | `/api/v1/regimes/summary` | Named categorical periods, observed statistics and transitions |
 | POST | `/api/v1/backtests` | Run configured baseline backtest |
 | WS | `/ws/market` | Freshness-aware persisted market snapshots |
 

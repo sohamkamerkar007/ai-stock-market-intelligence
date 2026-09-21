@@ -10,7 +10,7 @@ Returns, log returns, SMA/EMA ratios, MACD, RSI, momentum, annualized rolling vo
 
 ## Evaluation
 
-The standard split is chronological 70% train, 15% validation and 15% untouched test. No time-series shuffle is used. Logistic Regression is the interpretable baseline; Random Forest and XGBoost add nonlinear baselines. Accuracy, precision, recall, F1 and ROC-AUC are recorded. The walk-forward helper retrains only on preceding observations.
+The current research matrix uses three expanding development folds with horizon-length purges, then a sealed final 15% retrospective holdout. Configuration selection uses development balanced accuracy, with Brier score as tie-breaker. Horizons 1/3/5 are compared, with one-day remaining primary. Preprocessing and calibration are fitted only on earlier observations. Accuracy, balanced accuracy, precision, recall, F1, ROC-AUC, MCC, Brier score, confusion matrices and fold variation are recorded. The old holdout was already inspected and must not be described as an untouched prospective test. See `ML_PERFORMANCE_DIAGNOSIS.md` for all results and limitations.
 
 ## Regimes
 

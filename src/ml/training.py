@@ -12,8 +12,11 @@ from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
+    balanced_accuracy_score,
+    brier_score_loss,
     confusion_matrix,
     f1_score,
+    matthews_corrcoef,
     precision_score,
     recall_score,
     roc_auc_score,
@@ -72,6 +75,9 @@ def evaluate_classifier(model: object, x: pd.DataFrame, y: pd.Series) -> dict[st
     probability = model.predict_proba(x)[:, 1]
     return {
         "accuracy": float(accuracy_score(y, pred)),
+        "balanced_accuracy": float(balanced_accuracy_score(y, pred)),
+        "mcc": float(matthews_corrcoef(y, pred)),
+        "brier": float(brier_score_loss(y, probability)),
         "precision": float(precision_score(y, pred, zero_division=0)),
         "recall": float(recall_score(y, pred, zero_division=0)),
         "f1": float(f1_score(y, pred, zero_division=0)),
@@ -102,10 +108,10 @@ def train_classifier(
         ]
     )
     pipeline = Pipeline([("preprocess", preprocessor), ("model", model_catalog(seed)[name])])
-    pipeline.fit(
-        pd.concat([train, validation])[features],
-        pd.concat([train, validation])["target_up"].astype(int),
-    )
+    fit_frame = pd.concat([train, validation])
+    if "label_available_at" in fit_frame:
+        fit_frame = fit_frame[fit_frame.label_available_at < test.timestamp.min()]
+    pipeline.fit(fit_frame[features], fit_frame["target_up"].astype(int))
     metrics = evaluate_classifier(pipeline, test[features], test["target_up"].astype(int))
     run_id = uuid.uuid4().hex
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -142,9 +148,12 @@ def walk_forward_probabilities(
     for i in range(min_train, len(ordered)):
         if pipeline is None or (i - min_train) % retrain_every == 0:
             train = ordered.iloc[:i].dropna(subset=["target_up"])
+            if "label_available_at" in train:
+                train = train[train.label_available_at < ordered.iloc[i].timestamp]
             pipeline = Pipeline(
                 [
-                    ("impute", SimpleImputer(strategy="median")),
+                    ("impute", SimpleImputer(strategy="median", keep_empty_features=True)),
+                    ("scale", StandardScaler()),
                     ("model", LogisticRegression(max_iter=1000, class_weight="balanced")),
                 ]
             )

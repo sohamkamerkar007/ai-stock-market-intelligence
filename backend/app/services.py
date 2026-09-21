@@ -152,8 +152,8 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
     if frame.empty:
         raise ValueError("No prices loaded for this asset")
     frame["timestamp"] = pd.to_datetime(frame["timestamp"], utc=True)
-    if start:
-        frame = frame[frame.timestamp.dt.date >= start]
+    if start and end and start > end:
+        raise ValueError("Start date must be on or before end date")
     if end:
         frame = frame[frame.timestamp.dt.date <= end]
     if len(frame) < 60:
@@ -162,7 +162,7 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
     if strategy == "buy_hold":
         signal = pd.Series(1.0, index=features.index)
     elif strategy == "sma_cross":
-        signal = (features["sma_ratio_10"] > features["sma_ratio_20"]).astype(float)
+        signal = (features["sma_ratio_10"] < features["sma_ratio_20"]).astype(float)
     else:
         model_features = list(FEATURE_COLUMNS)
         if strategy in {"regime_aware", "hybrid"}:
@@ -170,8 +170,7 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
             # The causal detector deliberately has no state until its minimum
             # training history exists. Do not let an imputer silently remove an
             # all-null regime column in early walk-forward folds.
-            features = features.dropna(subset=["regime_state"])
-            if len(features) < 60:
+            if features.regime_state.notna().sum() < 60:
                 raise ValueError("Insufficient post-warm-up history for regime backtesting")
             model_features.append("regime_state")
         if strategy == "hybrid":
@@ -204,12 +203,29 @@ def execute_backtest(session: Session, symbol: str, strategy: str, start=None, e
             )
             model_features.append("sentiment_mean")
         probability = walk_forward_probabilities(features, model_features)
-        signal = (probability >= 0.55).astype(float)
-    result = run_backtest(features, signal)
+        signal = (probability >= (0.5 if strategy == "ml" else 0.55)).astype(float)
+        if strategy == "ml_environment_filter":
+            signal *= (causal_regime_labels(features) >= 1).fillna(False).astype(float)
+    # Same session window for every strategy, while retaining earlier feature and
+    # training history. The 504-session warm-up is predeclared, not return-tuned.
+    mask = pd.Series(range(len(features)), index=features.index) >= 504
+    if start:
+        mask &= features.timestamp.dt.date >= start
+    evaluation = features.loc[mask]
+    if len(evaluation) < 20:
+        raise ValueError("At least 20 evaluation sessions after the 504-session warm-up are required")
+    result = run_backtest(evaluation, signal)
+    baseline = run_backtest(evaluation, pd.Series(1.0, index=features.index))
     return {
         "symbol": asset.symbol,
         "strategy": strategy,
         "metrics": result.metrics,
+        "baseline_metrics": baseline.metrics,
+        "assumptions": {"starting_capital": 100000, "transaction_cost_bps": 10, "slippage_bps": 5,
+                        "execution": "Next session open; mark to close", "warm_up_sessions": 504,
+                        "win_rate": "Completed exposure episodes; open holdings are excluded",
+                        "model": "Expanding scaled logistic regression; historical policy is separately evaluated from current production model"},
+        "baseline_curve": [{"timestamp": row.timestamp.isoformat(), "equity": row.equity} for row in baseline.equity_curve.itertuples()],
         "equity_curve": [
             {"timestamp": row.timestamp.isoformat(), "equity": row.equity, "position": row.position}
             for row in result.equity_curve.itertuples()

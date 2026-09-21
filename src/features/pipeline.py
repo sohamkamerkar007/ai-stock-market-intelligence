@@ -27,7 +27,9 @@ def _rsi(close: pd.Series, window: int = 14) -> pd.Series:
     gain = delta.clip(lower=0).ewm(alpha=1 / window, adjust=False).mean()
     loss = -delta.clip(upper=0).ewm(alpha=1 / window, adjust=False).mean()
     rs = gain / loss.replace(0, np.nan)
-    return (100 - 100 / (1 + rs)).fillna(50)
+    result = 100 - 100 / (1 + rs)
+    result = result.mask((loss == 0) & (gain > 0), 100)
+    return result.fillna(50)
 
 
 def build_features(
@@ -78,8 +80,44 @@ def build_features(
 
 def build_target(feature_frame: pd.DataFrame, horizon: int = 1) -> pd.DataFrame:
     """Attach next-period target; the final unavailable target is removed, never imputed."""
-    frame = feature_frame.copy()
+    if not isinstance(horizon, int) or horizon < 1:
+        raise ValueError("Horizon must be a positive number of trading observations")
+    frame = feature_frame.copy().sort_values("timestamp")
     frame["future_return"] = frame["close"].shift(-horizon) / frame["close"] - 1
     frame["target_up"] = (frame["future_return"] > 0).astype("Int64")
     frame.loc[frame["future_return"].isna(), "target_up"] = pd.NA
+    frame["label_available_at"] = frame["timestamp"].shift(-horizon)
     return frame
+
+
+def expanded_features(prices: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
+    """Dimensionless technical inputs. All rolling windows end at the current close."""
+    frame = build_features(prices).reset_index(drop=True)
+    close, volume = frame.close, frame.volume
+    columns = list(FEATURE_COLUMNS)
+    for window in [2, 3, 10]:
+        key = f"return_{window}d"
+        frame[key] = close.pct_change(window, fill_method=None)
+        columns.append(key)
+    for window in [5, 50, 100]:
+        for kind in ["sma", "ema"]:
+            average = close.rolling(window).mean() if kind == "sma" else close.ewm(span=window, adjust=False).mean()
+            key = f"{kind}_ratio_{window}"
+            frame[key] = close / average - 1
+            columns.append(key)
+    extra = {
+        "return_acceleration": frame.return_1d - frame.return_1d.shift(1),
+        "rsi_change_3": frame.rsi_14.diff(3),
+        "macd_histogram": frame.macd - frame.macd.ewm(span=9, adjust=False).mean(),
+        "distance_low_20": close / frame.low.rolling(20).min() - 1,
+        "trend_slope_20": close.rolling(20).mean().pct_change(5, fill_method=None),
+        "stochastic_14": (close - frame.low.rolling(14).min()) / (frame.high.rolling(14).max() - frame.low.rolling(14).min()).replace(0, np.nan),
+        "volatility_ratio": frame.log_return_1d.rolling(5).std() / frame.log_return_1d.rolling(20).std().replace(0, np.nan),
+        "volume_zscore": (volume - volume.rolling(20).mean()) / volume.rolling(20).std().replace(0, np.nan),
+        "price_volume_interaction": frame.return_1d * frame.relative_volume_20,
+        "intraday_return": close / frame.open - 1,
+        "overnight_gap": frame.open / close.shift(1) - 1,
+    }
+    for key, value in extra.items():
+        frame[key] = value
+    return frame.replace([np.inf, -np.inf], np.nan), columns + list(extra)

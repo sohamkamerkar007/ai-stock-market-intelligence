@@ -19,10 +19,16 @@ def detect_anomalies(
     iso_score = -iso.decision_function(x)
     lof_label = lof.fit_predict(x)
     lof_score = -lof.negative_outlier_factor_
-    clean["anomaly_score"] = (
+    ensemble_rank = (
         pd.Series(iso_score).rank(pct=True).to_numpy()
         + pd.Series(lof_score).rank(pct=True).to_numpy()
     ) / 2
+    # The old score was an average of two ranks, not itself a percentile.
+    # Re-rank the ensemble across ALL scored observations, not only flagged ones.
+    clean["anomaly_score"] = ensemble_rank
+    clean["unusualness_percentile"] = pd.Series(ensemble_rank).rank(pct=True).to_numpy() * 100
+    clean["isolation_raw"] = iso_score
+    clean["lof_raw"] = lof_score
     clean["is_anomaly"] = (iso.predict(x) == -1) | (lof_label == -1)
     magnitudes = pd.DataFrame(
         {
@@ -36,8 +42,8 @@ def detect_anomalies(
     robust_scale = magnitudes.median().replace(0, np.nan)
     clean["anomaly_type"] = magnitudes.div(robust_scale).fillna(0).idxmax(axis=1)
     clean["severity"] = pd.cut(
-        clean["anomaly_score"],
-        bins=[-np.inf, 0.95, 0.985, np.inf],
+        clean["unusualness_percentile"],
+        bins=[-np.inf, 95, 99, np.inf],
         labels=["low", "medium", "high"],
     ).astype(str)
     return clean
