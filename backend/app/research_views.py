@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 
+import joblib
 import pandas as pd
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
@@ -25,6 +26,34 @@ def experiments():
             409, "Run python -m scripts.run_research_matrix to produce measured results"
         )
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+@router.get("/research/synthetic")
+def synthetic_research():
+    """Expose only the explicitly labelled controlled-data research results."""
+    path = Path(__file__).resolve().parents[2] / "docs" / "synthetic_research_results.json"
+    artifact_path = Path(__file__).resolve().parents[2] / "models" / "synthetic-research-selected.joblib"
+    if not path.exists():
+        raise HTTPException(
+            409,
+            "Run python -m scripts.generate_synthetic_market_data to produce the controlled research experiment",
+        )
+    if not artifact_path.exists():
+        raise HTTPException(
+            409,
+            "Synthetic result metadata exists but its selected model artifact is missing; rerun scripts.generate_synthetic_market_data",
+        )
+    report = json.loads(path.read_text(encoding="utf-8"))
+    artifact = joblib.load(artifact_path)
+    if artifact.get("dataset_type") != "controlled_synthetic_market_like":
+        raise HTTPException(409, "Synthetic model artifact has an invalid dataset designation")
+    report["artifact"] = {
+        "loaded": True,
+        "model": artifact["selected"]["model"],
+        "target": artifact["target"],
+        "training_timestamp": artifact["training_timestamp"],
+    }
+    return report
 
 
 def profile(frame, state):

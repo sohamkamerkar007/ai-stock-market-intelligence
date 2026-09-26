@@ -1,0 +1,1959 @@
+{
+  "created_at": "2026-09-26T09:09:04.849673+00:00",
+  "dataset": {
+    "dataset_type": "controlled_synthetic_market_like",
+    "disclaimer": "Controlled synthetic market-like data is used only to evaluate ML methodology. Its scores do not measure or imply real Indian-market forecasting accuracy.",
+    "observations": 52728,
+    "assets": 24,
+    "sectors": 8,
+    "date_range": {
+      "start": "2018-01-01",
+      "end": "2026-06-05"
+    },
+    "class_distribution": {
+      "up": 0.5175049309664694,
+      "down": 0.48249506903353057
+    },
+    "majority_accuracy": 0.5175049309664694
+  },
+  "methodology": "Date-based 70% train / 15% validation / 15% final test split. Labels are purged from each preceding period until their target date is known. Hyperparameters, horizon and feature group are selected only by validation balanced accuracy then ROC-AUC. The final test is evaluated after selection.",
+  "target": {
+    "horizon_sessions": 3,
+    "threshold": 0.001,
+    "definition": "UP when the selected forward synthetic close-to-close return exceeds +0.10%; otherwise DOWN."
+  },
+  "horizon_experiments": [
+    {
+      "horizon": 1,
+      "class_distribution": 0.5425531914893617,
+      "validation": {
+        "accuracy": 0.7921732522796353,
+        "balanced_accuracy": 0.7883226934184526,
+        "precision": 0.793731940431207,
+        "recall": 0.8335667600373483,
+        "f1": 0.8131617898212455,
+        "roc_auc": 0.8544620367526856,
+        "mcc": 0.5802319696501161,
+        "brier": 0.15137970927109412,
+        "confusion_matrix": [
+          [
+            2684,
+            928
+          ],
+          [
+            713,
+            3571
+          ]
+        ],
+        "n": 7896,
+        "actual_up_fraction": 0.5425531914893617,
+        "mean_probability": 0.5397602931936974,
+        "majority_accuracy": 0.5425531914893617
+      }
+    },
+    {
+      "horizon": 3,
+      "class_distribution": 0.5410295616717635,
+      "validation": {
+        "accuracy": 0.8196992864424058,
+        "balanced_accuracy": 0.8169716123062422,
+        "precision": 0.8225108225108225,
+        "recall": 0.8502119642016015,
+        "f1": 0.8361320208453966,
+        "roc_auc": 0.8817086689422295,
+        "mcc": 0.6362886000183245,
+        "brier": 0.13368479926532525,
+        "confusion_matrix": [
+          [
+            2823,
+            779
+          ],
+          [
+            636,
+            3610
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5426789800862892,
+        "majority_accuracy": 0.5410295616717635
+      }
+    },
+    {
+      "horizon": 5,
+      "class_distribution": 0.5438461538461539,
+      "validation": {
+        "accuracy": 0.8105128205128205,
+        "balanced_accuracy": 0.8064612050219717,
+        "precision": 0.80917225950783,
+        "recall": 0.8526638378123527,
+        "f1": 0.8303489439853077,
+        "roc_auc": 0.8744099596661665,
+        "mcc": 0.6171886434187929,
+        "brier": 0.13798869246183193,
+        "confusion_matrix": [
+          [
+            2705,
+            853
+          ],
+          [
+            625,
+            3617
+          ]
+        ],
+        "n": 7800,
+        "actual_up_fraction": 0.5438461538461539,
+        "mean_probability": 0.5427394692322765,
+        "majority_accuracy": 0.5438461538461539
+      }
+    }
+  ],
+  "feature_group_experiments": [
+    {
+      "feature_group": "technical",
+      "validation": {
+        "accuracy": 0.7730632008154944,
+        "balanced_accuracy": 0.7723563451821789,
+        "precision": 0.7957763378929685,
+        "recall": 0.7809703250117758,
+        "f1": 0.7883038155235944,
+        "roc_auc": 0.8356273128211862,
+        "mcc": 0.5439195683428624,
+        "brier": 0.16207782405781576,
+        "confusion_matrix": [
+          [
+            2751,
+            851
+          ],
+          [
+            930,
+            3316
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5225765906486975,
+        "majority_accuracy": 0.5410295616717635
+      }
+    },
+    {
+      "feature_group": "technical_market",
+      "validation": {
+        "accuracy": 0.8139653414882773,
+        "balanced_accuracy": 0.8121356926583154,
+        "precision": 0.823953488372093,
+        "recall": 0.8344324069712671,
+        "f1": 0.8291598408612216,
+        "roc_auc": 0.8766572412406046,
+        "mcc": 0.6250420626006213,
+        "brier": 0.1375215825464524,
+        "confusion_matrix": [
+          [
+            2845,
+            757
+          ],
+          [
+            703,
+            3543
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5389781340013973,
+        "majority_accuracy": 0.5410295616717635
+      }
+    },
+    {
+      "feature_group": "technical_market_regime",
+      "validation": {
+        "accuracy": 0.8184250764525994,
+        "balanced_accuracy": 0.8153519018978047,
+        "precision": 0.8190454648269623,
+        "recall": 0.852802637776731,
+        "f1": 0.8355832467982001,
+        "roc_auc": 0.8805967363083732,
+        "mcc": 0.6336799846105364,
+        "brier": 0.13426812811888164,
+        "confusion_matrix": [
+          [
+            2802,
+            800
+          ],
+          [
+            625,
+            3621
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5445359505845422,
+        "majority_accuracy": 0.5410295616717635
+      }
+    },
+    {
+      "feature_group": "technical_market_regime_volume",
+      "validation": {
+        "accuracy": 0.8196992864424058,
+        "balanced_accuracy": 0.8169716123062422,
+        "precision": 0.8225108225108225,
+        "recall": 0.8502119642016015,
+        "f1": 0.8361320208453966,
+        "roc_auc": 0.8817086689422295,
+        "mcc": 0.6362886000183245,
+        "brier": 0.13368479926532525,
+        "confusion_matrix": [
+          [
+            2823,
+            779
+          ],
+          [
+            636,
+            3610
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5426789800862892,
+        "majority_accuracy": 0.5410295616717635
+      }
+    }
+  ],
+  "selected": {
+    "model": "logistic_regression",
+    "feature_group": "technical_market_regime_volume",
+    "features": [
+      "return_1d",
+      "return_3d",
+      "return_5d",
+      "return_10d",
+      "log_return",
+      "sma_5",
+      "sma_10",
+      "sma_20",
+      "sma_50",
+      "ema_10",
+      "ema_20",
+      "ema_50",
+      "price_to_sma20",
+      "price_to_sma50",
+      "trend_strength",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_histogram",
+      "momentum_5d",
+      "momentum_10d",
+      "roc_10",
+      "rolling_volatility_20",
+      "atr_14",
+      "atr_percentage",
+      "bollinger_width",
+      "market_return",
+      "market_momentum",
+      "market_volatility",
+      "sector_return",
+      "sector_momentum",
+      "market_environment_code",
+      "regime_duration",
+      "regime_strength",
+      "volatility_regime_code",
+      "volume_change",
+      "volume_sma_20",
+      "relative_volume",
+      "volume_zscore"
+    ],
+    "validation": {
+      "accuracy": 0.8241590214067278,
+      "balanced_accuracy": 0.8211352462114129,
+      "precision": 0.82420814479638,
+      "recall": 0.8579839849269901,
+      "f1": 0.8407569813062543,
+      "roc_auc": 0.8913987832687288,
+      "mcc": 0.6452801085345178,
+      "brier": 0.1280027384219882,
+      "confusion_matrix": [
+        [
+          2825,
+          777
+        ],
+        [
+          603,
+          3643
+        ]
+      ],
+      "n": 7848,
+      "actual_up_fraction": 0.5410295616717635,
+      "mean_probability": 0.5513193853099914,
+      "majority_accuracy": 0.5410295616717635
+    },
+    "test": {
+      "accuracy": 0.7826197757390418,
+      "balanced_accuracy": 0.7812331577513485,
+      "precision": 0.7830787309048178,
+      "recall": 0.8097205346294046,
+      "f1": 0.7961768219832736,
+      "roc_auc": 0.852303207509523,
+      "mcc": 0.5638090501942346,
+      "brier": 0.15399788473880432,
+      "confusion_matrix": [
+        [
+          2810,
+          923
+        ],
+        [
+          783,
+          3332
+        ]
+      ],
+      "n": 7848,
+      "actual_up_fraction": 0.5243374108053007,
+      "mean_probability": 0.5379637099957769,
+      "majority_accuracy": 0.5243374108053007
+    },
+    "parameters": {
+      "C": 0.12
+    }
+  },
+  "model_results": [
+    {
+      "model": "logistic_regression",
+      "parameters": {
+        "C": 0.12
+      },
+      "validation": {
+        "accuracy": 0.8241590214067278,
+        "balanced_accuracy": 0.8211352462114129,
+        "precision": 0.82420814479638,
+        "recall": 0.8579839849269901,
+        "f1": 0.8407569813062543,
+        "roc_auc": 0.8913987832687288,
+        "mcc": 0.6452801085345178,
+        "brier": 0.1280027384219882,
+        "confusion_matrix": [
+          [
+            2825,
+            777
+          ],
+          [
+            603,
+            3643
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5513193853099914,
+        "majority_accuracy": 0.5410295616717635
+      },
+      "test": {
+        "accuracy": 0.7826197757390418,
+        "balanced_accuracy": 0.7812331577513485,
+        "precision": 0.7830787309048178,
+        "recall": 0.8097205346294046,
+        "f1": 0.7961768219832736,
+        "roc_auc": 0.852303207509523,
+        "mcc": 0.5638090501942346,
+        "brier": 0.15399788473880432,
+        "confusion_matrix": [
+          [
+            2810,
+            923
+          ],
+          [
+            783,
+            3332
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5243374108053007,
+        "mean_probability": 0.5379637099957769,
+        "majority_accuracy": 0.5243374108053007
+      },
+      "candidate_validation": [
+        {
+          "parameters": {
+            "C": 0.12
+          },
+          "validation": {
+            "accuracy": 0.8241590214067278,
+            "balanced_accuracy": 0.8211352462114129,
+            "precision": 0.82420814479638,
+            "recall": 0.8579839849269901,
+            "f1": 0.8407569813062543,
+            "roc_auc": 0.8913987832687288,
+            "mcc": 0.6452801085345178,
+            "brier": 0.1280027384219882,
+            "confusion_matrix": [
+              [
+                2825,
+                777
+              ],
+              [
+                603,
+                3643
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5513193853099914,
+            "majority_accuracy": 0.5410295616717635
+          }
+        },
+        {
+          "parameters": {
+            "C": 0.7
+          },
+          "validation": {
+            "accuracy": 0.8237767584097859,
+            "balanced_accuracy": 0.8208661880679153,
+            "precision": 0.8246767974597414,
+            "recall": 0.8563353744700894,
+            "f1": 0.8402079722703639,
+            "roc_auc": 0.8912593176502404,
+            "mcc": 0.6445100032999624,
+            "brier": 0.12806970144822666,
+            "confusion_matrix": [
+              [
+                2829,
+                773
+              ],
+              [
+                610,
+                3636
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5520963638409897,
+            "majority_accuracy": 0.5410295616717635
+          }
+        }
+      ]
+    },
+    {
+      "model": "random_forest",
+      "parameters": {
+        "n_estimators": 180,
+        "max_depth": 10,
+        "min_samples_leaf": 12,
+        "max_features": 0.7
+      },
+      "validation": {
+        "accuracy": 0.8081039755351682,
+        "balanced_accuracy": 0.8046555493454597,
+        "precision": 0.8078651685393259,
+        "recall": 0.8466792275082431,
+        "f1": 0.8268169273229071,
+        "roc_auc": 0.8778472759285089,
+        "mcc": 0.6127865794861946,
+        "brier": 0.13758260412191234,
+        "confusion_matrix": [
+          [
+            2747,
+            855
+          ],
+          [
+            651,
+            3595
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5420358827837647,
+        "majority_accuracy": 0.5410295616717635
+      },
+      "test": {
+        "accuracy": 0.7803261977573904,
+        "balanced_accuracy": 0.7792325451727866,
+        "precision": 0.7841692417399572,
+        "recall": 0.8017010935601458,
+        "f1": 0.7928382600336458,
+        "roc_auc": 0.8507086804855971,
+        "mcc": 0.5592594738980937,
+        "brier": 0.1550461733253324,
+        "confusion_matrix": [
+          [
+            2825,
+            908
+          ],
+          [
+            816,
+            3299
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5243374108053007,
+        "mean_probability": 0.539769338456065,
+        "majority_accuracy": 0.5243374108053007
+      },
+      "candidate_validation": [
+        {
+          "parameters": {
+            "n_estimators": 180,
+            "max_depth": 10,
+            "min_samples_leaf": 12,
+            "max_features": 0.7
+          },
+          "validation": {
+            "accuracy": 0.8081039755351682,
+            "balanced_accuracy": 0.8046555493454597,
+            "precision": 0.8078651685393259,
+            "recall": 0.8466792275082431,
+            "f1": 0.8268169273229071,
+            "roc_auc": 0.8778472759285089,
+            "mcc": 0.6127865794861946,
+            "brier": 0.13758260412191234,
+            "confusion_matrix": [
+              [
+                2747,
+                855
+              ],
+              [
+                651,
+                3595
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5420358827837647,
+            "majority_accuracy": 0.5410295616717635
+          }
+        },
+        {
+          "parameters": {
+            "n_estimators": 240,
+            "max_depth": 15,
+            "min_samples_leaf": 7,
+            "max_features": 0.8
+          },
+          "validation": {
+            "accuracy": 0.8073394495412844,
+            "balanced_accuracy": 0.8042858641101414,
+            "precision": 0.8098368087035358,
+            "recall": 0.841497880357984,
+            "f1": 0.8253638253638254,
+            "roc_auc": 0.8738205576375506,
+            "mcc": 0.6112646665453908,
+            "brier": 0.13977179649236854,
+            "confusion_matrix": [
+              [
+                2763,
+                839
+              ],
+              [
+                673,
+                3573
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5385181729929157,
+            "majority_accuracy": 0.5410295616717635
+          }
+        }
+      ]
+    },
+    {
+      "model": "xgboost",
+      "parameters": {
+        "n_estimators": 320,
+        "max_depth": 4,
+        "learning_rate": 0.035,
+        "subsample": 0.78,
+        "colsample_bytree": 0.85,
+        "min_child_weight": 18,
+        "gamma": 0.12,
+        "reg_alpha": 0.12,
+        "reg_lambda": 7.0
+      },
+      "validation": {
+        "accuracy": 0.8196992864424058,
+        "balanced_accuracy": 0.8169716123062422,
+        "precision": 0.8225108225108225,
+        "recall": 0.8502119642016015,
+        "f1": 0.8361320208453966,
+        "roc_auc": 0.8817086689422295,
+        "mcc": 0.6362886000183245,
+        "brier": 0.13368479926532525,
+        "confusion_matrix": [
+          [
+            2823,
+            779
+          ],
+          [
+            636,
+            3610
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5426789800862892,
+        "majority_accuracy": 0.5410295616717635
+      },
+      "test": {
+        "accuracy": 0.7813455657492355,
+        "balanced_accuracy": 0.7798813185997664,
+        "precision": 0.7811108507147879,
+        "recall": 0.8099635479951397,
+        "f1": 0.7952755905511811,
+        "roc_auc": 0.8497965829052825,
+        "mcc": 0.5612473969811537,
+        "brier": 0.1550984896443735,
+        "confusion_matrix": [
+          [
+            2799,
+            934
+          ],
+          [
+            782,
+            3333
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5243374108053007,
+        "mean_probability": 0.5400014452913455,
+        "majority_accuracy": 0.5243374108053007
+      },
+      "candidate_validation": [
+        {
+          "parameters": {
+            "n_estimators": 260,
+            "max_depth": 3,
+            "learning_rate": 0.045,
+            "subsample": 0.82,
+            "colsample_bytree": 0.78,
+            "min_child_weight": 12,
+            "gamma": 0.08,
+            "reg_alpha": 0.08,
+            "reg_lambda": 5.0
+          },
+          "validation": {
+            "accuracy": 0.8156218144750255,
+            "balanced_accuracy": 0.8125506895080793,
+            "precision": 0.8167006109979633,
+            "recall": 0.8499764484220442,
+            "f1": 0.8330063473744951,
+            "roc_auc": 0.8823943258612541,
+            "mcc": 0.6280100052141395,
+            "brier": 0.13321958019832583,
+            "confusion_matrix": [
+              [
+                2792,
+                810
+              ],
+              [
+                637,
+                3609
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5423959434760125,
+            "majority_accuracy": 0.5410295616717635
+          }
+        },
+        {
+          "parameters": {
+            "n_estimators": 320,
+            "max_depth": 4,
+            "learning_rate": 0.035,
+            "subsample": 0.78,
+            "colsample_bytree": 0.85,
+            "min_child_weight": 18,
+            "gamma": 0.12,
+            "reg_alpha": 0.12,
+            "reg_lambda": 7.0
+          },
+          "validation": {
+            "accuracy": 0.8196992864424058,
+            "balanced_accuracy": 0.8169716123062422,
+            "precision": 0.8225108225108225,
+            "recall": 0.8502119642016015,
+            "f1": 0.8361320208453966,
+            "roc_auc": 0.8817086689422295,
+            "mcc": 0.6362886000183245,
+            "brier": 0.13368479926532525,
+            "confusion_matrix": [
+              [
+                2823,
+                779
+              ],
+              [
+                636,
+                3610
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5426789800862892,
+            "majority_accuracy": 0.5410295616717635
+          }
+        }
+      ]
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "parameters": {
+        "max_iter": 220,
+        "learning_rate": 0.055,
+        "max_leaf_nodes": 15,
+        "l2_regularization": 2.5
+      },
+      "validation": {
+        "accuracy": 0.816131498470948,
+        "balanced_accuracy": 0.8134217448149259,
+        "precision": 0.819612314709236,
+        "recall": 0.8464437117286858,
+        "f1": 0.8328119568995481,
+        "roc_auc": 0.878359238325492,
+        "mcc": 0.6290858608074967,
+        "brier": 0.13584103703311323,
+        "confusion_matrix": [
+          [
+            2811,
+            791
+          ],
+          [
+            652,
+            3594
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5410295616717635,
+        "mean_probability": 0.5346176359396945,
+        "majority_accuracy": 0.5410295616717635
+      },
+      "test": {
+        "accuracy": 0.7789245667686034,
+        "balanced_accuracy": 0.7772494115893224,
+        "precision": 0.7767441860465116,
+        "recall": 0.8116646415552855,
+        "f1": 0.7938205585264408,
+        "roc_auc": 0.849457028199771,
+        "mcc": 0.5564017793062631,
+        "brier": 0.15537664942041818,
+        "confusion_matrix": [
+          [
+            2773,
+            960
+          ],
+          [
+            775,
+            3340
+          ]
+        ],
+        "n": 7848,
+        "actual_up_fraction": 0.5243374108053007,
+        "mean_probability": 0.5403051628686805,
+        "majority_accuracy": 0.5243374108053007
+      },
+      "candidate_validation": [
+        {
+          "parameters": {
+            "max_iter": 220,
+            "learning_rate": 0.055,
+            "max_leaf_nodes": 15,
+            "l2_regularization": 2.5
+          },
+          "validation": {
+            "accuracy": 0.816131498470948,
+            "balanced_accuracy": 0.8134217448149259,
+            "precision": 0.819612314709236,
+            "recall": 0.8464437117286858,
+            "f1": 0.8328119568995481,
+            "roc_auc": 0.878359238325492,
+            "mcc": 0.6290858608074967,
+            "brier": 0.13584103703311323,
+            "confusion_matrix": [
+              [
+                2811,
+                791
+              ],
+              [
+                652,
+                3594
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5346176359396945,
+            "majority_accuracy": 0.5410295616717635
+          }
+        },
+        {
+          "parameters": {
+            "max_iter": 280,
+            "learning_rate": 0.04,
+            "max_leaf_nodes": 23,
+            "l2_regularization": 4.0
+          },
+          "validation": {
+            "accuracy": 0.8117991845056065,
+            "balanced_accuracy": 0.8090811144590997,
+            "precision": 0.8158795345653662,
+            "recall": 0.8422044276966557,
+            "f1": 0.8288330049831962,
+            "roc_auc": 0.8752589562034804,
+            "mcc": 0.6203359631509239,
+            "brier": 0.13708596430954825,
+            "confusion_matrix": [
+              [
+                2795,
+                807
+              ],
+              [
+                670,
+                3576
+              ]
+            ],
+            "n": 7848,
+            "actual_up_fraction": 0.5410295616717635,
+            "mean_probability": 0.5348081773980362,
+            "majority_accuracy": 0.5410295616717635
+          }
+        }
+      ]
+    }
+  ],
+  "asset_results": [
+    {
+      "symbol": "SYN101",
+      "sector": "IT",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7675840978593272,
+        "balanced_accuracy": 0.7667967870280009,
+        "precision": 0.7532467532467533,
+        "recall": 0.7532467532467533,
+        "f1": 0.7532467532467533,
+        "roc_auc": 0.8405525110727422,
+        "mcc": 0.5335935740560018,
+        "brier": 0.1604767136177364,
+        "confusion_matrix": [
+          [
+            135,
+            38
+          ],
+          [
+            38,
+            116
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.4709480122324159,
+        "mean_probability": 0.5039078218880448,
+        "majority_accuracy": 0.5290519877675841
+      }
+    },
+    {
+      "symbol": "SYN102",
+      "sector": "IT",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8073394495412844,
+        "balanced_accuracy": 0.8077683186378839,
+        "precision": 0.7631578947368421,
+        "recall": 0.8111888111888111,
+        "f1": 0.7864406779661017,
+        "roc_auc": 0.86470051687443,
+        "mcc": 0.6121953401371589,
+        "brier": 0.14493027159964686,
+        "confusion_matrix": [
+          [
+            148,
+            36
+          ],
+          [
+            27,
+            116
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.43730886850152906,
+        "mean_probability": 0.4901985279090981,
+        "majority_accuracy": 0.5626911314984709
+      }
+    },
+    {
+      "symbol": "SYN103",
+      "sector": "IT",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8073394495412844,
+        "balanced_accuracy": 0.8100985221674877,
+        "precision": 0.75625,
+        "recall": 0.8344827586206897,
+        "f1": 0.7934426229508197,
+        "roc_auc": 0.8829859795377036,
+        "mcc": 0.6163553363299458,
+        "brier": 0.13254917191445012,
+        "confusion_matrix": [
+          [
+            143,
+            39
+          ],
+          [
+            24,
+            121
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.4434250764525994,
+        "mean_probability": 0.489149291943078,
+        "majority_accuracy": 0.5565749235474007
+      }
+    },
+    {
+      "symbol": "SYN201",
+      "sector": "Banking",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7247706422018348,
+        "balanced_accuracy": 0.7264449127031909,
+        "precision": 0.6848484848484848,
+        "recall": 0.7483443708609272,
+        "f1": 0.7151898734177216,
+        "roc_auc": 0.7927077062010837,
+        "mcc": 0.4515833199939857,
+        "brier": 0.18798672937926547,
+        "confusion_matrix": [
+          [
+            124,
+            52
+          ],
+          [
+            38,
+            113
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.4617737003058104,
+        "mean_probability": 0.526782806303888,
+        "majority_accuracy": 0.5382262996941896
+      }
+    },
+    {
+      "symbol": "SYN202",
+      "sector": "Banking",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7339449541284404,
+        "balanced_accuracy": 0.724943802805984,
+        "precision": 0.7772020725388601,
+        "recall": 0.7731958762886598,
+        "f1": 0.7751937984496124,
+        "roc_auc": 0.7846678552050229,
+        "mcc": 0.4493654315601801,
+        "brier": 0.18524076598923578,
+        "confusion_matrix": [
+          [
+            90,
+            43
+          ],
+          [
+            44,
+            150
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5932721712538226,
+        "mean_probability": 0.5875985727470799,
+        "majority_accuracy": 0.5932721712538226
+      }
+    },
+    {
+      "symbol": "SYN203",
+      "sector": "Banking",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8440366972477065,
+        "balanced_accuracy": 0.8441194074517432,
+        "precision": 0.8255813953488372,
+        "recall": 0.8711656441717791,
+        "f1": 0.8477611940298507,
+        "roc_auc": 0.9165793805177316,
+        "mcc": 0.689167543016845,
+        "brier": 0.118318978211766,
+        "confusion_matrix": [
+          [
+            134,
+            30
+          ],
+          [
+            21,
+            142
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.4984709480122324,
+        "mean_probability": 0.5303537277510201,
+        "majority_accuracy": 0.5015290519877675
+      }
+    },
+    {
+      "symbol": "SYN301",
+      "sector": "Financial Services",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.764525993883792,
+        "balanced_accuracy": 0.7631263575762115,
+        "precision": 0.7555555555555555,
+        "recall": 0.8047337278106509,
+        "f1": 0.7793696275071633,
+        "roc_auc": 0.8263051456819714,
+        "mcc": 0.528653759972966,
+        "brier": 0.1683338584202944,
+        "confusion_matrix": [
+          [
+            114,
+            44
+          ],
+          [
+            33,
+            136
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5168195718654435,
+        "mean_probability": 0.5383298843695205,
+        "majority_accuracy": 0.5168195718654435
+      }
+    },
+    {
+      "symbol": "SYN302",
+      "sector": "Financial Services",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7981651376146789,
+        "balanced_accuracy": 0.7893205778992581,
+        "precision": 0.8324873096446701,
+        "recall": 0.8324873096446701,
+        "f1": 0.8324873096446701,
+        "roc_auc": 0.8819601718078875,
+        "mcc": 0.5786411557985162,
+        "brier": 0.13453003310127823,
+        "confusion_matrix": [
+          [
+            97,
+            33
+          ],
+          [
+            33,
+            164
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.6024464831804281,
+        "mean_probability": 0.5573533989435722,
+        "majority_accuracy": 0.6024464831804281
+      }
+    },
+    {
+      "symbol": "SYN303",
+      "sector": "Financial Services",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7553516819571865,
+        "balanced_accuracy": 0.7571877807726864,
+        "precision": 0.7158469945355191,
+        "recall": 0.8238993710691824,
+        "f1": 0.7660818713450293,
+        "roc_auc": 0.8222896076669662,
+        "mcc": 0.5178771374508494,
+        "brier": 0.17122973032070726,
+        "confusion_matrix": [
+          [
+            116,
+            52
+          ],
+          [
+            28,
+            131
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.48623853211009177,
+        "mean_probability": 0.5224279581721191,
+        "majority_accuracy": 0.5137614678899083
+      }
+    },
+    {
+      "symbol": "SYN401",
+      "sector": "Energy",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7308868501529052,
+        "balanced_accuracy": 0.7321388325445121,
+        "precision": 0.696969696969697,
+        "recall": 0.7516339869281046,
+        "f1": 0.7232704402515723,
+        "roc_auc": 0.8093306288032455,
+        "mcc": 0.46333878108450793,
+        "brier": 0.17412494937500714,
+        "confusion_matrix": [
+          [
+            124,
+            50
+          ],
+          [
+            38,
+            115
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.46788990825688076,
+        "mean_probability": 0.501457353686814,
+        "majority_accuracy": 0.5321100917431192
+      }
+    },
+    {
+      "symbol": "SYN402",
+      "sector": "Energy",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8103975535168195,
+        "balanced_accuracy": 0.8062428625808907,
+        "precision": 0.8288770053475936,
+        "recall": 0.8378378378378378,
+        "f1": 0.8333333333333334,
+        "roc_auc": 0.8679482299200608,
+        "mcc": 0.6135376048655459,
+        "brier": 0.14204085326448254,
+        "confusion_matrix": [
+          [
+            110,
+            32
+          ],
+          [
+            30,
+            155
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5657492354740061,
+        "mean_probability": 0.5526829711920774,
+        "majority_accuracy": 0.5657492354740061
+      }
+    },
+    {
+      "symbol": "SYN403",
+      "sector": "Energy",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7584097859327217,
+        "balanced_accuracy": 0.7579715568862275,
+        "precision": 0.7558139534883721,
+        "recall": 0.7784431137724551,
+        "f1": 0.7669616519174042,
+        "roc_auc": 0.8477919161676647,
+        "mcc": 0.5165233686292422,
+        "brier": 0.15891027141051126,
+        "confusion_matrix": [
+          [
+            118,
+            42
+          ],
+          [
+            37,
+            130
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5107033639143731,
+        "mean_probability": 0.5230915720085961,
+        "majority_accuracy": 0.5107033639143731
+      }
+    },
+    {
+      "symbol": "SYN501",
+      "sector": "FMCG",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7614678899082569,
+        "balanced_accuracy": 0.7640022675736962,
+        "precision": 0.7116564417177914,
+        "recall": 0.7891156462585034,
+        "f1": 0.7483870967741936,
+        "roc_auc": 0.8426681783824641,
+        "mcc": 0.5253114251485482,
+        "brier": 0.1630869121724862,
+        "confusion_matrix": [
+          [
+            133,
+            47
+          ],
+          [
+            31,
+            116
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.44954128440366975,
+        "mean_probability": 0.5145536856937384,
+        "majority_accuracy": 0.5504587155963303
+      }
+    },
+    {
+      "symbol": "SYN502",
+      "sector": "FMCG",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8195718654434251,
+        "balanced_accuracy": 0.8193893586769438,
+        "precision": 0.8227848101265823,
+        "recall": 0.8074534161490683,
+        "f1": 0.8150470219435737,
+        "roc_auc": 0.8736062261468233,
+        "mcc": 0.6390657229325538,
+        "brier": 0.13654984896500041,
+        "confusion_matrix": [
+          [
+            138,
+            28
+          ],
+          [
+            31,
+            130
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.4923547400611621,
+        "mean_probability": 0.49999863204016987,
+        "majority_accuracy": 0.5076452599388379
+      }
+    },
+    {
+      "symbol": "SYN503",
+      "sector": "FMCG",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7003058103975535,
+        "balanced_accuracy": 0.6908014571948998,
+        "precision": 0.7157360406091371,
+        "recall": 0.7704918032786885,
+        "f1": 0.7421052631578947,
+        "roc_auc": 0.7923497267759563,
+        "mcc": 0.3870915442269693,
+        "brier": 0.19595243497900627,
+        "confusion_matrix": [
+          [
+            88,
+            56
+          ],
+          [
+            42,
+            141
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5596330275229358,
+        "mean_probability": 0.6078721046644497,
+        "majority_accuracy": 0.5596330275229358
+      }
+    },
+    {
+      "symbol": "SYN601",
+      "sector": "Pharma",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8042813455657493,
+        "balanced_accuracy": 0.7946916299559472,
+        "precision": 0.8899521531100478,
+        "recall": 0.8193832599118943,
+        "f1": 0.8532110091743119,
+        "roc_auc": 0.8759471365638767,
+        "mcc": 0.5654530857756207,
+        "brier": 0.1371124585273495,
+        "confusion_matrix": [
+          [
+            77,
+            23
+          ],
+          [
+            41,
+            186
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.6941896024464832,
+        "mean_probability": 0.5875709304310593,
+        "majority_accuracy": 0.6941896024464832
+      }
+    },
+    {
+      "symbol": "SYN602",
+      "sector": "Pharma",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7981651376146789,
+        "balanced_accuracy": 0.7980359147025814,
+        "precision": 0.8037974683544303,
+        "recall": 0.7839506172839507,
+        "f1": 0.79375,
+        "roc_auc": 0.8518518518518519,
+        "mcc": 0.5963842711358425,
+        "brier": 0.14976522609227538,
+        "confusion_matrix": [
+          [
+            134,
+            31
+          ],
+          [
+            35,
+            127
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.4954128440366973,
+        "mean_probability": 0.5220789870771582,
+        "majority_accuracy": 0.5045871559633027
+      }
+    },
+    {
+      "symbol": "SYN603",
+      "sector": "Pharma",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7370030581039755,
+        "balanced_accuracy": 0.7413727576771055,
+        "precision": 0.6727272727272727,
+        "recall": 0.7762237762237763,
+        "f1": 0.7207792207792207,
+        "roc_auc": 0.798076923076923,
+        "mcc": 0.4789560889373476,
+        "brier": 0.18887051487551607,
+        "confusion_matrix": [
+          [
+            130,
+            54
+          ],
+          [
+            32,
+            111
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.43730886850152906,
+        "mean_probability": 0.5144468348677667,
+        "majority_accuracy": 0.5626911314984709
+      }
+    },
+    {
+      "symbol": "SYN701",
+      "sector": "Auto",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7981651376146789,
+        "balanced_accuracy": 0.7947954527878741,
+        "precision": 0.839572192513369,
+        "recall": 0.8134715025906736,
+        "f1": 0.8263157894736842,
+        "roc_auc": 0.8745263320702188,
+        "mcc": 0.585999180268182,
+        "brier": 0.14175931224514482,
+        "confusion_matrix": [
+          [
+            104,
+            30
+          ],
+          [
+            36,
+            157
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5902140672782875,
+        "mean_probability": 0.5365823198487699,
+        "majority_accuracy": 0.5902140672782875
+      }
+    },
+    {
+      "symbol": "SYN702",
+      "sector": "Auto",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8165137614678899,
+        "balanced_accuracy": 0.8118881118881118,
+        "precision": 0.8534031413612565,
+        "recall": 0.8358974358974359,
+        "f1": 0.844559585492228,
+        "roc_auc": 0.8862859362859363,
+        "mcc": 0.6209361583081232,
+        "brier": 0.1352522746625139,
+        "confusion_matrix": [
+          [
+            104,
+            28
+          ],
+          [
+            32,
+            163
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5963302752293578,
+        "mean_probability": 0.5741993770932164,
+        "majority_accuracy": 0.5963302752293578
+      }
+    },
+    {
+      "symbol": "SYN703",
+      "sector": "Auto",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7859327217125383,
+        "balanced_accuracy": 0.7880225988700564,
+        "precision": 0.7439024390243902,
+        "recall": 0.8133333333333334,
+        "f1": 0.7770700636942676,
+        "roc_auc": 0.8327683615819209,
+        "mcc": 0.5740808987260482,
+        "brier": 0.16562420620185808,
+        "confusion_matrix": [
+          [
+            135,
+            42
+          ],
+          [
+            28,
+            122
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.45871559633027525,
+        "mean_probability": 0.5136937824885005,
+        "majority_accuracy": 0.5412844036697247
+      }
+    },
+    {
+      "symbol": "SYN801",
+      "sector": "Telecom",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8746177370030581,
+        "balanced_accuracy": 0.8680996006577402,
+        "precision": 0.8944723618090452,
+        "recall": 0.898989898989899,
+        "f1": 0.8967254408060453,
+        "roc_auc": 0.8992248062015504,
+        "mcc": 0.7372100875307165,
+        "brier": 0.11390931596133956,
+        "confusion_matrix": [
+          [
+            108,
+            21
+          ],
+          [
+            20,
+            178
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.6055045871559633,
+        "mean_probability": 0.5836361765192858,
+        "majority_accuracy": 0.6055045871559633
+      }
+    },
+    {
+      "symbol": "SYN802",
+      "sector": "Telecom",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.7828746177370031,
+        "balanced_accuracy": 0.7724598930481283,
+        "precision": 0.79,
+        "recall": 0.8449197860962567,
+        "f1": 0.8165374677002584,
+        "roc_auc": 0.8617647058823529,
+        "mcc": 0.5532233985282097,
+        "brier": 0.14678255569708754,
+        "confusion_matrix": [
+          [
+            98,
+            42
+          ],
+          [
+            29,
+            158
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5718654434250765,
+        "mean_probability": 0.5938204604275622,
+        "majority_accuracy": 0.5718654434250765
+      }
+    },
+    {
+      "symbol": "SYN803",
+      "sector": "Telecom",
+      "n": 327,
+      "metrics": {
+        "accuracy": 0.8012232415902141,
+        "balanced_accuracy": 0.7987117552334944,
+        "precision": 0.8369565217391305,
+        "recall": 0.8148148148148148,
+        "f1": 0.8257372654155496,
+        "roc_auc": 0.863162334176827,
+        "mcc": 0.5948066625372874,
+        "brier": 0.14261184674734462,
+        "confusion_matrix": [
+          [
+            108,
+            30
+          ],
+          [
+            35,
+            154
+          ]
+        ],
+        "n": 327,
+        "actual_up_fraction": 0.5779816513761468,
+        "mean_probability": 0.5393418618320608,
+        "majority_accuracy": 0.5779816513761468
+      }
+    }
+  ],
+  "environment_results": [
+    {
+      "environment": "bearish",
+      "n": 2064,
+      "metrics": {
+        "accuracy": 0.8507751937984496,
+        "balanced_accuracy": 0.5116789603090973,
+        "precision": 0.6666666666666666,
+        "recall": 0.02564102564102564,
+        "f1": 0.04938271604938271,
+        "roc_auc": 0.636571025055614,
+        "mcc": 0.11005232571199673,
+        "brier": 0.12198748781397616,
+        "confusion_matrix": [
+          [
+            1748,
+            4
+          ],
+          [
+            304,
+            8
+          ]
+        ],
+        "n": 2064,
+        "actual_up_fraction": 0.1511627906976744,
+        "mean_probability": 0.1514813788495345,
+        "majority_accuracy": 0.8488372093023255
+      }
+    },
+    {
+      "environment": "bullish",
+      "n": 2688,
+      "metrics": {
+        "accuracy": 0.8679315476190477,
+        "balanced_accuracy": 0.5,
+        "precision": 0.8679315476190477,
+        "recall": 1.0,
+        "f1": 0.9292969527982473,
+        "roc_auc": 0.6287292550847304,
+        "mcc": 0.0,
+        "brier": 0.11118811987952959,
+        "confusion_matrix": [
+          [
+            0,
+            355
+          ],
+          [
+            0,
+            2333
+          ]
+        ],
+        "n": 2688,
+        "actual_up_fraction": 0.8679315476190477,
+        "mean_probability": 0.8832465481504193,
+        "majority_accuracy": 0.8679315476190477
+      }
+    },
+    {
+      "environment": "high_volatility",
+      "n": 2016,
+      "metrics": {
+        "accuracy": 0.683531746031746,
+        "balanced_accuracy": 0.6817452215105055,
+        "precision": 0.6229860365198711,
+        "recall": 0.6689734717416378,
+        "f1": 0.6451612903225806,
+        "roc_auc": 0.7450528667925471,
+        "mcc": 0.3609714469073328,
+        "brier": 0.20435336176171007,
+        "confusion_matrix": [
+          [
+            798,
+            351
+          ],
+          [
+            287,
+            580
+          ]
+        ],
+        "n": 2016,
+        "actual_up_fraction": 0.43005952380952384,
+        "mean_probability": 0.4756716665108293,
+        "majority_accuracy": 0.5699404761904762
+      }
+    },
+    {
+      "environment": "range_bound",
+      "n": 1080,
+      "metrics": {
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.6175255796489252,
+        "precision": 0.6586538461538461,
+        "recall": 0.681592039800995,
+        "f1": 0.6699266503667481,
+        "roc_auc": 0.665039581964392,
+        "mcc": 0.23632274739518255,
+        "brier": 0.22772516762435788,
+        "confusion_matrix": [
+          [
+            264,
+            213
+          ],
+          [
+            192,
+            411
+          ]
+        ],
+        "n": 1080,
+        "actual_up_fraction": 0.5583333333333333,
+        "mean_probability": 0.5334822490622771,
+        "majority_accuracy": 0.5583333333333333
+      }
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "market_environment_code",
+      "importance": 2.492229540820472
+    },
+    {
+      "feature": "regime_strength",
+      "importance": 2.3854257220066373
+    },
+    {
+      "feature": "volatility_regime_code",
+      "importance": 0.6607357097171404
+    },
+    {
+      "feature": "return_3d",
+      "importance": 0.3289990262241811
+    },
+    {
+      "feature": "price_to_sma20",
+      "importance": 0.22621639567886537
+    },
+    {
+      "feature": "market_return",
+      "importance": 0.1711621136350051
+    },
+    {
+      "feature": "sector_return",
+      "importance": 0.14325741136472922
+    },
+    {
+      "feature": "return_10d",
+      "importance": 0.09289423963228088
+    },
+    {
+      "feature": "momentum_10d",
+      "importance": 0.09289423963228088
+    },
+    {
+      "feature": "roc_10",
+      "importance": 0.09289423963228088
+    },
+    {
+      "feature": "sma_20",
+      "importance": 0.08609502267243155
+    },
+    {
+      "feature": "macd_histogram",
+      "importance": 0.06898825872950566
+    },
+    {
+      "feature": "trend_strength",
+      "importance": 0.0648518353860562
+    },
+    {
+      "feature": "sma_50",
+      "importance": 0.05985447247134261
+    },
+    {
+      "feature": "return_5d",
+      "importance": 0.05844092968158296
+    },
+    {
+      "feature": "momentum_5d",
+      "importance": 0.05844092968158296
+    },
+    {
+      "feature": "atr_14",
+      "importance": 0.05371964829487934
+    },
+    {
+      "feature": "bollinger_width",
+      "importance": 0.04773727822848334
+    },
+    {
+      "feature": "ema_50",
+      "importance": 0.04609139298609643
+    },
+    {
+      "feature": "sector_momentum",
+      "importance": 0.03273043176347261
+    },
+    {
+      "feature": "volume_sma_20",
+      "importance": 0.031182790781712905
+    },
+    {
+      "feature": "regime_duration",
+      "importance": 0.030710774474412242
+    },
+    {
+      "feature": "log_return",
+      "importance": 0.029813566180899476
+    },
+    {
+      "feature": "rolling_volatility_20",
+      "importance": 0.02824213588460097
+    },
+    {
+      "feature": "sma_10",
+      "importance": 0.02715760764231462
+    },
+    {
+      "feature": "market_momentum",
+      "importance": 0.024378062759902144
+    },
+    {
+      "feature": "atr_percentage",
+      "importance": 0.02237630669730733
+    },
+    {
+      "feature": "sma_5",
+      "importance": 0.020857692149366034
+    },
+    {
+      "feature": "return_1d",
+      "importance": 0.01915784457354499
+    },
+    {
+      "feature": "macd_signal",
+      "importance": 0.014796967847188664
+    },
+    {
+      "feature": "volume_change",
+      "importance": 0.014003063563279282
+    },
+    {
+      "feature": "rsi_14",
+      "importance": 0.011066881630174484
+    },
+    {
+      "feature": "market_volatility",
+      "importance": 0.00875900419605822
+    },
+    {
+      "feature": "price_to_sma50",
+      "importance": 0.006379306857175811
+    },
+    {
+      "feature": "macd",
+      "importance": 0.004122925199860867
+    },
+    {
+      "feature": "ema_10",
+      "importance": 0.0025760956292281293
+    },
+    {
+      "feature": "ema_20",
+      "importance": 0.0024581358640647128
+    },
+    {
+      "feature": "volume_zscore",
+      "importance": 0.0014150644945576589
+    },
+    {
+      "feature": "relative_volume",
+      "importance": 0.00035589334998109855
+    }
+  ],
+  "shap_feature_importance": [
+    {
+      "feature": "regime_strength",
+      "mean_absolute_shap": 2.2806045330991456
+    },
+    {
+      "feature": "market_environment_code",
+      "mean_absolute_shap": 1.9799661908612358
+    },
+    {
+      "feature": "volatility_regime_code",
+      "mean_absolute_shap": 0.45239315365052934
+    },
+    {
+      "feature": "return_3d",
+      "mean_absolute_shap": 0.2829141161747773
+    },
+    {
+      "feature": "price_to_sma20",
+      "mean_absolute_shap": 0.1953559815136535
+    },
+    {
+      "feature": "market_return",
+      "mean_absolute_shap": 0.1521861967476681
+    },
+    {
+      "feature": "sector_return",
+      "mean_absolute_shap": 0.12258769693576038
+    },
+    {
+      "feature": "return_10d",
+      "mean_absolute_shap": 0.08055802854574297
+    },
+    {
+      "feature": "momentum_10d",
+      "mean_absolute_shap": 0.08055802854574297
+    },
+    {
+      "feature": "roc_10",
+      "mean_absolute_shap": 0.08055802854574297
+    },
+    {
+      "feature": "sma_20",
+      "mean_absolute_shap": 0.06154269547239195
+    },
+    {
+      "feature": "trend_strength",
+      "mean_absolute_shap": 0.05372503845199242
+    },
+    {
+      "feature": "return_5d",
+      "mean_absolute_shap": 0.049877401016334234
+    },
+    {
+      "feature": "momentum_5d",
+      "mean_absolute_shap": 0.049877401016334234
+    },
+    {
+      "feature": "macd_histogram",
+      "mean_absolute_shap": 0.044366660731569384
+    },
+    {
+      "feature": "sma_50",
+      "mean_absolute_shap": 0.04267982854428715
+    },
+    {
+      "feature": "bollinger_width",
+      "mean_absolute_shap": 0.03901515716204915
+    },
+    {
+      "feature": "atr_14",
+      "mean_absolute_shap": 0.03832009177619509
+    },
+    {
+      "feature": "ema_50",
+      "mean_absolute_shap": 0.03315571864916945
+    },
+    {
+      "feature": "sector_momentum",
+      "mean_absolute_shap": 0.02882371154687671
+    },
+    {
+      "feature": "log_return",
+      "mean_absolute_shap": 0.027448199776747527
+    },
+    {
+      "feature": "volume_sma_20",
+      "mean_absolute_shap": 0.025013478029167584
+    },
+    {
+      "feature": "regime_duration",
+      "mean_absolute_shap": 0.021701387121128995
+    },
+    {
+      "feature": "market_momentum",
+      "mean_absolute_shap": 0.021504847526718527
+    },
+    {
+      "feature": "rolling_volatility_20",
+      "mean_absolute_shap": 0.020686915473708285
+    },
+    {
+      "feature": "sma_10",
+      "mean_absolute_shap": 0.019427334981221858
+    },
+    {
+      "feature": "return_1d",
+      "mean_absolute_shap": 0.017637618730066022
+    },
+    {
+      "feature": "atr_percentage",
+      "mean_absolute_shap": 0.016093732925478527
+    },
+    {
+      "feature": "sma_5",
+      "mean_absolute_shap": 0.01490864511937367
+    },
+    {
+      "feature": "volume_change",
+      "mean_absolute_shap": 0.010747818522709363
+    },
+    {
+      "feature": "rsi_14",
+      "mean_absolute_shap": 0.009809742396369002
+    },
+    {
+      "feature": "macd_signal",
+      "mean_absolute_shap": 0.009328433874294953
+    },
+    {
+      "feature": "market_volatility",
+      "mean_absolute_shap": 0.007168166504664894
+    },
+    {
+      "feature": "price_to_sma50",
+      "mean_absolute_shap": 0.00534337843159423
+    },
+    {
+      "feature": "macd",
+      "mean_absolute_shap": 0.0025189446577808324
+    },
+    {
+      "feature": "ema_10",
+      "mean_absolute_shap": 0.0018433763497545713
+    },
+    {
+      "feature": "ema_20",
+      "mean_absolute_shap": 0.0017615907668070893
+    },
+    {
+      "feature": "volume_zscore",
+      "mean_absolute_shap": 0.0011188135328732667
+    },
+    {
+      "feature": "relative_volume",
+      "mean_absolute_shap": 0.00027693811360991706
+    }
+  ],
+  "split": {
+    "train_end": "2023-11-21",
+    "validation_start": "2023-11-27",
+    "validation_end": "2025-02-25",
+    "test_start": "2025-03-03",
+    "test_end": "2026-06-02"
+  },
+  "generator": {
+    "seed": 20260926,
+    "assets_per_sector": 3,
+    "sessions": 2200,
+    "start": "2018-01-01",
+    "target_threshold": 0.001
+  }
+}

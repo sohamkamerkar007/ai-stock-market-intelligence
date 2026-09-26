@@ -69,6 +69,9 @@ Set a strong local `POSTGRES_PASSWORD` in `.env` and keep the matching password 
 .\.venv\Scripts\python.exe -m scripts.generate_predictions
 .\.venv\Scripts\python.exe -m scripts.audit_research_results
 
+# Separate controlled synthetic ML-research experiment (not real-market accuracy)
+.\.venv\Scripts\python.exe -m scripts.generate_synthetic_market_data
+
 # Optional, requires NEWSDATA_API_KEY
 .\.venv\Scripts\python.exe -m scripts.ingest_news
 ```
@@ -107,9 +110,11 @@ docker compose up --build
 | `TRANSACTION_COST_BPS`, `SLIPPAGE_BPS` | No | Reproducible backtest assumptions |
 | `CORS_ORIGINS`, `LOG_LEVEL`, `APP_ENV` | No | API runtime settings |
 
-## Measured evaluation snapshot
+## Real-market baseline snapshot
 
 The bounded experiment matrix deliberately records weak as well as strong outcomes. On the included retrospective NIFTY holdout, the pre-holdout-selected ExtraTrees technical-plus-market model produced 50.39% accuracy, 50.28% balanced accuracy, 0.5646 F1, 0.5326 ROC-AUC and 0.0059 MCC (258 sessions). The majority benchmark was also 50.39%; this is not evidence of useful one-day predictive skill. The full diagnosis, protocol, legacy comparison and limitations are in [ML performance diagnosis](docs/ML_PERFORMANCE_DIAGNOSIS.md).
+
+The separate controlled synthetic research experiment is designed to demonstrate the supervised ML workflow on learnable market-like data. Its 70%+ result is never presented as real-market accuracy; see [Controlled synthetic research dataset](docs/SYNTHETIC_RESEARCH_DATASET.md).
 
 After data ingestion and training, actual experiment outputs appear in PostgreSQL, the Research Lab, model-sidecar JSON files, and:
 
@@ -121,6 +126,6 @@ This makes the experiment date, provider history, dependency versions and local 
 
 ## Documentation
 
-- [Data sources](docs/DATA_SOURCES.md) · [ML methodology](docs/ML_METHODOLOGY.md) · [Backtesting](docs/BACKTESTING.md)
+- [Data sources](docs/DATA_SOURCES.md) · [ML methodology](docs/ML_METHODOLOGY.md) · [Backtesting](docs/BACKTESTING.md) · [Controlled synthetic research dataset](docs/SYNTHETIC_RESEARCH_DATASET.md)
 - [API](docs/API.md) · [Research design](docs/RESEARCH.md) · [Reproduced results](docs/RESULTS.md) · [Limitations](docs/LIMITATIONS.md)
 - [Data dictionary](docs/DATA_DICTIONARY.md) · [Architecture](docs/ARCHITECTURE.md)
