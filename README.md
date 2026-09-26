@@ -1,6 +1,6 @@
 # Bharat Market Intelligence
 
-An end-to-end MSc Data Analytics research platform for Indian equities: reproducible market-data ingestion, leakage-aware features, supervised direction models, unsupervised market environments, contextual ablation studies, news sentiment, unusual-activity detection, SHAP explanations, time-aware historical tests, a FastAPI API/WebSocket layer, and a framework-free financial-intelligence UI. The primary interface uses plain language while preserving technical detail through progressive disclosure.
+An end-to-end research platform for Indian equities: reproducible market-data ingestion, leakage-aware features, supervised direction models, unsupervised market environments, contextual ablation studies, news sentiment, unusual-activity detection, SHAP explanations, time-aware historical tests, a FastAPI API/WebSocket layer, and a framework-free financial-intelligence UI. The primary interface uses plain language while preserving technical detail through progressive disclosure.
 
 > **Research use only.** Outputs are uncertain statistical/model estimates, not investment advice, an execution system, or a claim of market-beating performance. The default data path is end-of-day research data; the application never labels it real-time.
 
