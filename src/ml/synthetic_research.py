@@ -50,6 +50,8 @@ class SyntheticSpec:
     sessions: int = 2200
     start: str = "2018-01-01"
     target_threshold: float = 0.001
+    scenario: str = "baseline"
+    signal_gain: float = 1.28
 
     @property
     def assets(self) -> int:
@@ -117,13 +119,23 @@ def generate_synthetic_market(spec: SyntheticSpec = SyntheticSpec()) -> pd.DataF
     are never emitted as model features.
     """
     rng = np.random.default_rng(spec.seed)
+    if spec.scenario not in {"baseline", "high_volatility", "persistent_trends"}:
+        raise ValueError("Unknown controlled market scenario")
+    transitions = TRANSITIONS.copy()
+    if spec.scenario == "high_volatility":
+        transitions[:, 3] += 0.08
+        transitions = transitions / transitions.sum(axis=1, keepdims=True)
+    elif spec.scenario == "persistent_trends":
+        transitions[0, 0] += 0.045
+        transitions[1, 1] += 0.045
+        transitions = transitions / transitions.sum(axis=1, keepdims=True)
     assets = _asset_definitions(spec, rng)
     dates = pd.date_range(spec.start, periods=spec.sessions, freq="B", tz="UTC")
     n_assets, n_days = len(assets), len(dates)
     states = np.empty(n_days, dtype=int)
     states[0] = 2
     for day in range(1, n_days):
-        states[day] = rng.choice(len(ENVIRONMENTS), p=TRANSITIONS[states[day - 1]])
+        states[day] = rng.choice(len(ENVIRONMENTS), p=transitions[states[day - 1]])
     durations = np.ones(n_days, dtype=int)
     for day in range(1, n_days):
         durations[day] = durations[day - 1] + 1 if states[day] == states[day - 1] else 1
@@ -166,7 +178,7 @@ def generate_synthetic_market(spec: SyntheticSpec = SyntheticSpec()) -> pd.DataF
             )
             if state == ENVIRONMENT_CODES["high_volatility"]:
                 score *= 0.62
-            probability_up = _sigmoid(1.28 * score + 0.06)
+            probability_up = _sigmoid(spec.signal_gain * score + 0.06)
             positive = rng.random() < probability_up
             magnitude = (0.0030 + rng.lognormal(-5.15, 0.35)) * ENVIRONMENT_VOLATILITY[state]
             magnitude *= 1 + 0.20 * abs(short) / 0.01

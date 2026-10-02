@@ -62,6 +62,7 @@ def overview(session: Session) -> dict:
                         "name": asset.name,
                         "close": frame.close.iloc[-1],
                         "change": change,
+                        "change_amount": (frame.close.iloc[-1] - frame.close.iloc[-2]) if len(frame) > 1 else None,
                         "as_of": frame.timestamp.iloc[-1],
                     }
                 )
@@ -92,6 +93,7 @@ def overview(session: Session) -> dict:
                     "close": rows[0].close,
                     "change": rows[0].close / rows[1].close - 1,
                     "sector": asset.sector,
+                    "volume": rows[0].volume,
                 }
             )
     up = sum(m["change"] > 0 for m in movers)
@@ -105,6 +107,9 @@ def overview(session: Session) -> dict:
         .order_by(desc(MarketRegime.timestamp))
         .limit(1)
     ).first()
+    # A descriptive regime from an older run must not be presented as today's state.
+    if regime and latest and regime[0].timestamp.date() != latest.date():
+        regime = None
     predictions = session.execute(
         select(Prediction, Asset).join(Asset).order_by(desc(Prediction.generated_at)).limit(5)
     ).all()
@@ -115,6 +120,7 @@ def overview(session: Session) -> dict:
         "freshness": freshness_status(latest),
         "indices": indices,
         "breadth": {"advancing": up, "declining": len(movers) - up, "coverage": len(movers)},
+        "tracked_stock_volume": sum(m["volume"] for m in movers),
         "top_gainers": sorted(movers, key=lambda x: x["change"], reverse=True)[:5],
         "top_losers": sorted(movers, key=lambda x: x["change"])[:5],
         "regime": (

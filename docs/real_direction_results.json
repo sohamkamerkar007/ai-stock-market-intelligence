@@ -1,0 +1,223 @@
+{
+  "created_at": "2026-10-02T12:34:31.391375+00:00",
+  "data_type": "real_indian_market",
+  "selection": "Highest validation F1, then validation accuracy; test set untouched",
+  "horizons": {
+    "1": {
+      "version": 1,
+      "data_type": "real_indian_market",
+      "horizon": 1,
+      "features": [
+        "return_1d",
+        "log_return_1d",
+        "return_5d",
+        "return_20d",
+        "sma_ratio_10",
+        "sma_ratio_20",
+        "ema_ratio_12",
+        "ma_cross_10_20",
+        "rsi_14",
+        "macd",
+        "momentum_10",
+        "volatility_20",
+        "atr_14",
+        "bb_width_20",
+        "volume_change",
+        "relative_volume_20",
+        "drawdown_60"
+      ],
+      "selected": "xgboost",
+      "train_end": "2023-12-01",
+      "validation_end": "2025-02-18",
+      "test_start": "2025-02-20",
+      "test_end": "2026-09-30",
+      "baseline_test_accuracy": 0.48126107875411495,
+      "models": {
+        "logistic_regression": {
+          "validation": {
+            "accuracy": 0.504,
+            "balanced_accuracy": 0.5049165875604716,
+            "precision": 0.5140082181546507,
+            "recall": 0.4509996722386103,
+            "f1": 0.48044692737430167,
+            "roc_auc": 0.5048782431456025,
+            "rows": 6000
+          },
+          "test": {
+            "accuracy": 0.5088630032919726,
+            "balanced_accuracy": 0.507616214455338,
+            "precision": 0.48941368078175895,
+            "recall": 0.47434885556432516,
+            "f1": 0.48176352705410824,
+            "roc_auc": 0.5166779396015989,
+            "rows": 7898
+          }
+        },
+        "xgboost": {
+          "validation": {
+            "accuracy": 0.5001666666666666,
+            "balanced_accuracy": 0.498692955597501,
+            "precision": 0.5073863636363637,
+            "recall": 0.5853818420190101,
+            "f1": 0.5436006696088875,
+            "roc_auc": 0.5042602312068187,
+            "rows": 6000
+          },
+          "test": {
+            "accuracy": 0.4949354266903013,
+            "balanced_accuracy": 0.5012150753334506,
+            "precision": 0.48216995447647953,
+            "recall": 0.6687713759536964,
+            "f1": 0.560343877438554,
+            "roc_auc": 0.5013859834298452,
+            "rows": 7898
+          }
+        }
+      }
+    },
+    "3": {
+      "version": 1,
+      "data_type": "real_indian_market",
+      "horizon": 3,
+      "features": [
+        "return_1d",
+        "log_return_1d",
+        "return_5d",
+        "return_20d",
+        "sma_ratio_10",
+        "sma_ratio_20",
+        "ema_ratio_12",
+        "ma_cross_10_20",
+        "rsi_14",
+        "macd",
+        "momentum_10",
+        "volatility_20",
+        "atr_14",
+        "bb_width_20",
+        "volume_change",
+        "relative_volume_20",
+        "drawdown_60"
+      ],
+      "selected": "xgboost",
+      "train_end": "2023-11-29",
+      "validation_end": "2025-02-14",
+      "test_start": "2025-02-20",
+      "test_end": "2026-09-28",
+      "baseline_test_accuracy": 0.48103843217103587,
+      "models": {
+        "logistic_regression": {
+          "validation": {
+            "accuracy": 0.4901006711409396,
+            "balanced_accuracy": 0.49303379045538004,
+            "precision": 0.5058823529411764,
+            "recall": 0.39256602543201824,
+            "f1": 0.44207820818799337,
+            "roc_auc": 0.49331774717674665,
+            "rows": 5960
+          },
+          "test": {
+            "accuracy": 0.5166709086281497,
+            "balanced_accuracy": 0.5148438777178355,
+            "precision": 0.49746192893401014,
+            "recall": 0.4666666666666667,
+            "f1": 0.48157248157248156,
+            "roc_auc": 0.5192866095269234,
+            "rows": 7858
+          }
+        },
+        "xgboost": {
+          "validation": {
+            "accuracy": 0.5134228187919463,
+            "balanced_accuracy": 0.506614743366576,
+            "precision": 0.5191031800503317,
+            "recall": 0.739810890120639,
+            "f1": 0.6101102446894326,
+            "roc_auc": 0.5014157262772164,
+            "rows": 5960
+          },
+          "test": {
+            "accuracy": 0.4926189870195979,
+            "balanced_accuracy": 0.5044008890134442,
+            "precision": 0.4837494112105511,
+            "recall": 0.8150793650793651,
+            "f1": 0.6071534141294709,
+            "roc_auc": 0.5014049124090811,
+            "rows": 7858
+          }
+        }
+      }
+    },
+    "5": {
+      "version": 1,
+      "data_type": "real_indian_market",
+      "horizon": 5,
+      "features": [
+        "return_1d",
+        "log_return_1d",
+        "return_5d",
+        "return_20d",
+        "sma_ratio_10",
+        "sma_ratio_20",
+        "ema_ratio_12",
+        "ma_cross_10_20",
+        "rsi_14",
+        "macd",
+        "momentum_10",
+        "volatility_20",
+        "atr_14",
+        "bb_width_20",
+        "volume_change",
+        "relative_volume_20",
+        "drawdown_60"
+      ],
+      "selected": "xgboost",
+      "train_end": "2023-11-24",
+      "validation_end": "2025-02-12",
+      "test_start": "2025-02-20",
+      "test_end": "2026-09-24",
+      "baseline_test_accuracy": 0.484778715784088,
+      "models": {
+        "logistic_regression": {
+          "validation": {
+            "accuracy": 0.4944256756756757,
+            "balanced_accuracy": 0.5018537960473667,
+            "precision": 0.534330985915493,
+            "recall": 0.3855192124483963,
+            "f1": 0.4478878435712968,
+            "roc_auc": 0.5054471876128468,
+            "rows": 5920
+          },
+          "test": {
+            "accuracy": 0.4960347915067792,
+            "balanced_accuracy": 0.4969392353787341,
+            "precision": 0.48189280540801543,
+            "recall": 0.5266490765171504,
+            "f1": 0.5032778618255169,
+            "roc_auc": 0.5048303039672163,
+            "rows": 7818
+          }
+        },
+        "xgboost": {
+          "validation": {
+            "accuracy": 0.5173986486486486,
+            "balanced_accuracy": 0.4973480035650277,
+            "precision": 0.5303030303030303,
+            "recall": 0.811368688472531,
+            "f1": 0.6413957574996862,
+            "roc_auc": 0.49315134899303553,
+            "rows": 5920
+          },
+          "test": {
+            "accuracy": 0.4874648247633666,
+            "balanced_accuracy": 0.49939519668389876,
+            "precision": 0.4844399827907644,
+            "recall": 0.891292875989446,
+            "f1": 0.6277060299173093,
+            "roc_auc": 0.5112133927939778,
+            "rows": 7818
+          }
+        }
+      }
+    }
+  }
+}

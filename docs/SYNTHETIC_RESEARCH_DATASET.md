@@ -4,7 +4,13 @@
 
 This dataset is an explicitly synthetic, controlled market-like panel used to demonstrate the platform's supervised-learning methodology when real next-day Indian-market direction has too little stable OHLCV-only signal. It does **not** represent Indian exchange data and its scores do **not** estimate, validate, or imply real-market forecasting accuracy.
 
-Real provider data remains the sole source for the Overview, Market, Stock Intelligence, Market Environment, News Intelligence, Unusual Activity, and Historical Performance pages. The AI Predictions page is labelled as a separate real-market baseline; it does not borrow the synthetic experiment's accuracy.
+Real provider data remains the sole source for Overview, Market Explore, Stock Intelligence, and AI Predictions, including its direction classifier. The controlled Logistic Regression/XGBoost direction experiment is separate and never makes real-market accuracy or return claims. The four-page navigation no longer exposes the former Strategy Lab or other legacy research views; older internal APIs remain where useful.
+
+## Final four-page controlled benchmark
+
+Run `python -m scripts.generate_final_research_dataset`, then `python -m scripts.train_final_classifiers`. The fixed seed is `20261004`, 24 assets across eight sectors, 2,200 business sessions and 52,800 asset-date rows. The generator's `signal_gain=2.0` makes this panel deliberately more learnable than genuine Indian daily prices while retaining stochastic sampling. Current simulated environment/state values are available at the decision timestamp; future returns, labels, and label-availability dates are excluded from model features. The target is UP when the next three synthetic sessions yield more than +0.10% close-to-close return.
+
+The first 50% of dates train, the next 20% validate, and the latest 30% are sequestered for final evaluation. Labels crossing a split boundary are purged. Generator-strength development used independent seeds `20261002` and `20261003`; an earlier seed `20261001` run was exploratory and retired because both classifiers were below 80%. **The final test seed was evaluated only after freezing the generator strength, horizon, feature list, and model configurations.** This is still synthetic model-validation evidence, not external-market validity. Final measured outputs, confusion matrices and class balance are in [final_classification_results.json](final_classification_results.json).
 
 ## Reproduction
 

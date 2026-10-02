@@ -101,7 +101,9 @@ def freshness_status(last_timestamp: datetime | None, delay_minutes: int = 15) -
     now = datetime.now(UTC)
     stamp = last_timestamp if last_timestamp.tzinfo else last_timestamp.replace(tzinfo=UTC)
     age = max(0, (now - stamp).total_seconds() / 60)
-    if now.weekday() >= 5 or not (3.75 <= now.hour + now.minute / 60 <= 10):
+    if age > 4 * 24 * 60:
+        status = "STALE"
+    elif now.weekday() >= 5 or not (3.75 <= now.hour + now.minute / 60 <= 10):
         status = "MARKET_CLOSED"
     elif age <= max(2, delay_minutes):
         status = "DELAYED" if delay_minutes else "LIVE"

@@ -1,0 +1,195 @@
+{
+  "created_at": "2026-10-02T12:34:26.027363+00:00",
+  "dataset_type": "controlled_synthetic_market_like",
+  "disclaimer": "Controlled synthetic data only; these metrics do not measure Indian-stock prediction accuracy.",
+  "target": "UP if the next 3-session synthetic close-to-close return exceeds +0.10%; otherwise DOWN",
+  "split": {
+    "train_end": "2022-03-15",
+    "validation_start": "2022-03-21",
+    "validation_end": "2023-11-21",
+    "test_start": "2023-11-27",
+    "test_end": "2026-06-02",
+    "train_rows": 26328,
+    "validation_rows": 10488,
+    "test_rows": 15768
+  },
+  "class_distribution": {
+    "train_up": 0.6305454269219082,
+    "validation_up": 0.5573989321128909,
+    "test_up": 0.4368340943683409
+  },
+  "feature_set": "Technical + market context + current observable simulated state + volume",
+  "features": [
+    "return_1d",
+    "return_3d",
+    "return_5d",
+    "return_10d",
+    "log_return",
+    "price_to_sma20",
+    "price_to_sma50",
+    "trend_strength",
+    "rsi_14",
+    "momentum_5d",
+    "momentum_10d",
+    "roc_10",
+    "rolling_volatility_20",
+    "atr_percentage",
+    "bollinger_width",
+    "volume_change",
+    "relative_volume",
+    "volume_zscore",
+    "market_return",
+    "market_momentum",
+    "market_volatility",
+    "sector_return",
+    "sector_momentum",
+    "market_environment_code",
+    "regime_duration",
+    "regime_strength",
+    "volatility_regime_code"
+  ],
+  "baseline": {
+    "name": "Training-majority constant classifier",
+    "predicted_class": 1,
+    "test": {
+      "accuracy": 0.4368340943683409,
+      "balanced_accuracy": 0.5,
+      "precision": 0.4368340943683409,
+      "recall": 1.0,
+      "f1": 0.6080508474576272,
+      "roc_auc": 0.5,
+      "mcc": 0.0,
+      "brier": 0.563165905631659,
+      "confusion_matrix": [
+        [
+          0,
+          8880
+        ],
+        [
+          0,
+          6888
+        ]
+      ],
+      "n": 15768,
+      "actual_up_fraction": 0.4368340943683409,
+      "mean_probability": 1.0,
+      "majority_accuracy": 0.5631659056316591
+    }
+  },
+  "models": {
+    "logistic_regression": {
+      "parameters": {
+        "C": 0.7
+      },
+      "validation": {
+        "accuracy": 0.8772883295194508,
+        "balanced_accuracy": 0.8725105880754089,
+        "precision": 0.8719203785283081,
+        "recall": 0.9141293191926103,
+        "f1": 0.8925260960334029,
+        "roc_auc": 0.9518460535918092,
+        "mcc": 0.750865837548398,
+        "brier": 0.08566947855099914,
+        "confusion_matrix": [
+          [
+            3857,
+            785
+          ],
+          [
+            502,
+            5344
+          ]
+        ],
+        "n": 10488,
+        "actual_up_fraction": 0.5573989321128909,
+        "mean_probability": 0.5688260467274171,
+        "majority_accuracy": 0.5573989321128909
+      },
+      "test": {
+        "accuracy": 0.8132293252156266,
+        "balanced_accuracy": 0.8103711507674922,
+        "precision": 0.7853524388478795,
+        "recall": 0.787746806039489,
+        "f1": 0.7865478002464303,
+        "roc_auc": 0.8895221386456142,
+        "mcc": 0.6205323781539904,
+        "brier": 0.13148674323768156,
+        "confusion_matrix": [
+          [
+            7397,
+            1483
+          ],
+          [
+            1462,
+            5426
+          ]
+        ],
+        "n": 15768,
+        "actual_up_fraction": 0.4368340943683409,
+        "mean_probability": 0.4539248248990212,
+        "majority_accuracy": 0.5631659056316591
+      }
+    },
+    "xgboost": {
+      "parameters": {
+        "n_estimators": 320,
+        "max_depth": 4,
+        "learning_rate": 0.035,
+        "subsample": 0.78,
+        "colsample_bytree": 0.85,
+        "min_child_weight": 18,
+        "gamma": 0.12,
+        "reg_alpha": 0.12,
+        "reg_lambda": 7.0
+      },
+      "validation": {
+        "accuracy": 0.8524980930587338,
+        "balanced_accuracy": 0.8432631348073186,
+        "precision": 0.8306414397784956,
+        "recall": 0.9237085186452275,
+        "f1": 0.8747064064145137,
+        "roc_auc": 0.9393573536068587,
+        "mcc": 0.7024670090817873,
+        "brier": 0.10297697693473423,
+        "confusion_matrix": [
+          [
+            3541,
+            1101
+          ],
+          [
+            446,
+            5400
+          ]
+        ],
+        "n": 10488,
+        "actual_up_fraction": 0.5573989321128909,
+        "mean_probability": 0.6100061963504844,
+        "majority_accuracy": 0.5573989321128909
+      },
+      "test": {
+        "accuracy": 0.8136732623033993,
+        "balanced_accuracy": 0.8111072527231065,
+        "precision": 0.784418202764977,
+        "recall": 0.7907955865272939,
+        "f1": 0.7875939849624061,
+        "roc_auc": 0.8887634095332265,
+        "mcc": 0.6216637985202417,
+        "brier": 0.1321199840182895,
+        "confusion_matrix": [
+          [
+            7383,
+            1497
+          ],
+          [
+            1441,
+            5447
+          ]
+        ],
+        "n": 15768,
+        "actual_up_fraction": 0.4368340943683409,
+        "mean_probability": 0.4544852367617173,
+        "majority_accuracy": 0.5631659056316591
+      }
+    }
+  }
+}

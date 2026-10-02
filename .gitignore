@@ -16,6 +16,10 @@ data/processed/*
 models/*.joblib
 models/*.json
 models/*.csv
+models/final/*
 !models/.gitkeep
 logs/
 .sites-runtime/
+.vscode/
+.idea/
+.setup-smoke/

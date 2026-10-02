@@ -17,6 +17,10 @@ def seed_assets(session: Session) -> int:
     for item in UNIVERSE:
         existing = session.scalar(select(Asset).where(Asset.symbol == item["symbol"]))
         if existing:
+            # The configured universe is the authoritative mapping, including for old databases.
+            existing.sector = item["sector"]
+            existing.name = item["name"]
+            existing.provider_symbol = item["provider_symbol"]
             continue
         session.add(
             Asset(
@@ -55,12 +59,10 @@ def ingest_history(
                 select(func.max(AssetPrice.timestamp)).where(AssetPrice.asset_id == asset.id)
             )
             start = (
-                (latest.date() + timedelta(days=1))
+                latest.date()
                 if latest
                 else (date.today() - timedelta(days=365 * years + 30))
             )
-            if start >= date.today():
-                continue
             frame = provider.history(asset.provider_symbol, start, date.today() + timedelta(days=1))
             received += len(frame)
             for row in frame.to_dict("records"):
@@ -80,18 +82,27 @@ def ingest_history(
                     stmt = (
                         pg_insert(AssetPrice)
                         .values(**values)
-                        .on_conflict_do_nothing(constraint="uq_asset_price_bar")
+                        .on_conflict_do_update(
+                            constraint="uq_asset_price_bar",
+                            set_={key: values[key] for key in
+                                  ("open", "high", "low", "close", "adjusted_close", "volume")},
+                        )
                     )
-                    written += session.execute(stmt).rowcount
-                elif not session.scalar(
-                    select(AssetPrice.id).where(
+                    session.execute(stmt)
+                    if not latest or values["timestamp"] > latest:
+                        written += 1
+                else:
+                    existing_bar = session.scalar(select(AssetPrice).where(
                         AssetPrice.asset_id == asset.id,
                         AssetPrice.timestamp == values["timestamp"],
                         AssetPrice.interval == "1d",
-                    )
-                ):
-                    session.add(AssetPrice(**values))
-                    written += 1
+                    ))
+                    if existing_bar:
+                        for key in ("open", "high", "low", "close", "adjusted_close", "volume"):
+                            setattr(existing_bar, key, values[key])
+                    else:
+                        session.add(AssetPrice(**values))
+                        written += 1
             session.commit()
         except Exception as exc:
             session.rollback()

@@ -20,6 +20,11 @@ Interactive OpenAPI documentation is available at `/docs`.
 | GET | `/api/v1/research/synthetic` | Explicitly labelled controlled synthetic-data ML experiment and final-test measurements |
 | GET | `/api/v1/regimes/summary` | Named categorical periods, observed statistics and transitions |
 | POST | `/api/v1/backtests` | Run configured baseline backtest |
+| GET | `/api/v1/market/stocks?sector=Banking` | Real-stock screener with authoritative optional sector filtering |
+| POST | `/api/v1/market/refresh` | Incrementally fetch provider daily bars; optional JSON `{"symbol":"RELIANCE"}` |
+| GET | `/api/v1/assets/{symbol}/cluster` | Same-sector descriptive similarity |
+| GET | `/api/v1/predictions/final/options` | Stock and horizon controls plus separate research report |
+| POST | `/api/v1/predictions/final` | Saved real-stock direction, price, volatility and translated explanation |
 | WS | `/ws/market` | Freshness-aware persisted market snapshots |
 
 Errors use FastAPI's structured `{"detail": ...}` response. Unknown assets return 404; insufficient analysis history returns 409.
