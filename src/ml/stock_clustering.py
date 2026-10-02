@@ -28,12 +28,15 @@ def cluster_stocks(observations: dict[str, pd.DataFrame], sectors: dict[str, str
     stock_results, groups = {}, {}
     for sector in sorted(set(sectors[s] for s in rows)):
         symbols = sorted(s for s in rows if sectors[s] == sector)
+        if len(symbols) < 4:
+            continue
         matrix = np.array([[rows[s][name] for name in CLUSTER_FEATURES] for s in symbols])
         scaled = StandardScaler().fit_transform(matrix)
-        # Tiny sectors cannot support a meaningful partition; use nearest peers.
-        count = 1 if len(symbols) < 4 else min(3, len(symbols) - 1)
-        labels = (KMeans(n_clusters=count, random_state=42, n_init=20).fit_predict(scaled)
-                  if count > 1 else np.zeros(len(symbols), dtype=int))
+        # Partition only when each resulting group has at least three members.
+        labels = KMeans(n_clusters=2, random_state=42, n_init=20).fit_predict(scaled) if len(symbols) >= 6 else np.zeros(len(symbols), dtype=int)
+        if min(np.bincount(labels)) < 3:
+            labels = np.zeros(len(symbols), dtype=int)
+        count = len(set(labels))
         silhouette = (float(silhouette_score(scaled, labels))
                       if 1 < count < len(symbols) and len(set(labels)) > 1 else None)
         for group in range(count):
@@ -57,5 +60,7 @@ def cluster_stocks(observations: dict[str, pd.DataFrame], sectors: dict[str, str
                                          "similar_stocks": [{"symbol": symbols[i], "sector": sector,
                                                              "distance": float(np.linalg.norm(scaled[i] - scaled[index]))}
                                                             for i in peers[:5]]}
+    if not stock_results:
+        return {"status": "insufficient_data", "message": "Not enough historical data to identify a reliable peer group.", "stocks": {}}
     return {"status": "ok", "method": "Sector-constrained K-Means on standardized real-stock characteristics; descriptive, not predictive",
             "stocks": stock_results, "groups": groups}

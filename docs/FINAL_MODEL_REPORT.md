@@ -1,38 +1,31 @@
 # Final model report (2 October 2026)
 
-All figures below are computed from saved reports and artifacts. Real-market and controlled synthetic results are separate evaluations. No figure implies a guaranteed future trading outcome.
+The real-market and controlled synthetic evaluations are separate. The app uses only actual market history for stock inference. These measured results do not establish a profitable forecast.
 
 ## Real-market direction classification
 
-Training and inference use actual tracked-stock daily OHLCV and the same `build_features` schema. The split is chronological 65/15/20 with purging across boundaries. Highest validation F1, then validation accuracy, chooses the saved model. XGBoost is selected for all three horizons. Test data did not influence that choice.
+The target is UP when the close after 1, 3, or 5 trading sessions is above the current close; otherwise it is DOWN. Current-close features include returns, moving-average distance, momentum, volatility, volume, NIFTY 50 return, same-sector average return, and relative performance. Each horizon uses a chronological 65/15/20 train/validation/test split. Labels crossing split boundaries are purged. Logistic Regression and XGBoost are selected by validation balanced accuracy, then F1; the held-out test does not select the model or horizon. The default 1-session horizon had the best selected-model validation balanced accuracy among the three.
 
-| Horizon | Model | Test accuracy | Balanced accuracy | Precision | Recall | F1 | ROC-AUC | Training-majority baseline accuracy |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| 1 day | XGBoost | 49.49% | 50.12% | 48.22% | 66.88% | 56.03% | 50.14% | 48.13% |
-| 3 days | XGBoost | 49.26% | 50.44% | 48.37% | 81.51% | 60.72% | 50.14% | 48.10% |
-| 5 days | XGBoost | 48.75% | 49.94% | 48.44% | 89.13% | 62.77% | 51.12% | 48.48% |
+| Horizon | Selected model | Test accuracy | Balanced accuracy | F1 | ROC-AUC | Training-majority baseline |
+|---|---|---:|---:|---:|---:|---:|
+| 1 session | XGBoost | 50.39% | 50.47% | 51.33% | 0.512 | 48.75% |
+| 3 sessions | Logistic Regression | 51.26% | 51.29% | 51.35% | 0.518 | 48.87% |
+| 5 sessions | Logistic Regression | 50.93% | 51.02% | 54.12% | 0.514 | 49.39% |
 
-These scores are near chance. Model probabilities and SHAP explanations are real computations, but the classifier has no demonstrated predictive advantage. Full validation and test metrics for **both** Logistic Regression and XGBoost are in [real_direction_results.json](real_direction_results.json).
+For the validation-selected 1-session default, XGBoost test accuracy is **50.39%** and Logistic Regression test accuracy is **50.47%**. XGBoost precision is **49.19%**, recall **53.65%**, and confusion matrix (DOWN/UP) `[[4064, 4530], [3789, 4386]]`. The test interval is 20 February 2025 through 30 September 2026. [The complete report](real_direction_results.json) includes both learners, all horizons, split dates, and confusion matrices.
 
-## Controlled synthetic classification
+The original approximately 48.7% result arose from a model-selection rule favoring F1 in a shifting class distribution. XGBoost predicted UP often, producing high recall and F1 while balanced accuracy stayed near 50%. New backward-looking features, market and sector context, and selection by validation balanced accuracy modestly changed the result. The real-market classifier still has **no demonstrated predictive advantage**.
 
-The controlled 3-session panel has 15,768 chronological held-out rows. Its training-majority UP baseline, fixed before looking at test labels, scores 43.68% accuracy, 50.00% balanced accuracy, 43.68% precision, 100.00% recall, 60.81% F1, and 50.00% ROC-AUC. The hindsight test-majority proportion is 56.32%; using that class as a deployed baseline would use test-label knowledge.
+## Controlled Synthetic Research Evaluation
 
-| Model | Test accuracy | Balanced accuracy | Precision | Recall | F1 | ROC-AUC | Validation F1 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Logistic Regression | 81.32% | 81.04% | 78.54% | 78.77% | 78.65% | 88.95% | 89.25% |
-| XGBoost | 81.37% | 81.11% | 78.44% | 79.08% | 78.76% | 88.88% | 87.47% |
+The separate controlled 3-session panel has 15,768 held-out rows. Validation selected Logistic Regression, which reached **81.32%** test accuracy, **81.04%** balanced accuracy, **78.65%** F1, and **0.890** ROC-AUC. XGBoost reached 81.37% test accuracy but did not win the prespecified validation comparison. The training-majority constant baseline scored 43.68% test accuracy. This demonstrates performance only on the intentionally learnable simulated panel; it is not real-market accuracy. [Full controlled results](final_classification_results.json) include the evaluation protocol and class distribution.
 
-Logistic Regression wins the prespecified validation F1 comparison for the **synthetic research panel**. Neither synthetic classifier is used to infer the selected real stock. The requested 80% baseline threshold is not met. Full metrics are in [final_classification_results.json](final_classification_results.json).
+## Price, volatility, and clustering
 
-## Real-stock price and volatility regression
+Lasso and Ridge estimates are trained per stock and horizon on actual daily history. Validation MAE selects each target's model. [The regression report](final_stock_regression_results.json) contains the latest held-out measurements for all 43 tracked stocks and three horizons. Price estimates and expected daily volatility are model outputs, not guarantees.
 
-For each stock and 1/3/5-session horizon, Lasso and Ridge are compared by validation MAE separately for future return and future daily RMS volatility. The selected model is persisted. As a concrete example, RELIANCE at the 1-session horizon selects Lasso for both targets. On its held-out period, Lasso price MAE is ₹13.29, RMSE ₹17.85, MAPE 0.97%, and R² 0.964; Ridge price MAE is ₹13.70, RMSE ₹18.37, MAPE 1.00%, and R² 0.962. For daily volatility, Lasso MAE is 0.00674, RMSE 0.00869, and R² 0.014; Ridge MAE is 0.00678, RMSE 0.00871, and R² 0.008. Volatility MAPE is undefined on that test window because actual zero values occur. The near-zero volatility R² limits the usefulness of those estimates. Every stock and horizon is in [final_stock_regression_results.json](final_stock_regression_results.json).
+The authoritative universe now contains 43 tracked stocks in nine approved sectors. Every added Yahoo Finance symbol was checked for available provider history and then ingested. Clustering standardizes six backward-looking features within each sector. A peer group is withheld when fewer than four stocks have sufficient history; a two-cluster partition is used only when every resulting group has at least three members. API checks for 12 selected stocks, including five banks, returned only same-sector peers.
 
-## Sector-constrained similarity
+## Explanation and confidence rules
 
-The method standardizes six backward-looking behavioral features within the selected sector. Banking has 3 K-Means groups and silhouette score 0.386. The remaining sectors have fewer than 4 tracked eligible stocks, so each uses a single nearest-peer group and has no meaningful silhouette score. Direct API verification: RELIANCE returns only Energy peers ONGC and NTPC; HDFCBANK returns only Banking peer AXISBANK; TCS returns only IT peers WIPRO and INFY.
-
-## Market data and verification
-
-An incremental provider refresh on 2 October 2026 received 230 real bars, wrote 207 new observations, and reported no failures. The latest stored trading session is 1 October 2026. These are daily observations, not live ticks. The complete suite passed 34 tests and Ruff passed at the final verification point; see the run output for the exact current count if tests are added later.
+SHAP contributions come from the saved selected direction model and the latest real feature row. The UI translates the leading positive and negative contributions into market-signal language. A missing explanation is stated as unavailable. Model confidence is `max(P(UP), 1 − P(UP))` and is **not calibrated success probability**. The UI calls values below 60% “Mixed signals,” 60% to below 75% “Moderate model preference,” and 75% or above “Strong model preference.” Expected daily volatility is labelled lower below 1%, moderate from 1% to below 2%, and elevated at 2% or above. These thresholds are display rules, not validated risk categories.

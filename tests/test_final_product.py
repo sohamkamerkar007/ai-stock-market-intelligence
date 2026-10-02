@@ -11,6 +11,7 @@ from backend.app.main import app
 from backend.app.models import AssetPrice
 from src.data.ingestion import ingest_history, seed_assets
 from src.data.providers import freshness_status
+from src.data.universe import UNIVERSE
 from src.ml.final_prediction import development_split, load_research_panel
 from src.ml.real_direction import infer as infer_real_direction
 from src.ml.real_direction import prepare_panel, split_panel
@@ -52,6 +53,20 @@ def test_real_direction_panel_uses_past_features_and_purged_dates():
                       observations["S0"].close.iloc[103] / observations["S0"].close.iloc[100] - 1)
 
 
+def test_market_context_uses_only_same_or_prior_session():
+    observations = {f"S{i}": _prices(i, 400) for i in range(4)}
+    sectors = {symbol: "Test" for symbol in observations}
+    index_prices = _prices(20, 400)
+    original = prepare_panel(observations, 1, sectors, index_prices)
+    changed_index = index_prices.copy()
+    changed_index.loc[200:, "close"] *= 2
+    changed = prepare_panel(observations, 1, sectors, changed_index)
+    original_row = original[(original.symbol == "S0")].reset_index(drop=True).iloc[100]
+    changed_row = changed[(changed.symbol == "S0")].reset_index(drop=True).iloc[100]
+    assert np.isclose(original_row.index_return_1d, changed_row.index_return_1d)
+    assert np.isclose(original_row.relative_to_market_1d, changed_row.relative_to_market_1d)
+
+
 def test_real_direction_inference_uses_persisted_feature_schema():
     observations = {f"S{i}": _prices(i, 600) for i in range(4)}
     artifact = train_real_direction(observations, 1)
@@ -68,13 +83,13 @@ def test_cluster_is_descriptive_and_uses_real_input():
     result = cluster_stocks(observations, {symbol: "Test" for symbol in observations})
     assert result["status"] == "ok"
     assert len(result["stocks"]) == 6
-    assert all(info["cluster"]["count"] >= 1 for info in result["stocks"].values())
+    assert all(info["cluster"]["count"] >= 3 for info in result["stocks"].values())
 
 
 def test_cluster_never_crosses_sector_boundaries():
-    sectors = {"RELIANCE": "Energy", "ONGC": "Energy", "NTPC": "Energy",
-               "HDFCBANK": "Banking", "ICICIBANK": "Banking", "SBIN": "Banking",
-               "TCS": "IT", "INFY": "IT", "WIPRO": "IT"}
+    sectors = {"RELIANCE": "Energy", "ONGC": "Energy", "NTPC": "Energy", "BPCL": "Energy",
+               "HDFCBANK": "Banking", "ICICIBANK": "Banking", "SBIN": "Banking", "AXISBANK": "Banking",
+               "TCS": "IT", "INFY": "IT", "WIPRO": "IT", "HCLTECH": "IT"}
     observations = {symbol: _prices(i) for i, symbol in enumerate(sectors)}
     result = cluster_stocks(observations, sectors)
     assert result["status"] == "ok"
@@ -82,6 +97,14 @@ def test_cluster_never_crosses_sector_boundaries():
         stock = result["stocks"][symbol]
         assert stock["sector"] == sector
         assert all(peer["sector"] == sector for peer in stock["similar_stocks"])
+
+
+def test_authoritative_universe_has_sector_coverage():
+    stocks = [item for item in UNIVERSE if item["type"] == "stock"]
+    assert len({item["symbol"] for item in stocks}) == len(stocks)
+    allowed = {"Auto", "Banking", "Energy", "FMCG", "Financial Services", "IT", "Industrials", "Pharma", "Telecom"}
+    assert {item["sector"] for item in stocks} == allowed
+    assert all(sum(item["sector"] == sector for item in stocks) >= 4 for sector in allowed)
 
 
 def test_old_provider_observation_is_stale_even_when_exchange_closed():

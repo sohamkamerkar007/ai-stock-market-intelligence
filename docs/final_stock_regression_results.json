@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-10-02T12:24:26.749154+00:00",
+  "created_at": "2026-10-02T13:47:17.787422+00:00",
   "dataset_type": "real_indian_market",
   "method": "Chronological 65/15/20 with boundary purging; alpha selected only on validation",
   "assets": {
@@ -3156,6 +3156,3640 @@
           "ridge_future_return": 0.03879633020769043,
           "lasso_future_volatility": 0.0052787002983318435,
           "ridge_future_volatility": 0.005434038627716607
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "INDUSINDBK": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 12.588134530199502,
+              "rmse": 20.22977696909576,
+              "mape": 0.014998391702424061,
+              "r2": 0.9516750753173463,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 12.782566502019002,
+              "rmse": 20.09381852095576,
+              "mape": 0.015259265028091565,
+              "r2": 0.9523224481119971,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.01078232738798143,
+              "rmse": 0.019666971723064242,
+              "mape": null,
+              "r2": 0.014694747271564723,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.010788294771257916,
+              "rmse": 0.01969617004989598,
+              "mape": null,
+              "r2": 0.011766932947066877,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.012222749399845776,
+          "ridge_future_return": 0.013635207152815652,
+          "lasso_future_volatility": 0.01032796657134337,
+          "ridge_future_volatility": 0.010618221112544624
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 22.09028972141287,
+              "rmse": 35.28819623237106,
+              "mape": 0.026463638111785762,
+              "r2": 0.8508618028231174,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 22.27347150277686,
+              "rmse": 35.04363264276982,
+              "mape": 0.02671346615186865,
+              "r2": 0.8529218334642866,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009455231458667291,
+              "rmse": 0.017647758846935757,
+              "mape": 0.7667811043829432,
+              "r2": -0.02375874940915823,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009460904893427472,
+              "rmse": 0.017562684903473527,
+              "mape": 0.7661415742669567,
+              "r2": -0.013912143240256691,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.02430542754245452,
+          "ridge_future_return": 0.02716845221318867,
+          "lasso_future_volatility": 0.008927756915840388,
+          "ridge_future_volatility": 0.008787251298430731
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 28.85027476305425,
+              "rmse": 46.38581992981221,
+              "mape": 0.03476460845927619,
+              "r2": 0.741112610812369,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 28.857389700971286,
+              "rmse": 45.93532703876231,
+              "mape": 0.03470847521184739,
+              "r2": 0.7461167519920265,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.00877717129890778,
+              "rmse": 0.01649593409382296,
+              "mape": 0.5486398036797477,
+              "r2": -0.014236849087178038,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008797972076146415,
+              "rmse": 0.016442656763156847,
+              "mape": 0.5499654138384674,
+              "r2": -0.00769601651144991,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03344257807224474,
+          "ridge_future_return": 0.036348407231626426,
+          "lasso_future_volatility": 0.008483601032477002,
+          "ridge_future_volatility": 0.008303340226209112
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      }
+    },
+    "BANKBARODA": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 3.2356213107636402,
+              "rmse": 4.509035155201253,
+              "mape": 0.012500173406319294,
+              "r2": 0.9695765960262372,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 3.2930688617409243,
+              "rmse": 4.609818305251028,
+              "mape": 0.012737352808512042,
+              "r2": 0.9682013869607127,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009279145520085366,
+              "rmse": 0.012246130657823817,
+              "mape": null,
+              "r2": -0.0402025457062225,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009302551595546483,
+              "rmse": 0.012356900681819692,
+              "mape": null,
+              "r2": -0.05910555746175139,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.015221043658762241,
+          "ridge_future_return": 0.015306828204155663,
+          "lasso_future_volatility": 0.010787890286753676,
+          "ridge_future_volatility": 0.01092108001337611
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 5.5811950313010135,
+              "rmse": 7.52567853119645,
+              "mape": 0.021650227077689856,
+              "r2": 0.9137212556280665,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 5.814034809385105,
+              "rmse": 7.835892435147134,
+              "mape": 0.022543018827662364,
+              "r2": 0.9064617109739612,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007105206779694993,
+              "rmse": 0.009272119449574906,
+              "mape": 0.7971247018043799,
+              "r2": -0.08971963082004986,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007085302594562322,
+              "rmse": 0.009280498727829243,
+              "mape": 0.7896290418066072,
+              "r2": -0.09169009506142967,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.027434124940509685,
+          "ridge_future_return": 0.028116364313663888,
+          "lasso_future_volatility": 0.008289678729478727,
+          "ridge_future_volatility": 0.00852876123995871
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 7.38820351095802,
+              "rmse": 9.945824688782114,
+              "mape": 0.02851975952374208,
+              "r2": 0.8453948842790531,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 7.661414234806493,
+              "rmse": 10.212555387582299,
+              "mape": 0.0295392888968515,
+              "r2": 0.836991177461639,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007552318706544531,
+              "rmse": 0.008862639599223569,
+              "mape": 0.6733991898554266,
+              "r2": -0.2954805896392143,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006823742307894884,
+              "rmse": 0.008532549985806787,
+              "mape": 0.6069427651428202,
+              "r2": -0.20077714895923693,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03506627974639344,
+          "ridge_future_return": 0.03582537543304765,
+          "lasso_future_volatility": 0.007751738100445806,
+          "ridge_future_volatility": 0.008101764375138588
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "CANBK": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 1.7006226592310598,
+              "rmse": 2.2600751506997576,
+              "mape": 0.013782906633854028,
+              "r2": 0.9856361515118821,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 1.7106744333814914,
+              "rmse": 2.2692822763019773,
+              "mape": 0.013840259302150708,
+              "r2": 0.9855188818382865,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009592540287465772,
+              "rmse": 0.011694885514449607,
+              "mape": null,
+              "r2": 0.010204940189752598,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009697066393291725,
+              "rmse": 0.011830878801811783,
+              "mape": null,
+              "r2": -0.012948447639873795,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.015669396647033488,
+          "ridge_future_return": 0.015699553503581952,
+          "lasso_future_volatility": 0.011359422725579759,
+          "ridge_future_volatility": 0.011364158462135043
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 2.949490410756959,
+              "rmse": 3.800555724169061,
+              "mape": 0.023986215954725904,
+              "r2": 0.9586182703418916,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 3.0163199240528686,
+              "rmse": 3.854144111912867,
+              "mape": 0.024516558545192337,
+              "r2": 0.9574430662729138,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006957981863966162,
+              "rmse": 0.008590061194237162,
+              "mape": 0.8116062966251648,
+              "r2": -0.034563028530419926,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007110656802289756,
+              "rmse": 0.008832805653651393,
+              "mape": 0.8255698706075276,
+              "r2": -0.09386011874720102,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.029441121786675073,
+          "ridge_future_return": 0.029741237947348773,
+          "lasso_future_volatility": 0.008422318696862174,
+          "ridge_future_volatility": 0.008412102701400954
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 3.866545994915064,
+              "rmse": 4.964489891542504,
+              "mape": 0.031094611204893995,
+              "r2": 0.9277258565503168,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 3.922712538213874,
+              "rmse": 5.017625410431642,
+              "mape": 0.0315756166844911,
+              "r2": 0.9261704597546624,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006292882576571522,
+              "rmse": 0.007568727544610078,
+              "mape": 0.5718165735065415,
+              "r2": -0.09113256529977098,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006406400636631822,
+              "rmse": 0.007751980221531969,
+              "mape": 0.5812017214994102,
+              "r2": -0.144608813443323,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.037614397876424996,
+          "ridge_future_return": 0.03892944455818846,
+          "lasso_future_volatility": 0.007445439373582681,
+          "ridge_future_volatility": 0.0074831439002575936
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "BPCL": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 4.153169627920021,
+              "rmse": 5.5994918132166935,
+              "mape": 0.013018275547884376,
+              "r2": 0.9655534972516496,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 4.13713230099203,
+              "rmse": 5.575180331204862,
+              "mape": 0.01297466757279952,
+              "r2": 0.9658519627476572,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009215302617226424,
+              "rmse": 0.011873759657576255,
+              "mape": null,
+              "r2": 0.013801144285726652,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009362660741699818,
+              "rmse": 0.01210972613519778,
+              "mape": null,
+              "r2": -0.025785674260377922,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.015594174558938663,
+          "ridge_future_return": 0.015930012111958946,
+          "lasso_future_volatility": 0.01086944380529045,
+          "ridge_future_volatility": 0.010932999049255895
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 7.5354919923982155,
+              "rmse": 9.660722946448752,
+              "mape": 0.023545773825344982,
+              "r2": 0.8945862324215568,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 7.3642215667165924,
+              "rmse": 9.473880063042104,
+              "mape": 0.023007725996085693,
+              "r2": 0.8986243047893484,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0067531469503449995,
+              "rmse": 0.008231385959228595,
+              "mape": 0.713116531884562,
+              "r2": 0.054696637635673895,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007023903372966446,
+              "rmse": 0.008540891947946754,
+              "mape": 0.7386810747900505,
+              "r2": -0.01772800781228745,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.02859678148778402,
+          "ridge_future_return": 0.029427821562350114,
+          "lasso_future_volatility": 0.007877529856726415,
+          "ridge_future_volatility": 0.008088204049215135
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 9.40015875243888,
+              "rmse": 12.407202208867139,
+              "mape": 0.0292607690454449,
+              "r2": 0.8198361022229631,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 9.321682459440074,
+              "rmse": 12.116995744411657,
+              "mape": 0.028992434138109726,
+              "r2": 0.8281656599767214,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005568192866052003,
+              "rmse": 0.006745063562474255,
+              "mape": 0.4415432580424159,
+              "r2": 0.08734424896756365,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005858160063815508,
+              "rmse": 0.007149796425601875,
+              "mape": 0.46809524873699604,
+              "r2": -0.02546833472889576,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03673604738253088,
+          "ridge_future_return": 0.039132122948153464,
+          "lasso_future_volatility": 0.007073246566308308,
+          "ridge_future_volatility": 0.0074480089032356155
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "IOC": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 1.7301313517625942,
+              "rmse": 2.34049047934764,
+              "mape": 0.011808003191397165,
+              "r2": 0.9684926628668108,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 1.75766713255247,
+              "rmse": 2.3770804783756714,
+              "mape": 0.011993039163317648,
+              "r2": 0.967499823974349,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008406632130708,
+              "rmse": 0.0105478993463082,
+              "mape": null,
+              "r2": 0.010096088429511707,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008097714019841716,
+              "rmse": 0.010506430431140867,
+              "mape": null,
+              "r2": 0.017864373994204152,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01627356555055125,
+          "ridge_future_return": 0.016345682596022836,
+          "lasso_future_volatility": 0.01090732980516954,
+          "ridge_future_volatility": 0.011250599180822642
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 3.1093938353196715,
+              "rmse": 4.160133011054928,
+              "mape": 0.021018013884105943,
+              "r2": 0.8983968421059948,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 3.206869592874672,
+              "rmse": 4.2655263633621425,
+              "mape": 0.021703454136393224,
+              "r2": 0.89318357604535,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006055669300741473,
+              "rmse": 0.0074032688584845276,
+              "mape": 0.740270689281114,
+              "r2": 0.03149004738851191,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005854494878805262,
+              "rmse": 0.007305632761997962,
+              "mape": 0.6813826185120768,
+              "r2": 0.05686748074374692,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.029523074615358788,
+          "ridge_future_return": 0.029691933647582294,
+          "lasso_future_volatility": 0.008491215218813995,
+          "ridge_future_volatility": 0.008546870314564818
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 4.003379445954894,
+              "rmse": 5.396167173326674,
+              "mape": 0.026884607285226046,
+              "r2": 0.8241795428304632,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 4.163631526813255,
+              "rmse": 5.552618230681057,
+              "mape": 0.028033992876872728,
+              "r2": 0.8138366253446169,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0051167831572940465,
+              "rmse": 0.006232427443054559,
+              "mape": 0.47051207996065814,
+              "r2": 0.0384735953435128,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0050251757397607195,
+              "rmse": 0.0061756427573228115,
+              "mape": 0.4353518942359063,
+              "r2": 0.055915030633550855,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.037427581437783304,
+          "ridge_future_return": 0.03813595814745229,
+          "lasso_future_volatility": 0.007819381699242902,
+          "ridge_future_volatility": 0.007847591989400939
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "POWERGRID": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 2.805384217336367,
+              "rmse": 3.83140485155105,
+              "mape": 0.009805564385085315,
+              "r2": 0.9402116819273068,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 2.880857205410918,
+              "rmse": 3.903613923717062,
+              "mape": 0.010065560032276974,
+              "r2": 0.937936828688908,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007003094272845647,
+              "rmse": 0.009057238540818162,
+              "mape": null,
+              "r2": 0.008442802258048165,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007039844610602759,
+              "rmse": 0.009165815830357565,
+              "mape": null,
+              "r2": -0.015473075587908225,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.013667906945579612,
+          "ridge_future_return": 0.01400558668031464,
+          "lasso_future_volatility": 0.009127886173167158,
+          "ridge_future_volatility": 0.009141773893613061
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 4.83177764641362,
+              "rmse": 6.41168975400143,
+              "mape": 0.016934590235930358,
+              "r2": 0.8303366972924078,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 5.122622493224473,
+              "rmse": 6.767680417300142,
+              "mape": 0.017923791348319174,
+              "r2": 0.8109735396451814,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005194635234780374,
+              "rmse": 0.006388071464771591,
+              "mape": 0.8202772043650458,
+              "r2": 0.03529192964883654,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005238462256872562,
+              "rmse": 0.006533680067916553,
+              "mape": 0.8126881880718652,
+              "r2": -0.009188072658096846,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.024460449333681366,
+          "ridge_future_return": 0.025544807333390443,
+          "lasso_future_volatility": 0.00682186897837693,
+          "ridge_future_volatility": 0.00683255754690821
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 6.1334044622178165,
+              "rmse": 8.235913009556917,
+              "mape": 0.02147960269478237,
+              "r2": 0.714503594953958,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 6.653070333471575,
+              "rmse": 8.906476392459133,
+              "mape": 0.02321479290921157,
+              "r2": 0.6661210918619698,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004708064583564944,
+              "rmse": 0.0057009924114767045,
+              "mape": 0.575275547456726,
+              "r2": -0.027776344134287756,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004738962798537629,
+              "rmse": 0.005771806531180146,
+              "mape": 0.5749185863472616,
+              "r2": -0.05346769469750923,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03194120350071593,
+          "ridge_future_return": 0.032803452781967515,
+          "lasso_future_volatility": 0.006331777879172236,
+          "ridge_future_volatility": 0.0062895452775004876
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      }
+    },
+    "HCLTECH": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 17.60865890811774,
+              "rmse": 24.942425055879692,
+              "mape": 0.012362352361981297,
+              "r2": 0.9808695634782686,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 18.164840473508043,
+              "rmse": 25.629259998515735,
+              "mape": 0.012793986650543217,
+              "r2": 0.9798014747440025,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008618980865238494,
+              "rmse": 0.012520472471778102,
+              "mape": null,
+              "r2": 0.020410637977344437,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0085935011290853,
+              "rmse": 0.012600401351058584,
+              "mape": null,
+              "r2": 0.007863603524286833,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.010827358659680302,
+          "ridge_future_return": 0.0113972672929318,
+          "lasso_future_volatility": 0.007981729305414532,
+          "ridge_future_volatility": 0.008203284357144644
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 32.89496385154765,
+              "rmse": 45.055895437586805,
+              "mape": 0.023273410742620165,
+              "r2": 0.937576151861127,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 34.01821138760468,
+              "rmse": 46.65102506580633,
+              "mape": 0.024116587753136062,
+              "r2": 0.9330778833187671,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006570555087678914,
+              "rmse": 0.009600171102696457,
+              "mape": 0.8600226119869557,
+              "r2": 0.05477475478746974,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006622856628333886,
+              "rmse": 0.00975209389617015,
+              "mape": 0.7903976097585913,
+              "r2": 0.0246216452698923,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.020017979283820212,
+          "ridge_future_return": 0.021271047007278183,
+          "lasso_future_volatility": 0.006346898136372567,
+          "ridge_future_volatility": 0.006470323535426825
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 44.67029259167061,
+              "rmse": 60.964971922809795,
+              "mape": 0.03165911502450133,
+              "r2": 0.8860224386430232,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 46.448658905018576,
+              "rmse": 62.903691884878334,
+              "mape": 0.032908094686388084,
+              "r2": 0.8786580764585589,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005839715975285016,
+              "rmse": 0.008340759638623671,
+              "mape": 0.4941926593664693,
+              "r2": 0.07526869209926101,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005978128309688953,
+              "rmse": 0.008682891492990251,
+              "mape": 0.4668395757903464,
+              "r2": -0.002150845187016026,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.025963138967976113,
+          "ridge_future_return": 0.027586544151898932,
+          "lasso_future_volatility": 0.005529025282672415,
+          "ridge_future_volatility": 0.005667158737635126
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "TECHM": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 18.568388836897245,
+              "rmse": 25.428356395825038,
+              "mape": 0.012394633247087455,
+              "r2": 0.9319184664302894,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 19.252997987737167,
+              "rmse": 26.1106579641488,
+              "mape": 0.012862368825619887,
+              "r2": 0.9282158797988992,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008990133706393705,
+              "rmse": 0.011888189047537717,
+              "mape": null,
+              "r2": -0.032149848067999365,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009207073918290613,
+              "rmse": 0.01212181315034341,
+              "mape": null,
+              "r2": -0.07311562482499534,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01240663293390115,
+          "ridge_future_return": 0.01272482422817627,
+          "lasso_future_volatility": 0.008177461205600525,
+          "ridge_future_volatility": 0.008221740955363547
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 34.85775866375015,
+              "rmse": 45.855804772820775,
+              "mape": 0.023232769961135394,
+              "r2": 0.7789666269009919,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 36.18186559486501,
+              "rmse": 47.23978045227572,
+              "mape": 0.024115289138264502,
+              "r2": 0.7654232564907599,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006512034704765818,
+              "rmse": 0.008465483116319837,
+              "mape": 0.7939745167280772,
+              "r2": -0.016916228433916825,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006581559413606057,
+              "rmse": 0.0085545083401038,
+              "mape": 0.7936007316520901,
+              "r2": -0.03841700242615631,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.019917701972092847,
+          "ridge_future_return": 0.02051287962967597,
+          "lasso_future_volatility": 0.005718570355824409,
+          "ridge_future_volatility": 0.00581723246075375
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 45.96250522410031,
+              "rmse": 58.75993048628231,
+              "mape": 0.030652014478242364,
+              "r2": 0.638806599403376,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 46.90209050521798,
+              "rmse": 59.94582090795627,
+              "mape": 0.03126703049203303,
+              "r2": 0.6240803014665932,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005535870221865404,
+              "rmse": 0.007053290047162429,
+              "mape": 0.4804443269350837,
+              "r2": -0.014702151717541856,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0055706768933043395,
+              "rmse": 0.007088918947504046,
+              "mape": 0.4779080191179111,
+              "r2": -0.024979350669824596,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.024827702681509946,
+          "ridge_future_return": 0.026526680331581797,
+          "lasso_future_volatility": 0.004861182649173526,
+          "ridge_future_volatility": 0.00496210778518357
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "CIPLA": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 13.301369041513432,
+              "rmse": 18.842172072743626,
+              "mape": 0.009231526768102592,
+              "r2": 0.9579098106496046,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 13.30909892078581,
+              "rmse": 18.97737083085479,
+              "mape": 0.009231489075865464,
+              "r2": 0.957303621824236,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0066300157503312186,
+              "rmse": 0.009274919768165241,
+              "mape": null,
+              "r2": 0.0059842709107538195,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006614753607199781,
+              "rmse": 0.009457823374049764,
+              "mape": null,
+              "r2": -0.03360673893817845,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.011235657531152923,
+          "ridge_future_return": 0.011411071717011593,
+          "lasso_future_volatility": 0.007344215466000175,
+          "ridge_future_volatility": 0.0074534066391639085
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 23.77425089885304,
+              "rmse": 32.59877258338884,
+              "mape": 0.01647122380639026,
+              "r2": 0.8746333744029359,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 24.011314952589437,
+              "rmse": 32.59479219712415,
+              "mape": 0.01663596474548412,
+              "r2": 0.8746639876493889,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005319621857298773,
+              "rmse": 0.007043698527905698,
+              "mape": 0.6888256178985044,
+              "r2": -0.007406786874784688,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0052349333376360135,
+              "rmse": 0.007244841373750189,
+              "mape": 0.6350735099307225,
+              "r2": -0.06576416814908859,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.019449713086947828,
+          "ridge_future_return": 0.020354570170962708,
+          "lasso_future_volatility": 0.005425846214806313,
+          "ridge_future_volatility": 0.005822734276792906
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 28.92840378380171,
+              "rmse": 38.509597897127,
+              "mape": 0.02004822282559512,
+              "r2": 0.8257784617639398,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 29.677807539176253,
+              "rmse": 38.974316715713066,
+              "mape": 0.02052390917766081,
+              "r2": 0.8215482151224252,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0049071286005682715,
+              "rmse": 0.006346026446277993,
+              "mape": 0.5531854902494097,
+              "r2": -0.046327869802156085,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0047984799706680395,
+              "rmse": 0.006511742083985225,
+              "mape": 0.5022216511650139,
+              "r2": -0.10168749403779809,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.024779588605054935,
+          "ridge_future_return": 0.026200336373242476,
+          "lasso_future_volatility": 0.0049043769495104965,
+          "ridge_future_volatility": 0.005335644370838245
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "LUPIN": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 21.976842540640448,
+              "rmse": 30.22431954215718,
+              "mape": 0.01039593819628749,
+              "r2": 0.9662476016293526,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 22.055660167995654,
+              "rmse": 30.38062790433784,
+              "mape": 0.010433339469890555,
+              "r2": 0.9658975904906298,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0074517919814176565,
+              "rmse": 0.009643798089649129,
+              "mape": null,
+              "r2": 0.0379436751018698,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007548382560883656,
+              "rmse": 0.009761455364564279,
+              "mape": null,
+              "r2": 0.014325714930408462,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.012990401610307747,
+          "ridge_future_return": 0.013364797679216485,
+          "lasso_future_volatility": 0.00862028282548227,
+          "ridge_future_volatility": 0.00864255967181354
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 35.564526054829685,
+              "rmse": 47.50801475612496,
+              "mape": 0.016866569102698882,
+              "r2": 0.916211932922874,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 36.239243574201254,
+              "rmse": 48.483446443448706,
+              "mape": 0.017190692511516826,
+              "r2": 0.9127359481226948,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006081627059037193,
+              "rmse": 0.007416247490496915,
+              "mape": 0.9202112997136876,
+              "r2": 0.007689075905886411,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.00605474783431712,
+              "rmse": 0.007470321852201336,
+              "mape": 0.9035936362431914,
+              "r2": -0.006834226155734369,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.02333924380927118,
+          "ridge_future_return": 0.023761378199267567,
+          "lasso_future_volatility": 0.0066492353970859066,
+          "ridge_future_volatility": 0.006693845380699786
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 45.54388776492284,
+              "rmse": 58.30583472177519,
+              "mape": 0.02152311651665931,
+              "r2": 0.873505883609823,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 46.23061849798573,
+              "rmse": 59.32351157345254,
+              "mape": 0.02186052722217417,
+              "r2": 0.869051661484569,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005419663374904083,
+              "rmse": 0.00666702441997047,
+              "mape": 0.6187413018452106,
+              "r2": -0.02625813515630293,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005644860874425556,
+              "rmse": 0.006871093946441475,
+              "mape": 0.6460594739235621,
+              "r2": -0.09004466627518126,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.032142218459805506,
+          "ridge_future_return": 0.03250165312116482,
+          "lasso_future_volatility": 0.005691423912685873,
+          "ridge_future_volatility": 0.005734276646744863
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "EICHERMOT": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 74.77718034874479,
+              "rmse": 105.5182135012966,
+              "mape": 0.01110540142064224,
+              "r2": 0.9866990441339073,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 76.14772321138622,
+              "rmse": 106.64442574854627,
+              "mape": 0.011317722258964678,
+              "r2": 0.9864136026120408,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007866066756653082,
+              "rmse": 0.010480723574282976,
+              "mape": null,
+              "r2": 0.04912776151838649,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.00785025851743702,
+              "rmse": 0.010459471096766986,
+              "mape": null,
+              "r2": 0.05298014857164335,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.011816149554656897,
+          "ridge_future_return": 0.012047420264842292,
+          "lasso_future_volatility": 0.008095482115137114,
+          "ridge_future_volatility": 0.0080937949269977
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 131.98691361082388,
+              "rmse": 184.00624208084102,
+              "mape": 0.019610431872168665,
+              "r2": 0.9589952871529812,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 137.72384602635128,
+              "rmse": 192.66302528130322,
+              "mape": 0.020443132379806186,
+              "r2": 0.955046302993645,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0062634978819389175,
+              "rmse": 0.008014930695115014,
+              "mape": 0.7808658540232599,
+              "r2": 0.09201274028686146,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006288038235381838,
+              "rmse": 0.008060980298549363,
+              "mape": 0.7802293515243114,
+              "r2": 0.08154912654357094,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.021580941700636416,
+          "ridge_future_return": 0.02263866639695228,
+          "lasso_future_volatility": 0.006344187558894947,
+          "ridge_future_volatility": 0.006357183543022585
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 177.59952947407407,
+              "rmse": 242.51069737510443,
+              "mape": 0.02621657503079511,
+              "r2": 0.9275521716238733,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 187.18517521909317,
+              "rmse": 257.6562446011739,
+              "mape": 0.02759664099340274,
+              "r2": 0.9182204124012759,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005673222369060942,
+              "rmse": 0.00709365471536997,
+              "mape": 0.5719728683019986,
+              "r2": 0.10028206453250754,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005683406802766894,
+              "rmse": 0.007123349359989945,
+              "mape": 0.5697234654041232,
+              "r2": 0.09273370622107835,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.028061917326988765,
+          "ridge_future_return": 0.029379296006131855,
+          "lasso_future_volatility": 0.005465852104056994,
+          "ridge_future_volatility": 0.005460796409505196
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      }
+    },
+    "HEROMOTOCO": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 63.524882449931255,
+              "rmse": 84.16408527110883,
+              "mape": 0.012741861125998014,
+              "r2": 0.9850363044534302,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 64.08124254253357,
+              "rmse": 84.6930597023793,
+              "mape": 0.012850515501507957,
+              "r2": 0.9848476185870649,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.00818003285353667,
+              "rmse": 0.010851849314953452,
+              "mape": null,
+              "r2": 0.021413441414415257,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008393959467716351,
+              "rmse": 0.011087504400703501,
+              "mape": null,
+              "r2": -0.021549339399059342,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.012358464185767389,
+          "ridge_future_return": 0.013200248837796021,
+          "lasso_future_volatility": 0.008173375063439172,
+          "ridge_future_volatility": 0.008435128583586651
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 112.46339603106253,
+              "rmse": 144.04598264222838,
+              "mape": 0.022465909843129687,
+              "r2": 0.9556807675712007,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 112.54686134605404,
+              "rmse": 145.17713308844907,
+              "mape": 0.02250034050476737,
+              "r2": 0.9549819830110348,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0060013079726590765,
+              "rmse": 0.007578039541782496,
+              "mape": 0.6495525434645794,
+              "r2": 0.04299837425274233,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006349380932307037,
+              "rmse": 0.007919245950096784,
+              "mape": 0.6757184750902178,
+              "r2": -0.04512107097999474,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.024937671548929695,
+          "ridge_future_return": 0.026861782950813425,
+          "lasso_future_volatility": 0.005954720536994466,
+          "ridge_future_volatility": 0.006187820735468608
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 153.0976475122226,
+              "rmse": 188.81681250789882,
+              "mape": 0.0302811747231887,
+              "r2": 0.9226670738821416,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 153.4367464118382,
+              "rmse": 190.80535827591063,
+              "mape": 0.03034768257304376,
+              "r2": 0.9210296154690798,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005196097187152043,
+              "rmse": 0.006456301780379746,
+              "mape": 0.4338548846121746,
+              "r2": 0.047261869689691594,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005611608879708656,
+              "rmse": 0.006798958726344759,
+              "mape": 0.46817014318087863,
+              "r2": -0.05655160086130473,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03499651973243204,
+          "ridge_future_return": 0.03733622039347147,
+          "lasso_future_volatility": 0.004941021238143581,
+          "ridge_future_volatility": 0.00505962183991487
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "NESTLEIND": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 11.896887641045605,
+              "rmse": 16.479681206624214,
+              "mape": 0.009323367782988746,
+              "r2": 0.9796763433013207,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 12.19868776054483,
+              "rmse": 16.828974649955445,
+              "mape": 0.009563554488676322,
+              "r2": 0.9788056769133011,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006536014336901348,
+              "rmse": 0.00898131043356658,
+              "mape": null,
+              "r2": -0.018222424095225342,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006646523869850332,
+              "rmse": 0.009111207808196263,
+              "mape": null,
+              "r2": -0.04788867287615495,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.009422303223779788,
+          "ridge_future_return": 0.009557707206198309,
+          "lasso_future_volatility": 0.006278076572027081,
+          "ridge_future_volatility": 0.006341443487279732
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 21.6168345322434,
+              "rmse": 28.925821209609598,
+              "mape": 0.016969129865622407,
+              "r2": 0.9371927131922209,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 22.23979131441104,
+              "rmse": 29.43532757081276,
+              "mape": 0.017485858556922095,
+              "r2": 0.9349606212464856,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004806515223390524,
+              "rmse": 0.006612448281075258,
+              "mape": 0.62788458336953,
+              "r2": -0.037101183714931096,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004848815719083651,
+              "rmse": 0.006768157696574521,
+              "mape": 0.6285916575195316,
+              "r2": -0.08651941641035021,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01734967434855325,
+          "ridge_future_return": 0.01769302697187685,
+          "lasso_future_volatility": 0.004721211944467359,
+          "ridge_future_volatility": 0.004949432759348597
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 27.918513874828367,
+              "rmse": 37.162237322484394,
+              "mape": 0.021859319642473635,
+              "r2": 0.8954926396251297,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 28.51442661646439,
+              "rmse": 38.093989383235005,
+              "mape": 0.022381703193197804,
+              "r2": 0.8901864107951416,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004207003726231681,
+              "rmse": 0.005667172297339695,
+              "mape": 0.4578440668916832,
+              "r2": -0.04073994857761121,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004287372985616333,
+              "rmse": 0.005772300850132077,
+              "mape": 0.46283043693115833,
+              "r2": -0.07971045963693446,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.023219283518300285,
+          "ridge_future_return": 0.023530490595075677,
+          "lasso_future_volatility": 0.004078042064109218,
+          "ridge_future_volatility": 0.0042958388517220295
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "DABUR": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 4.8618293509009085,
+              "rmse": 6.627144336852974,
+              "mape": 0.01028784972509994,
+              "r2": 0.9773369761390078,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 4.876677670947677,
+              "rmse": 6.640168545327383,
+              "mape": 0.010338741391544698,
+              "r2": 0.9772478101342983,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006926545029372478,
+              "rmse": 0.00945927751667736,
+              "mape": null,
+              "r2": 0.016121944075304318,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006860483209378537,
+              "rmse": 0.009456359420812651,
+              "mape": null,
+              "r2": 0.01672888422176233,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.009956746942359901,
+          "ridge_future_return": 0.010310873942629235,
+          "lasso_future_volatility": 0.007139839991326113,
+          "ridge_future_volatility": 0.007467906968294345
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 8.582561701919493,
+              "rmse": 11.55289000951451,
+              "mape": 0.018124110054625053,
+              "r2": 0.931282242791867,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 8.95750971908167,
+              "rmse": 11.867784927592108,
+              "mape": 0.01901364338157964,
+              "r2": 0.9274851364716707,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005374417775364149,
+              "rmse": 0.006947582115362232,
+              "mape": 0.6971172242132071,
+              "r2": 0.035038358640376854,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005331476847451357,
+              "rmse": 0.007023289591794134,
+              "mape": 0.6688071598103416,
+              "r2": 0.01389349214606439,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.017748410555612364,
+          "ridge_future_return": 0.018937391343412352,
+          "lasso_future_volatility": 0.0057247620582328036,
+          "ridge_future_volatility": 0.006060706769642156
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 11.970507010697567,
+              "rmse": 15.423830767007358,
+              "mape": 0.025421629995097787,
+              "r2": 0.8780317312888388,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 12.265609594842676,
+              "rmse": 15.843066828169427,
+              "mape": 0.026125227641241547,
+              "r2": 0.8713111663851737,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0048280299575576046,
+              "rmse": 0.006025958420074496,
+              "mape": 0.4961786046562311,
+              "r2": 0.03595651725991267,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004949292955271603,
+              "rmse": 0.006213505240667174,
+              "mape": 0.4865030814924592,
+              "r2": -0.024985447968506547,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.02396073109776446,
+          "ridge_future_return": 0.025926524670885107,
+          "lasso_future_volatility": 0.004986008510532709,
+          "ridge_future_volatility": 0.005452111545158317
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "HDFCLIFE": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 7.174883414933605,
+              "rmse": 9.436472013888817,
+              "mape": 0.01076363651764444,
+              "r2": 0.9886558384251021,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 7.190837587808664,
+              "rmse": 9.46668728535337,
+              "mape": 0.01080027172197201,
+              "r2": 0.9885830748572784,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007108332713516611,
+              "rmse": 0.009505565767856047,
+              "mape": null,
+              "r2": 0.02329263501935397,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007088219370441236,
+              "rmse": 0.00956368004502438,
+              "mape": null,
+              "r2": 0.011313516052816497,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.011244656921464265,
+          "ridge_future_return": 0.011328044953067754,
+          "lasso_future_volatility": 0.008045732700205845,
+          "ridge_future_volatility": 0.008137748719260793
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 12.876814516796966,
+              "rmse": 16.4119432574783,
+              "mape": 0.019185094127371096,
+              "r2": 0.9657756860706559,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 12.87642508414838,
+              "rmse": 16.402959448141466,
+              "mape": 0.019196307856035568,
+              "r2": 0.9658131442258469,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005027992245103619,
+              "rmse": 0.006649387072755,
+              "mape": 0.5417790703436897,
+              "r2": 0.04826829992890713,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005081346801292738,
+              "rmse": 0.00675925575861279,
+              "mape": 0.548173656189142,
+              "r2": 0.016557291145505415,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.019883767692286766,
+          "ridge_future_return": 0.01997581629995611,
+          "lasso_future_volatility": 0.006158418175804139,
+          "ridge_future_volatility": 0.00627988509944786
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 16.529977472494483,
+              "rmse": 20.968066815229488,
+              "mape": 0.024759584159433242,
+              "r2": 0.9442485368442471,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 16.518456246162618,
+              "rmse": 20.961969039295507,
+              "mape": 0.02473815538884782,
+              "r2": 0.9442809585740148,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0044674581426065625,
+              "rmse": 0.005452669814216165,
+              "mape": 0.42050928161533224,
+              "r2": 0.11846226556523065,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004448362865595872,
+              "rmse": 0.005630088689743631,
+              "mape": 0.4112564190856128,
+              "r2": 0.06016204473539777,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.024776740062221546,
+          "ridge_future_return": 0.024760658643044622,
+          "lasso_future_volatility": 0.0055900137215768265,
+          "ridge_future_volatility": 0.005828911730151874
+        },
+        "selected": {
+          "future_return": "ridge_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "SBILIFE": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 17.552800664849077,
+              "rmse": 23.727560237530398,
+              "mape": 0.009697834768367218,
+              "r2": 0.9738739846409512,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 17.974190594928114,
+              "rmse": 24.354486382765508,
+              "mape": 0.009932187725259242,
+              "r2": 0.9724751501383179,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007021576550886958,
+              "rmse": 0.008913380188082437,
+              "mape": null,
+              "r2": 0.01688686683948759,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006914849875301402,
+              "rmse": 0.008945357723717164,
+              "mape": null,
+              "r2": 0.00982020367784553,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01173121244623217,
+          "ridge_future_return": 0.012152769238296954,
+          "lasso_future_volatility": 0.007588443159960473,
+          "ridge_future_volatility": 0.007716931442960661
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 30.42080703345315,
+              "rmse": 40.54093465318949,
+              "mape": 0.016889931035433455,
+              "r2": 0.9217261765292197,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 31.640992973749107,
+              "rmse": 41.654100129609034,
+              "mape": 0.01754275530630298,
+              "r2": 0.9173687071201123,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005158067425455846,
+              "rmse": 0.006400422626643201,
+              "mape": 0.8577445003075461,
+              "r2": 0.05016774950051994,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004936630736206783,
+              "rmse": 0.006254170079612995,
+              "mape": 0.7986833636354651,
+              "r2": 0.0930799927230288,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.018908436378366412,
+          "ridge_future_return": 0.019379460866165044,
+          "lasso_future_volatility": 0.005413738428194303,
+          "ridge_future_volatility": 0.005544626843835901
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 39.80731353568563,
+              "rmse": 52.84194117713591,
+              "mape": 0.022056740972204267,
+              "r2": 0.8619768638401716,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 40.802554249330264,
+              "rmse": 54.09555975438931,
+              "mape": 0.02256900639508647,
+              "r2": 0.8553502782066733,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0044751022481494766,
+              "rmse": 0.005462803389737476,
+              "mape": 0.5289743594663882,
+              "r2": 0.04392690147726541,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.004224566260169149,
+              "rmse": 0.005302585597944946,
+              "mape": 0.4807672099802344,
+              "r2": 0.09918557132214578,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.024922106359269777,
+          "ridge_future_return": 0.025141599553916892,
+          "lasso_future_volatility": 0.00464762723964779,
+          "ridge_future_volatility": 0.004795759596006392
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "SIEMENS": {
+      "1": {
+        "test_start": "2025-02-21",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 44.846130764301286,
+              "rmse": 61.8035140813546,
+              "mape": 0.013606081774915362,
+              "r2": 0.9659444242701756,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 45.48830248989164,
+              "rmse": 62.06491191139137,
+              "mape": 0.013772438112349907,
+              "r2": 0.9656557390930522,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009636830376927509,
+              "rmse": 0.012723560464845036,
+              "mape": null,
+              "r2": 0.006404947199768363,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009807214441046269,
+              "rmse": 0.013336072542039131,
+              "mape": null,
+              "r2": -0.0915609806467721,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01626909968609677,
+          "ridge_future_return": 0.01643818485186001,
+          "lasso_future_volatility": 0.0106518923410413,
+          "ridge_future_volatility": 0.010642824956511109
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-21",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 84.26646355057176,
+              "rmse": 108.09999827894646,
+              "mape": 0.025509642737794633,
+              "r2": 0.8953082629464229,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 85.50451097587877,
+              "rmse": 109.37912353386356,
+              "mape": 0.025808019112122913,
+              "r2": 0.8928160125373203,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0075555252957858615,
+              "rmse": 0.009589420499155163,
+              "mape": 0.7104861929025835,
+              "r2": -0.14844721437592057,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007597085766550953,
+              "rmse": 0.009650469793305153,
+              "mape": 0.7133224521773504,
+              "r2": -0.1631165198024942,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.030491182144725647,
+          "ridge_future_return": 0.031156853552269527,
+          "lasso_future_volatility": 0.008760149339858617,
+          "ridge_future_volatility": 0.008755735815788038
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-21",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 107.69665863390115,
+              "rmse": 136.17190977453288,
+              "mape": 0.032489537069525065,
+              "r2": 0.8320830934423965,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 110.20611358724882,
+              "rmse": 138.223889117865,
+              "mape": 0.03321724751858833,
+              "r2": 0.8269842719172892,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0062652206698590165,
+              "rmse": 0.008088473453792894,
+              "mape": 0.43802960719366835,
+              "r2": -0.21110513558817967,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006236904563112906,
+              "rmse": 0.008029331343068104,
+              "mape": 0.4375457315439161,
+              "r2": -0.19345892618912397,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.041885565276523734,
+          "ridge_future_return": 0.04327426471618894,
+          "lasso_future_volatility": 0.008618135715358707,
+          "ridge_future_volatility": 0.008610676773904652
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      }
+    },
+    "ABB": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 76.19514033331566,
+              "rmse": 109.69415800528488,
+              "mape": 0.01263965280027539,
+              "r2": 0.9842638044210524,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 76.46977016822517,
+              "rmse": 109.9740639189938,
+              "mape": 0.012693545427667194,
+              "r2": 0.9841833940519562,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009569771534015703,
+              "rmse": 0.01284218564325237,
+              "mape": null,
+              "r2": -0.018124365409673437,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009403169000016953,
+              "rmse": 0.012835520354491682,
+              "mape": null,
+              "r2": -0.0170677957515577,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01772622523603729,
+          "ridge_future_return": 0.018074652023620866,
+          "lasso_future_volatility": 0.011009847251773952,
+          "ridge_future_volatility": 0.011045801691366723
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 150.7358967676775,
+              "rmse": 206.44535538751236,
+              "mape": 0.024910590112395044,
+              "r2": 0.9443175817988924,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 150.6560267069596,
+              "rmse": 205.65334224010928,
+              "mape": 0.02490906765432766,
+              "r2": 0.9447440056495553,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007427107356106765,
+              "rmse": 0.009611631596872058,
+              "mape": 0.8074803739942172,
+              "r2": 0.0190733123248632,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007509847285466669,
+              "rmse": 0.009734386643988091,
+              "mape": 0.8165752868300349,
+              "r2": -0.006142517667689251,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.032258241995642464,
+          "ridge_future_return": 0.0342128192147149,
+          "lasso_future_volatility": 0.008679172871792156,
+          "ridge_future_volatility": 0.00871027358233368
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 201.98442976220565,
+              "rmse": 271.9723677315764,
+              "mape": 0.03332467576152457,
+              "r2": 0.9032099676108319,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 198.8145265212304,
+              "rmse": 267.79824763232165,
+              "mape": 0.032815754636942855,
+              "r2": 0.9061581561238004,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006665787189442542,
+              "rmse": 0.008348045791258021,
+              "mape": 0.6088942562959868,
+              "r2": -0.014569433145906752,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006649569263413062,
+              "rmse": 0.008328691416611264,
+              "mape": 0.6054713815685543,
+              "r2": -0.009870466554742219,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.04401625316130483,
+          "ridge_future_return": 0.04651939087987107,
+          "lasso_future_volatility": 0.00793576716024869,
+          "ridge_future_volatility": 0.007882979358266812
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      }
+    },
+    "IDEA": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 0.2143552406225772,
+              "rmse": 0.2992444827503745,
+              "mape": 0.02198385868002759,
+              "r2": 0.9882065950753712,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 0.22131665162720374,
+              "rmse": 0.30402073727853474,
+              "mape": 0.022534266611695268,
+              "r2": 0.9878271205237622,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.01641724513750494,
+              "rmse": 0.02202675476656579,
+              "mape": null,
+              "r2": -0.03703038834144068,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.01688550519504809,
+              "rmse": 0.022942714664711636,
+              "mape": null,
+              "r2": -0.12507132884447003,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.026718502977872597,
+          "ridge_future_return": 0.027143825271722165,
+          "lasso_future_volatility": 0.020573485245918736,
+          "ridge_future_volatility": 0.02080978856293601
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 0.3904286379666512,
+              "rmse": 0.4958936390664635,
+              "mape": 0.03990219594908519,
+              "r2": 0.967668444555607,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 0.3952913070820829,
+              "rmse": 0.5037390939293107,
+              "mape": 0.04021088355464009,
+              "r2": 0.96663732714424,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.012382115137092538,
+              "rmse": 0.015926157939760485,
+              "mape": 0.7818553673079485,
+              "r2": 0.006901892990952674,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.012573127910859174,
+              "rmse": 0.016547952263592056,
+              "mape": 0.7542888384107681,
+              "r2": -0.07215761927830533,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.04627106239683984,
+          "ridge_future_return": 0.04699735477360449,
+          "lasso_future_volatility": 0.0179179548135477,
+          "ridge_future_volatility": 0.01847009780862777
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 0.5022595995046318,
+              "rmse": 0.6231553942599386,
+              "mape": 0.05116602128414404,
+              "r2": 0.9489723705889954,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 0.5101623290473444,
+              "rmse": 0.6336830194623999,
+              "mape": 0.05175433211898657,
+              "r2": 0.9472336790680131,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.010415492794294394,
+              "rmse": 0.013210569109887708,
+              "mape": 0.5468857085732832,
+              "r2": 0.053417081524983256,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.010729198976209208,
+              "rmse": 0.013757292738502463,
+              "mape": 0.5306330550530439,
+              "r2": -0.02655344713192087,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.06128420037020378,
+          "ridge_future_return": 0.06203494342830998,
+          "lasso_future_volatility": 0.016376489195220965,
+          "ridge_future_volatility": 0.017090927255197896
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "TATACOMM": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 23.68201981315651,
+              "rmse": 32.837870869531066,
+              "mape": 0.01403921699492497,
+              "r2": 0.9518449956395237,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 24.030309222653468,
+              "rmse": 33.05071298342299,
+              "mape": 0.014246084067938463,
+              "r2": 0.9512187291384249,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.010150971377846287,
+              "rmse": 0.013636329707227382,
+              "mape": null,
+              "r2": -0.00024279713632213706,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.010160259498286143,
+              "rmse": 0.013654961184213889,
+              "mape": null,
+              "r2": -0.002977951294242054,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.013415232155867098,
+          "ridge_future_return": 0.013745506093382395,
+          "lasso_future_volatility": 0.008671457151948751,
+          "ridge_future_volatility": 0.008664275002281303
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 42.65066838657232,
+              "rmse": 57.834854893676194,
+              "mape": 0.025405005234577224,
+              "r2": 0.8483604003607522,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 43.77418314446211,
+              "rmse": 58.9655376049064,
+              "mape": 0.026081471040352484,
+              "r2": 0.8423732745768213,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007703040991088437,
+              "rmse": 0.010496662491245146,
+              "mape": 1.0647993178000856,
+              "r2": -0.03785366508265642,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007691976058478525,
+              "rmse": 0.010487808264077313,
+              "mape": 1.0638700428801848,
+              "r2": -0.0361034866099903,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.02441766637135004,
+          "ridge_future_return": 0.025632516493232456,
+          "lasso_future_volatility": 0.006513933394053715,
+          "ridge_future_volatility": 0.0065023153634911875
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 55.797146654069806,
+              "rmse": 75.37759598066043,
+              "mape": 0.032998014874312843,
+              "r2": 0.7359474998407993,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 56.861847257717685,
+              "rmse": 76.38044841822007,
+              "mape": 0.033642486769108554,
+              "r2": 0.7288746493950458,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006445463638587992,
+              "rmse": 0.00885087170829703,
+              "mape": 0.46405245100738823,
+              "r2": -0.00019976304386681853,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006624527712095493,
+              "rmse": 0.009086273844869501,
+              "mape": 0.4742512522856243,
+              "r2": -0.054110887263599805,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03148584480404873,
+          "ridge_future_return": 0.0330769942949736,
+          "lasso_future_volatility": 0.005657709868516279,
+          "ridge_future_volatility": 0.0056587726721770825
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "INDUSTOWER": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 5.073083864716867,
+              "rmse": 6.786849337136179,
+              "mape": 0.012958909786516381,
+              "r2": 0.9600119432939741,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 5.120833544004753,
+              "rmse": 6.837329203535755,
+              "mape": 0.013081465526720189,
+              "r2": 0.9594148772047513,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009898397268738961,
+              "rmse": 0.012523973083374662,
+              "mape": null,
+              "r2": -0.15682717328483964,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.009896744590850179,
+              "rmse": 0.012522585152227362,
+              "mape": null,
+              "r2": -0.1565707838008492,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.018279594145263332,
+          "ridge_future_return": 0.018926072968770972,
+          "lasso_future_volatility": 0.01274978198696789,
+          "ridge_future_volatility": 0.012703447987876156
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "ridge_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 8.817091930981416,
+              "rmse": 11.371648280655549,
+              "mape": 0.022579314923644987,
+              "r2": 0.8865551668201709,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 9.008020401482604,
+              "rmse": 11.586955801564557,
+              "mape": 0.023059062636113514,
+              "r2": 0.8822186347490603,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007474072630223013,
+              "rmse": 0.008919307315155115,
+              "mape": 0.8018427358046433,
+              "r2": -0.22046156335710343,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007382556816106268,
+              "rmse": 0.00907281951034005,
+              "mape": 0.7621814315395854,
+              "r2": -0.2628343705254974,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.034507840593765854,
+          "ridge_future_return": 0.03737219601228038,
+          "lasso_future_volatility": 0.010014315807509416,
+          "ridge_future_volatility": 0.010238521082245676
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 11.395384429151624,
+              "rmse": 14.501803323551734,
+              "mape": 0.029009169479167245,
+              "r2": 0.8124220222407548,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 11.567017013445076,
+              "rmse": 14.742916210969389,
+              "mape": 0.029449723414132142,
+              "r2": 0.8061326729833147,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006747485898583172,
+              "rmse": 0.008010836719987771,
+              "mape": 0.6072123596051855,
+              "r2": -0.4780909381810565,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.00666408117483826,
+              "rmse": 0.008132393222260092,
+              "mape": 0.5797323694632411,
+              "r2": -0.5232883975007783,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.04674477981536662,
+          "ridge_future_return": 0.05002601315026381,
+          "lasso_future_volatility": 0.008680060088678108,
+          "ridge_future_volatility": 0.008957943495715229
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "CHOLAFIN": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 25.245724075290482,
+              "rmse": 33.15254445331223,
+              "mape": 0.015670690635803692,
+              "r2": 0.9327340473830424,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 25.544708061510807,
+              "rmse": 33.463454370560534,
+              "mape": 0.01585621320826497,
+              "r2": 0.9314664694091326,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.01024208311718977,
+              "rmse": 0.013299840433536457,
+              "mape": null,
+              "r2": 0.04674830250969708,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.00999506577315775,
+              "rmse": 0.013263235673666164,
+              "mape": null,
+              "r2": 0.05198829488576362,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.01671694903036529,
+          "ridge_future_return": 0.016842593885435294,
+          "lasso_future_volatility": 0.009815204042433913,
+          "ridge_future_volatility": 0.010060668133065493
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 42.494976478534724,
+              "rmse": 54.972884137575846,
+              "mape": 0.026352216087689388,
+              "r2": 0.8129927440445006,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 42.789414023045026,
+              "rmse": 55.52624179712122,
+              "mape": 0.026511478004388564,
+              "r2": 0.8092089614008494,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007339870288855792,
+              "rmse": 0.009445906216962353,
+              "mape": 0.6859953818660515,
+              "r2": 0.09973036511590183,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.007180566946862727,
+              "rmse": 0.009353695244385252,
+              "mape": 0.6298200311067597,
+              "r2": 0.11722144360410425,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.028772882971453757,
+          "ridge_future_return": 0.0299287022482515,
+          "lasso_future_volatility": 0.0071654913650908494,
+          "ridge_future_volatility": 0.007902821566867852
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 55.11711259327803,
+              "rmse": 71.0651889717461,
+              "mape": 0.034199846610248254,
+              "r2": 0.6843128549194227,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 54.42583753526306,
+              "rmse": 70.78742532198815,
+              "mape": 0.033747432869725674,
+              "r2": 0.6867758062007955,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005887574461897393,
+              "rmse": 0.007635634999422701,
+              "mape": 0.3919160168547892,
+              "r2": 0.1483016536660141,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005747180155609115,
+              "rmse": 0.007572961033464731,
+              "mape": 0.36259808078502725,
+              "r2": 0.1622259028245695,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.035829632806337254,
+          "ridge_future_return": 0.03754722534537962,
+          "lasso_future_volatility": 0.006201133224101992,
+          "ridge_future_volatility": 0.006903437487340956
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      }
+    },
+    "CUMMINSIND": {
+      "1": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-30",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 55.30225429427175,
+              "rmse": 77.54400585076604,
+              "mape": 0.012954083898684817,
+              "r2": 0.9925548654711813,
+              "n": 399
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 56.176217724861296,
+              "rmse": 78.32102000864593,
+              "mape": 0.01314612886780378,
+              "r2": 0.9924049129774208,
+              "n": 399
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008647373319366812,
+              "rmse": 0.011829827634350544,
+              "mape": null,
+              "r2": 0.03478800693998707,
+              "n": 399
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.008681889257107762,
+              "rmse": 0.011992693750616356,
+              "mape": null,
+              "r2": 0.008028115848343176,
+              "n": 399
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.016373779203687572,
+          "ridge_future_return": 0.016605812163279877,
+          "lasso_future_volatility": 0.010648138854856349,
+          "ridge_future_volatility": 0.010841617492492598
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "3": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-28",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 98.00524835498413,
+              "rmse": 135.72387186072743,
+              "mape": 0.022749544607011465,
+              "r2": 0.9769824408734348,
+              "n": 397
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 98.26635641963244,
+              "rmse": 136.06989789183507,
+              "mape": 0.022804928194128944,
+              "r2": 0.9768649253998205,
+              "n": 397
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006442346868770906,
+              "rmse": 0.008729868485250748,
+              "mape": 0.6631480809366957,
+              "r2": 0.06241281196930193,
+              "n": 397
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.006632841830443419,
+              "rmse": 0.009034808942350396,
+              "mape": 0.6563607668386874,
+              "r2": -0.004232351073767848,
+              "n": 397
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.029235299676991622,
+          "ridge_future_return": 0.02929404009229657,
+          "lasso_future_volatility": 0.00820235956157903,
+          "ridge_future_volatility": 0.008307840426627662
+        },
+        "selected": {
+          "future_return": "lasso_future_return",
+          "future_volatility": "lasso_future_volatility"
+        }
+      },
+      "5": {
+        "test_start": "2025-02-24",
+        "test_end": "2026-09-24",
+        "metrics": {
+          "lasso_future_return": {
+            "future_price_rupees": {
+              "mae": 116.75877619263862,
+              "rmse": 154.1930245027824,
+              "mape": 0.02747567619377852,
+              "r2": 0.9699920856591029,
+              "n": 395
+            }
+          },
+          "ridge_future_return": {
+            "future_price_rupees": {
+              "mae": 123.1779379081812,
+              "rmse": 162.7900608612455,
+              "mape": 0.028858606295014178,
+              "r2": 0.9665526181698603,
+              "n": 395
+            }
+          },
+          "lasso_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.005648614148501939,
+              "rmse": 0.0076285409941532645,
+              "mape": 0.45709509006358556,
+              "r2": 0.04015976679584965,
+              "n": 395
+            }
+          },
+          "ridge_future_volatility": {
+            "future_daily_rms_log_return": {
+              "mae": 0.0057023582030759894,
+              "rmse": 0.007653984866759388,
+              "mape": 0.4626531579347493,
+              "r2": 0.03374627810628794,
+              "n": 395
+            }
+          }
+        },
+        "validation_mae": {
+          "lasso_future_return": 0.03748866601772897,
+          "ridge_future_return": 0.03779552105009973,
+          "lasso_future_volatility": 0.007204058919020855,
+          "ridge_future_volatility": 0.00734418365419088
         },
         "selected": {
           "future_return": "lasso_future_return",

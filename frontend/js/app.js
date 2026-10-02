@@ -1,6 +1,6 @@
 import {api} from './api.js';
 import {connectMarket} from './websocket.js';
-import {coreViews as views,coreHydrators as hydrators} from './core-pages.js';
+import {coreViews as views,coreHydrators as hydrators} from './core-pages.js?v=3';
 import {setSafeHTML} from './security.js';
 
 const workspace=document.querySelector('#workspace'),title=document.querySelector('#pageTitle'),subtitle=document.querySelector('#pageSubtitle'),freshness=document.querySelector('#freshness'),marketMessage=document.querySelector('#marketMessage'),nav=document.querySelector('#nav');

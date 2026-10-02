@@ -78,7 +78,9 @@ def stock_cluster(symbol: str, db: Session = Depends(get_db)):
     stocks = [stock for stock in stocks if STOCK_SECTORS.get(stock.symbol) == selected_sector]
     observations = {stock.symbol: price_frame(db, stock.symbol, 252)[1] for stock in stocks}
     result = cluster_stocks(observations, {stock.symbol: STOCK_SECTORS.get(stock.symbol) for stock in stocks})
-    if result["status"] != "ok":
+    if result["status"] != "ok" or symbol.upper() not in result["stocks"]:
+        if result["status"] == "ok":
+            return {"status": "insufficient_data", "message": "Not enough historical data to identify a reliable peer group."}
         return result
     return {"status": "ok", "method": result["method"], "stock": result["stocks"][symbol.upper()],
             "groups": result["groups"], "coverage": len(result["stocks"])}
@@ -89,8 +91,14 @@ def final_options(db: Session = Depends(get_db)):
     assets = db.scalars(select(Asset).where(Asset.asset_type == "stock", Asset.active.is_(True)).order_by(Asset.symbol)).all()
     report_path = ROOT / "docs/final_classification_results.json"
     report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else None
+    real_report_path = ROOT / "models/final/real_direction_results.json"
+    real_report = json.loads(real_report_path.read_text(encoding="utf-8")) if real_report_path.exists() else None
+    horizons = real_report.get("horizons", {}) if real_report else {}
+    recommended_horizon = (int(max(horizons, key=lambda h: horizons[h]["models"][horizons[h]["selected"]]["validation"]["balanced_accuracy"]))
+                           if horizons else 3)
     return {"stocks": [{"symbol": a.symbol, "name": a.name, "sector": a.sector} for a in assets],
             "horizons": [1, 3, 5],
+            "recommended_horizon": recommended_horizon,
             "research": report}
 
 
@@ -111,7 +119,11 @@ def final_prediction(request: FinalPredictionRequest, db: Session = Depends(get_
     direction_result = None
     if direction_path.exists():
         try:
-            direction_result = infer_direction(joblib.load(direction_path), prices)
+            sector = STOCK_SECTORS.get(symbol)
+            peer_symbols = [item for item, item_sector in STOCK_SECTORS.items() if item_sector == sector]
+            sector_observations = {item: price_frame(db, item, 5000)[1] for item in peer_symbols}
+            index_prices = price_frame(db, "NIFTY50", 5000)[1]
+            direction_result = infer_direction(joblib.load(direction_path), prices, index_prices, sector_observations)
         except ValueError:
             pass
     return {"symbol": symbol, "data_type": "real_indian_market", "real_stock": real_result,

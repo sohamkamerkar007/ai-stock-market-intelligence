@@ -5,19 +5,25 @@ FEATURE_COLUMNS = [
     "return_1d",
     "log_return_1d",
     "return_5d",
+    "return_3d",
+    "return_10d",
     "return_20d",
+    "sma_ratio_5",
     "sma_ratio_10",
     "sma_ratio_20",
+    "sma_ratio_50",
     "ema_ratio_12",
     "ma_cross_10_20",
     "rsi_14",
     "macd",
     "momentum_10",
     "volatility_20",
+    "volatility_change",
     "atr_14",
     "bb_width_20",
     "volume_change",
     "relative_volume_20",
+    "volume_momentum_5",
     "drawdown_60",
 ]
 
@@ -51,16 +57,23 @@ def build_features(
     frame["return_1d"] = c.pct_change()
     frame["log_return_1d"] = np.log(c).diff()
     frame["return_5d"] = c.pct_change(5)
+    frame["return_3d"] = c.pct_change(3)
+    frame["return_10d"] = c.pct_change(10)
     frame["return_20d"] = c.pct_change(20)
+    sma5 = c.rolling(5, min_periods=5).mean()
     sma10, sma20 = c.rolling(10, min_periods=10).mean(), c.rolling(20, min_periods=20).mean()
+    sma50 = c.rolling(50, min_periods=50).mean()
+    frame["sma_ratio_5"] = c / sma5 - 1
     frame["sma_ratio_10"] = c / sma10 - 1
     frame["sma_ratio_20"] = c / sma20 - 1
+    frame["sma_ratio_50"] = c / sma50 - 1
     frame["ema_ratio_12"] = c / c.ewm(span=12, adjust=False).mean() - 1
     frame["ma_cross_10_20"] = sma10 / sma20 - 1
     frame["rsi_14"] = _rsi(c)
     frame["macd"] = (c.ewm(span=12, adjust=False).mean() - c.ewm(span=26, adjust=False).mean()) / c
     frame["momentum_10"] = c / c.shift(10) - 1
     frame["volatility_20"] = frame["log_return_1d"].rolling(20, min_periods=20).std() * np.sqrt(252)
+    frame["volatility_change"] = frame["volatility_20"] - frame["volatility_20"].shift(5)
     previous = c.shift(1)
     true_range = pd.concat([h - low, (h - previous).abs(), (low - previous).abs()], axis=1).max(
         axis=1
@@ -70,6 +83,7 @@ def build_features(
     frame["bb_width_20"] = 4 * std20 / sma20
     frame["volume_change"] = vol.pct_change().replace([np.inf, -np.inf], np.nan)
     frame["relative_volume_20"] = vol / vol.rolling(20, min_periods=20).mean().replace(0, np.nan)
+    frame["volume_momentum_5"] = vol.rolling(5).mean() / vol.rolling(20).mean().replace(0, np.nan) - 1
     frame["drawdown_60"] = c / c.rolling(60, min_periods=20).max() - 1
     if index_returns is not None:
         frame["index_return_1d"] = index_returns.reindex(frame.index)
@@ -97,14 +111,16 @@ def expanded_features(prices: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
     columns = list(FEATURE_COLUMNS)
     for window in [2, 3, 10]:
         key = f"return_{window}d"
-        frame[key] = close.pct_change(window, fill_method=None)
-        columns.append(key)
+        if key not in frame:
+            frame[key] = close.pct_change(window, fill_method=None)
+            columns.append(key)
     for window in [5, 50, 100]:
         for kind in ["sma", "ema"]:
             average = close.rolling(window).mean() if kind == "sma" else close.ewm(span=window, adjust=False).mean()
             key = f"{kind}_ratio_{window}"
-            frame[key] = close / average - 1
-            columns.append(key)
+            if key not in frame:
+                frame[key] = close / average - 1
+                columns.append(key)
     extra = {
         "return_acceleration": frame.return_1d - frame.return_1d.shift(1),
         "rsi_change_3": frame.rsi_14.diff(3),
